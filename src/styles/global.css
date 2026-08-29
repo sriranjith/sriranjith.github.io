@@ -74,6 +74,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: hidden; /* prevent nav overflow from causing page-wide horizontal scroll */
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
