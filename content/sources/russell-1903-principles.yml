@@ -1,0 +1,16 @@
+id: russell-1903-principles
+type: book
+title: "The Principles of Mathematics"
+authors:
+  - Bertrand Russell
+year: "1903"
+publisher: Cambridge University Press
+notes: >-
+  Russell's first major systematic treatment of mathematical logic. Section 340
+  contains the Tristram Shandy discussion: Russell uses Sterne's character to
+  illustrate that a countable infinity can be put into one-to-one correspondence
+  with a proper subset of itself — in this case, that the set of days is
+  equinumerous with the set of years, so Tristram Shandy could in principle
+  record every day of his life if he had infinite time, despite falling ever
+  further behind at every finite stage.
+url: https://en.wikipedia.org/wiki/The_Principles_of_Mathematics

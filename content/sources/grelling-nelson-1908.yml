@@ -1,0 +1,16 @@
+id: grelling-nelson-1908
+type: academic-reference
+title: "Bemerkungen zu den Paradoxieen von Russell und Burali-Forti"
+authors:
+  - Kurt Grelling
+  - Leonard Nelson
+year: "1908"
+journal: "Abhandlungen der Fries'schen Schule"
+volume: "2"
+pages: "301–334"
+notes: >-
+  The paper in which Grelling and Nelson introduced the paradox of heterological
+  words: a semantic parallel to Russell's set-theoretic paradox. The paper was
+  written as a contribution to the debate about the paradoxes discovered by
+  Russell and Burali-Forti, and proposed that the same structure of self-reference
+  that generates contradictions in set theory generates them in ordinary language.

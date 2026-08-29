@@ -1,0 +1,18 @@
+id: ellsberg-1961
+type: academic-reference
+title: "Risk, Ambiguity, and the Savage Axioms"
+authors:
+  - Daniel Ellsberg
+year: "1961"
+journal: Quarterly Journal of Economics
+volume: "75"
+pages: "643–669"
+doi: 10.2307/1884324
+notes: >-
+  The paper that introduced what became known as the Ellsberg Paradox. Ellsberg
+  presented experiments with urns of known and unknown composition and showed that
+  people systematically violate Savage's sure-thing principle, preferring bets on
+  known probabilities even when expected utility calculations are equivalent.
+  He proposed that this reflects genuine ambiguity aversion rather than
+  irrationality, and suggested that a complete theory of decision under uncertainty
+  must go beyond subjective expected utility.

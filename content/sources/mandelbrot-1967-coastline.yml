@@ -1,0 +1,17 @@
+id: mandelbrot-1967-coastline
+type: academic-reference
+title: "How Long Is the Coast of Britain? Statistical Self-Similarity and Fractional Dimension"
+authors:
+  - Benoit Mandelbrot
+year: "1967"
+journal: Science
+volume: "156"
+pages: "636–638"
+doi: 10.1126/science.156.3775.636
+notes: >-
+  The paper that formalised the coastline paradox and introduced the concept of
+  fractal dimension to a scientific audience. Mandelbrot built on Lewis Fry
+  Richardson's unpublished observations about the scale-dependence of border
+  lengths, showed that self-similar curves have non-integer dimensions, and
+  proposed the term "fractal" (coined later, in 1975). This paper is the
+  founding document of fractal geometry.
