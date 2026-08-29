@@ -1,0 +1,12 @@
+id: hausdorff-1914-inhalt
+type: paper
+title: "Bemerkung über den Inhalt von Punktmengen"
+authors:
+  - Felix Hausdorff
+year: 1914
+journal: Mathematische Annalen
+volume: "75, 428–433"
+notes: >-
+  The Hausdorff paradox: the sphere minus a countable set splits into three
+  pieces A, B, C such that A, B, C and B ∪ C are all congruent. This is the
+  result Banach and Tarski sharpened ten years later.

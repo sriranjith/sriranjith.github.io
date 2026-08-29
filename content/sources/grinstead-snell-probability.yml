@@ -1,0 +1,13 @@
+id: grinstead-snell-probability
+type: academic-reference
+title: Introduction to Probability
+authors:
+  - Charles M. Grinstead
+  - J. Laurie Snell
+year: 1997
+publisher: American Mathematical Society (2nd revised edition)
+url: https://math.dartmouth.edu/~prob/prob/prob.pdf
+notes: >-
+  Freely redistributable undergraduate textbook. Treats the birthday problem,
+  the two-children problem and Bertrand's box as worked examples in how the
+  choice of sample space determines the answer.

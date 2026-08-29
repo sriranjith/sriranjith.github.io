@@ -1,0 +1,17 @@
+id: lamport-2012-buridans-principle
+type: paper
+title: Buridan's Principle
+authors:
+  - Leslie Lamport
+year: 2012
+journal: Foundations of Physics
+volume: "42(8)"
+pages: "1056–1066"
+notes: >-
+  States the principle that a discrete decision based upon an input having a
+  continuous range of values cannot be made within a bounded length of time.
+  Lamport connects the donkey to arbiter metastability in digital electronics,
+  where a flip-flop resolving two nearly simultaneous inputs can hang in an
+  unstable state for an unbounded time. Written in 1984 and repeatedly rejected
+  before publication, partly because reviewers found the claim about physical
+  systems too strong.

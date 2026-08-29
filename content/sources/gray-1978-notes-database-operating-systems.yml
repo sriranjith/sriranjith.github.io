@@ -1,0 +1,14 @@
+id: gray-1978-notes-database-operating-systems
+type: paper
+title: "Notes on Data Base Operating Systems"
+authors:
+  - Jim Gray
+year: 1978
+journal: "Operating Systems: An Advanced Course, Lecture Notes in Computer Science 60"
+publisher: Springer
+pages: "393–481"
+notes: >-
+  A foundational survey of transaction processing. Section on the two generals
+  paradox gives the problem the name and the military framing it has carried
+  ever since, and connects it directly to the blocking behaviour of two-phase
+  commit.

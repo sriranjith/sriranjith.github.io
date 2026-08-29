@@ -1,0 +1,201 @@
+---
+import Base from '../layouts/Base.astro';
+import { publicCatalog } from '../lib/catalog.js';
+import { knowledgeGraph } from '../lib/graph.js';
+import { url } from '../lib/site.js';
+
+// The map is rendered from the same relationship data the paradox pages use.
+// Layout is computed at build time and emitted as plain SVG — no graph library,
+// no client-side layout engine, and it degrades to a readable list of links.
+const catalog = publicCatalog();
+const tx = catalog.taxonomy;
+const { nodes, edges } = knowledgeGraph(catalog);
+
+const W = 1000;
+const H = 700;
+
+// Nodes are placed by domain (angle) and era (radius): position carries meaning
+// rather than being the arbitrary output of a force simulation.
+const domains = tx.domains.filter((d) => nodes.some((n) => n.domains.includes(d.id)));
+const domainAngle = new Map(domains.map((d, i) => [d.id, (i / domains.length) * Math.PI * 2 - Math.PI / 2]));
+const eraIndex = new Map(tx.eras.map((e, i) => [e.id, i]));
+
+const placed = nodes.map((node) => {
+  const base = domainAngle.get(node.domains[0]) ?? 0;
+  // Spread nodes sharing a domain around their sector, deterministically.
+  const peers = nodes.filter((n) => n.domains[0] === node.domains[0]);
+  const rank = peers.findIndex((n) => n.id === node.id);
+  const spread = (Math.PI * 2) / domains.length;
+  const angle = base + (peers.length > 1 ? (rank / (peers.length - 1) - 0.5) * spread * 0.8 : 0);
+
+  const eraRank = (eraIndex.get(node.era) ?? 0) / Math.max(1, tx.eras.length - 1);
+  const radius = 90 + eraRank * 250;
+
+  return {
+    ...node,
+    x: W / 2 + Math.cos(angle) * radius * 1.35,
+    y: H / 2 + Math.sin(angle) * radius,
+    color: tx.get('domains', node.domains[0])?.color ?? '#888',
+    r: 4 + Math.min(node.degree, 8) * 0.9,
+  };
+});
+
+const byId = new Map(placed.map((n) => [n.id, n]));
+const lines = edges
+  .map((e) => ({ ...e, a: byId.get(e.from), b: byId.get(e.to) }))
+  .filter((e) => e.a && e.b);
+
+// The most-connected entries, which are the useful entry points into the graph.
+const hubs = [...placed].sort((a, b) => b.degree - a.degree).slice(0, 12);
+---
+
+<Base
+  title="Knowledge map"
+  description="How the paradoxes connect: influence, resolution, and shared ideas across fields and centuries."
+>
+  <header class="thead">
+    <h1>The map</h1>
+    <p class="lede">
+      Every line is a connection an author wrote by hand and explained. Distance
+      from the centre is time — ancient ideas sit near the middle, modern ones at
+      the edge — and each spoke is a field. Nothing here is inferred by a model.
+    </p>
+    <p class="mstat">
+      {placed.length} entries · {lines.length} connections · {domains.length} fields
+    </p>
+  </header>
+
+  <figure class="mfig">
+    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-labelledby="maptitle" class="msvg">
+      <title id="maptitle">
+        A map of {placed.length} paradoxes joined by {lines.length} connections,
+        arranged by field and century. The same information is listed below.
+      </title>
+
+      <g class="medges">
+        {lines.map((e) => (
+          <line x1={e.a.x} y1={e.a.y} x2={e.b.x} y2={e.b.y} />
+        ))}
+      </g>
+
+      <g>
+        {
+          placed.map((n) => (
+            <a href={url.paradox(n.id)} class="mnode">
+              <circle cx={n.x} cy={n.y} r={n.r} fill={n.color} />
+              <title>{n.title} — {tx.label('domains', n.domains[0])}, {n.degree} connections</title>
+            </a>
+          ))
+        }
+      </g>
+    </svg>
+
+    <figcaption>
+      Hover a dot for its name; click to open it. Colour is the field.
+      Dot size is how many connections an entry has.
+    </figcaption>
+  </figure>
+
+  <ul class="mlegend">
+    {
+      domains.map((d) => (
+        <li>
+          <a href={url.domain(d.id)}>
+            <i style={`background:${d.color}`}></i>{d.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <section class="section">
+    <div class="section__head">
+      <div>
+        <h2>The busiest crossroads</h2>
+        <p>Entries that connect to the most others — good places to enter the map.</p>
+      </div>
+    </div>
+    <ol class="mhubs">
+      {
+        hubs.map((n) => (
+          <li>
+            <a href={url.paradox(n.id)}>
+              <i style={`background:${n.color}`}></i>
+              <b>{n.title}</b>
+              <span>{n.degree} connections</span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+</Base>
+
+<style>
+  .thead { padding-block: 2rem 1.5rem; max-width: 42rem; }
+  .thead h1 { margin-bottom: 0.4rem; }
+  .mstat {
+    font-family: var(--font-ui);
+    font-size: 0.83rem;
+    color: var(--ink-faint);
+    margin: 1rem 0 0;
+  }
+
+  .mfig { margin: 0 0 1rem; }
+  .msvg {
+    width: 100%;
+    height: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .medges line { stroke: var(--line); stroke-width: 1; }
+  .mnode circle { transition: r 0.15s ease; cursor: pointer; }
+  .mnode:hover circle { r: 11; stroke: var(--paper); stroke-width: 2; }
+  .mnode:focus-visible circle { stroke: var(--accent); stroke-width: 3; }
+  .mfig figcaption {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    margin-top: 0.6rem;
+  }
+
+  .mlegend {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.9rem;
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+  }
+  .mlegend a { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--ink-soft); text-decoration: none; }
+  .mlegend a:hover { color: var(--accent-ink); }
+  .mlegend i { width: 0.6rem; height: 0.6rem; border-radius: 50%; display: inline-block; }
+
+  .mhubs {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 4rem;
+    display: grid;
+    gap: 0.35rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  }
+  .mhubs a {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    text-decoration: none;
+    font-family: var(--font-ui);
+    font-size: 0.88rem;
+  }
+  .mhubs a:hover { background: var(--surface-alt); }
+  .mhubs i { width: 0.55rem; height: 0.55rem; border-radius: 50%; flex: none; }
+  .mhubs b { color: var(--ink); font-weight: 570; flex: 1; min-width: 0; }
+  .mhubs span { color: var(--ink-faint); font-size: 0.76rem; white-space: nowrap; }
+</style>

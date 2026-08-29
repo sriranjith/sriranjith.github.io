@@ -1,0 +1,46 @@
+id: understanding-infinity
+title: Understanding Infinity
+summary: >-
+  Start with a runner who can never finish a race and end with a solid ball cut
+  into five pieces and reassembled into two of the same size. Nothing along the
+  way is a trick — each step is the honest consequence of the one before it.
+difficulty: intermediate
+domains:
+  - mathematics
+  - philosophy
+order: 10
+steps:
+  - paradox: zenos-dichotomy
+    why: >-
+      Begin where everyone begins. Before you can add up infinitely many things,
+      you have to be shocked that anyone would want to.
+
+  - paradox: achilles-and-the-tortoise
+    why: >-
+      The same argument wearing different clothes. Seeing it twice is what
+      teaches you to spot the shape of the move rather than the story.
+
+  - paradox: galileos-paradox
+    why: >-
+      Zeno cut a finite thing into infinitely many pieces. Galileo does the
+      opposite — he matches an infinite collection against a part of itself and
+      finds they are the same size. This is the first crack.
+
+  - paradox: hilberts-hotel
+    why: >-
+      Galileo's crack, turned into a story you can tell a child. If you can
+      house a new guest in a full hotel, "the same size" means something
+      genuinely different for infinite collections.
+
+  - paradox: cantors-diagonal-argument
+    why: >-
+      Now the payoff. If all infinities behaved like Hilbert's hotel there would
+      be nothing more to say. Cantor proves some infinities are strictly larger
+      than others, and the proof fits on a postcard.
+
+  - paradox: banach-tarski-paradox
+    why: >-
+      The end of the road. Once you accept that infinite sets are this strange,
+      and you accept the Axiom of Choice, you get a ball cut into five pieces
+      and reassembled into two identical balls. Nothing here is a mistake —
+      which is precisely the problem.

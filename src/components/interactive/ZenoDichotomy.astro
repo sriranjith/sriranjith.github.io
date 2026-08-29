@@ -1,0 +1,103 @@
+---
+---
+<div data-zeno>
+  <p>Each step covers half the remaining distance. Keep going.</p>
+
+  <div class="zn__track" aria-hidden="true">
+    <div class="zn__runner" data-zn-runner style="left:0%"></div>
+    <div class="zn__marks" data-zn-marks></div>
+  </div>
+
+  <div class="iv-controls">
+    <button class="btn btn--primary" type="button" data-zn-step>Take a step</button>
+    <button class="btn" type="button" data-zn-ten>Take 10 steps</button>
+    <button class="btn" type="button" data-zn-reset>Start over</button>
+  </div>
+
+  <div class="iv-stats">
+    <div class="iv-stat"><b data-zn-count>0</b><span>Steps taken</span></div>
+    <div class="iv-stat"><b data-zn-total>0</b><span>Distance covered</span></div>
+    <div class="iv-stat"><b data-zn-left>1</b><span>Distance remaining</span></div>
+  </div>
+
+  <p class="iv-note" data-zn-note>The sum 1/2 + 1/4 + 1/8 + … has infinitely many terms and a finite total.</p>
+  <noscript><p class="iv-noscript">This animation needs JavaScript. The series is 1/2 + 1/4 + 1/8 + … which sums exactly to 1.</p></noscript>
+</div>
+
+<style>
+  .zn__track {
+    position: relative;
+    height: 3rem;
+    background: var(--surface-alt);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .zn__runner {
+    position: absolute;
+    top: 50%;
+    width: 1.4rem; height: 1.4rem;
+    margin: -0.7rem 0 0 -0.7rem;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 2;
+  }
+  .zn__marks i {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  .zn__track::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--warm);
+  }
+</style>
+
+<script>
+  const root = document.querySelector('[data-zeno]');
+  if (root) {
+    const runner = root.querySelector('[data-zn-runner]');
+    const marks = root.querySelector('[data-zn-marks]');
+    let n = 0;
+
+    // Exact rational arithmetic: after n steps the position is (2^n - 1) / 2^n.
+    const fmt = (steps) => {
+      if (steps === 0) return '0';
+      if (steps > 30) return '≈1';
+      const d = 2 ** steps;
+      return `${d - 1}/${d}`;
+    };
+    const remaining = (steps) => (steps === 0 ? '1' : steps > 30 ? '≈0' : `1/${2 ** steps}`);
+
+    function paint() {
+      const pos = 1 - 2 ** -n;
+      runner.style.left = `${pos * 100}%`;
+      root.querySelector('[data-zn-count]').textContent = String(n);
+      root.querySelector('[data-zn-total]').textContent = fmt(n);
+      root.querySelector('[data-zn-left]').textContent = remaining(n);
+
+      marks.innerHTML = '';
+      for (let i = 1; i <= Math.min(n, 12); i++) {
+        const mark = document.createElement('i');
+        mark.style.left = `${(1 - 2 ** -i) * 100}%`;
+        marks.appendChild(mark);
+      }
+
+      const note = root.querySelector('[data-zn-note]');
+      if (n === 0) note.textContent = 'The sum 1/2 + 1/4 + 1/8 + … has infinitely many terms and a finite total.';
+      else if (n < 5) note.textContent = `${n} step${n > 1 ? 's' : ''}, and you are ${fmt(n)} of the way there. Always closer, never arrived.`;
+      else if (n < 15) note.textContent = 'The gap is shrinking faster than you can count the steps. It never reaches zero at any finite step.';
+      else note.textContent = 'No finite number of steps arrives. The limit does — and the limit is exactly 1, not merely close to it.';
+    }
+
+    root.querySelector('[data-zn-step]').addEventListener('click', () => { n++; paint(); });
+    root.querySelector('[data-zn-ten]').addEventListener('click', () => { n += 10; paint(); });
+    root.querySelector('[data-zn-reset]').addEventListener('click', () => { n = 0; paint(); });
+    paint();
+  }
+</script>

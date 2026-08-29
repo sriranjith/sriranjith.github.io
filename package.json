@@ -1,0 +1,32 @@
+{
+  "name": "paradox",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A static knowledge base of paradoxes, for every age group.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "npm run validate && astro build",
+    "preview": "astro preview",
+    "admin": "node admin/server.mjs",
+    "validate": "node scripts/validate.mjs",
+    "health": "node scripts/health.mjs",
+    "new": "node scripts/new-paradox.mjs",
+    "check": "npm run validate && astro check"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.2.9",
+    "gray-matter": "^4.0.3",
+    "marked": "^18.0.11",
+    "yaml": "^2.9.0",
+    "zod": "^4.5.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

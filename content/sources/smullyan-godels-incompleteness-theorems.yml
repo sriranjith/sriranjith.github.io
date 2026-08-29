@@ -1,0 +1,12 @@
+id: smullyan-godels-incompleteness-theorems
+type: book
+title: "Gödel's Incompleteness Theorems"
+authors:
+  - Raymond M. Smullyan
+year: 1992
+publisher: Oxford University Press
+notes: >-
+  A short, rigorous, self-contained treatment. Smullyan's abstract approach
+  isolates exactly what a system must be able to represent for the theorems to
+  bite, and covers the diagonal lemma, Rosser's construction, Tarski's theorem
+  and the second theorem in under 150 pages.

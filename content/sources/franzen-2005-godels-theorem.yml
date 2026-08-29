@@ -1,0 +1,13 @@
+id: franzen-2005-godels-theorem
+type: book
+title: "Gödel's Theorem: An Incomplete Guide to Its Use and Abuse"
+authors:
+  - Torkel Franzén
+year: 2005
+publisher: A K Peters
+notes: >-
+  The standard corrective. States the theorems precisely for a general reader,
+  then works through the misapplications one by one: relativism about truth, the
+  Lucas-Penrose argument, theological arguments, appeals to "systems" that are
+  not formal systems, and Chaitin's information-theoretic gloss on his own
+  theorem.

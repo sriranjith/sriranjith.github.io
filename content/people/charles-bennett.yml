@@ -1,0 +1,11 @@
+id: charles-bennett
+name: Charles H. Bennett
+born: 1943
+tradition: American physics of information
+bio: >-
+  IBM researcher, co-inventor of quantum key distribution (1984, with Gilles
+  Brassard) and quantum teleportation (1993). In 1973 he showed that computation
+  can in principle be made logically reversible, and in 1982 he used that result
+  to close the Maxwell's-demon problem: the demon's measurement need cost
+  nothing, but clearing its memory to measure again must pay Landauer's bill.
+url: https://en.wikipedia.org/wiki/Charles_H._Bennett_(physicist)

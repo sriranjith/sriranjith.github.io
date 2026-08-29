@@ -1,0 +1,15 @@
+id: broome-1995-two-envelope
+type: paper
+title: The Two-envelope Paradox
+authors:
+  - John Broome
+year: 1995
+journal: Analysis
+volume: "55(1), 6–11"
+doi: 10.1093/analys/55.1.6
+notes: >-
+  Constructs a genuine, normalisable probability distribution over the envelope
+  contents under which swapping really does have positive expected gain for
+  every amount you might see. The catch is that the distribution has infinite
+  mean, which is what makes the "always swap" advice harmless rather than
+  profitable.

@@ -1,0 +1,26 @@
+id: griffith-2020-collider
+type: paper
+title: "Collider bias undermines our understanding of COVID-19 disease risk and severity"
+authors:
+  - Gareth J. Griffith
+  - Tim T. Morris
+  - Matthew J. Tudball
+  - Annie Herbert
+  - Giulia Mancano
+  - Lindsey Pike
+  - Gemma C. Sharp
+  - Jonathan Sterne
+  - Tom M. Palmer
+  - George Davey Smith
+  - Kate Tilling
+  - Luisa Zuccolo
+  - Neil M. Davies
+  - Gibran Hemani
+year: 2020
+journal: Nature Communications
+volume: "11, 5749"
+notes: >-
+  Shows that non-random participation in COVID-19 testing and in volunteer
+  cohorts induces collider bias strong enough to reverse the apparent direction
+  of well-established risk factors. A live, high-stakes instance of Berkson's
+  point.

@@ -1,0 +1,12 @@
+id: sep-qm-bohm
+type: encyclopedia
+title: "Bohmian Mechanics"
+authors:
+  - Sheldon Goldstein
+year: 2021
+publisher: Stanford Encyclopedia of Philosophy
+url: https://plato.stanford.edu/entries/qm-bohm/
+notes: >-
+  The explicitly non-local hidden-variable theory that reproduces all quantum
+  predictions — the standing proof that Bell's theorem rules out locality, not
+  hidden variables as such.

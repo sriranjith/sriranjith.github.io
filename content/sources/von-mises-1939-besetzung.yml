@@ -1,0 +1,15 @@
+id: von-mises-1939-besetzung
+type: primary-source
+title: "Über Aufteilungs- und Besetzungswahrscheinlichkeiten"
+authors:
+  - Richard von Mises
+year: 1939
+journal: Revue de la Faculté des Sciences de l'Université d'Istanbul
+volume: "N.S. 4, 145–163"
+notes: >-
+  The first published treatment of the birthday problem, framed as an occupancy
+  question — balls thrown into 365 boxes — rather than as a puzzle about people.
+  Reprinted in Selected Papers of Richard von Mises, vol. 2 (American
+  Mathematical Society, 1964), 313–334. The problem was circulating orally
+  before this, and is often credited to Harold Davenport in the late 1920s, but
+  Davenport never published it and did not claim priority.

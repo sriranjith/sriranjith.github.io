@@ -1,0 +1,144 @@
+---
+import Base from '../layouts/Base.astro';
+import { publicCatalog } from '../lib/catalog.js';
+import { url } from '../lib/site.js';
+
+const catalog = publicCatalog();
+const tx = catalog.taxonomy;
+const natures = tx.natures.map((n) => ({
+  ...n,
+  count: catalog.paradoxes.filter((p) => p.nature === n.id).length,
+}));
+---
+
+<Base
+  title="About"
+  description="What this site is, who it is for, and what counts as a paradox here."
+>
+  <article class="ab prose">
+    <h1>About</h1>
+
+    <p class="lede">
+      A collection of the ideas that refuse to sit comfortably in the human head —
+      written so that a curious ten-year-old and a working researcher can read
+      the same page and both get something out of it.
+    </p>
+
+    <h2>One page, many depths</h2>
+    <p>
+      Every entry is layered. It opens with a story you need no background for,
+      then explains what is actually going on in plain language, then goes into
+      history, competing interpretations, the technical treatment, and finally
+      the original sources.
+    </p>
+    <p>
+      You stop wherever you like. The promise is that everything above where you
+      stopped was <em>true</em> — nothing is simplified into something
+      misleading. Where a claim needs a caveat to be accurate, the caveat is
+      there, in ordinary words.
+    </p>
+
+    <h2 id="what-counts">What counts as a paradox here</h2>
+    <p>
+      The word gets used for almost anything surprising, which quietly destroys a
+      set of real distinctions. A theorem proving that no voting system can work
+      is not the same kind of object as a sentence that contradicts itself, and
+      neither is the same as a probability answer that happens to feel wrong.
+    </p>
+    <p>
+      So every entry declares its <a href="/taxonomy/#natures">nature</a>, and
+      the site says plainly when something popularly called a paradox is not one:
+    </p>
+
+    <dl class="abnat">
+      {
+        natures.map((n) => (
+          <div>
+            <dt>
+              {n.count > 0 ? <a href={url.nature(n.id)}>{n.label}</a> : n.label}
+              <em>{n.count}</em>
+            </dt>
+            <dd>{n.explanation}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <h2>Sources are not decoration</h2>
+    <p>
+      Every published entry cites its sources, and wherever the original
+      formulation is identifiable, the primary source is cited directly.
+      References are structured records — author, year, publisher, DOI — shared
+      across entries, so the same book cited from six pages is one record that
+      can be corrected once. The whole <a href="/sources/">bibliography</a> is
+      browsable.
+    </p>
+    <p>
+      Where scholarship is uncertain, the text says so. A number of famous origin
+      stories in this field are traditions rather than documented history, and
+      the entries mark which is which.
+    </p>
+
+    <h2>No AI in the product</h2>
+    <p>
+      There is no chatbot here, no recommendation model, no vector database and
+      no runtime language-model call. The "where to go next" suggestions are
+      computed from connections that a human wrote down and explained; you can
+      read the reason on every card.
+    </p>
+    <p>
+      AI is used privately, as a research assistant — for finding candidate
+      paradoxes, tracking down references, and drafting material that is then
+      checked and edited by a person before publication. Nothing reaches this
+      site without a human deciding it should.
+    </p>
+
+    <h2>How it is built</h2>
+    <p>
+      The whole site is {catalog.paradoxes.length} Markdown files, some YAML,
+      and a static site generator. There is no database and no server. The
+      published output is plain files on a CDN, which is why it is fast and
+      costs essentially nothing to run.
+    </p>
+    <p>
+      That is also a maintenance decision: adding the next hundred entries is the
+      same operation as adding the first, and it involves no code.
+    </p>
+
+    <h2>Corrections</h2>
+    <p>
+      Something wrong? It probably is, somewhere. The content is a set of text
+      files in version control, which makes being wrong in public fixable rather
+      than embarrassing. Corrections with a source attached are the most useful
+      thing anyone can send.
+    </p>
+  </article>
+</Base>
+
+<style>
+  .ab { max-width: 38rem; padding-block: 2rem 4rem; }
+  .ab h2 { margin-top: 2.5rem; }
+  .ab .lede { margin-bottom: 2rem; }
+
+  .abnat { margin: 1.5rem 0; }
+  .abnat > div {
+    border-left: 2px solid var(--line);
+    padding: 0.15rem 0 0.15rem 1rem;
+    margin-bottom: 1rem;
+  }
+  .abnat dt {
+    font-family: var(--font-ui);
+    font-weight: 620;
+    font-size: 0.95rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+  }
+  .abnat dt em {
+    font-style: normal;
+    font-size: 0.73rem;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .abnat dd { margin: 0.2rem 0 0; font-size: 0.93rem; color: var(--ink-soft); }
+</style>

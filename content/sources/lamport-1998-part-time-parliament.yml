@@ -1,0 +1,13 @@
+id: lamport-1998-part-time-parliament
+type: paper
+title: "The Part-Time Parliament"
+authors:
+  - Leslie Lamport
+year: 1998
+journal: ACM Transactions on Computer Systems
+volume: "16(2)"
+pages: "133–169"
+notes: >-
+  The Paxos algorithm, presented as the recovered civil procedure of an ancient
+  Greek island. Paxos never violates FLP: it guarantees agreement in every
+  execution and guarantees termination only when the network behaves.

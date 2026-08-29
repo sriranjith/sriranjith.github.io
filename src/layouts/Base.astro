@@ -1,0 +1,119 @@
+---
+import '../styles/global.css';
+import { SITE, NAV } from '../lib/site.js';
+
+const {
+  title,
+  description = SITE.description,
+  type = 'website',
+  noindex = false,
+  jsonLd = null,
+  wide = false,
+} = Astro.props;
+
+const pageTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://localhost').href;
+const current = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title ?? SITE.name} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9F%B3%3C/text%3E%3C/svg%3E"
+    />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />}
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="page site-header__inner">
+        <a class="brand" href="/">Paradox<span>⟳</span></a>
+        <nav class="site-nav" aria-label="Main">
+          {
+            NAV.map((item) => (
+              <a
+                href={item.href}
+                aria-current={current === item.href ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+          <a href="/search/" class="site-nav__search" aria-label="Search">Search</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class={wide ? '' : 'page'}>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="page">
+        <div class="footer-grid">
+          <div>
+            <h2>Explore</h2>
+            <ul>
+              <li><a href="/browse/">Browse everything</a></li>
+              <li><a href="/timeline/">Timeline</a></li>
+              <li><a href="/paths/">Learning paths</a></li>
+              <li><a href="/map/">Knowledge map</a></li>
+              <li><a href="/random/">Surprise me</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Reference</h2>
+            <ul>
+              <li><a href="/sources/">Bibliography</a></li>
+              <li><a href="/people/">People</a></li>
+              <li><a href="/taxonomy/">Classification</a></li>
+              <li><a href="/search/">Search</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>About</h2>
+            <ul>
+              <li><a href="/about/">What this is</a></li>
+              <li><a href="/about/#what-counts">What counts as a paradox</a></li>
+              <li><a href="/rss.xml">RSS</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="footer-note">
+          Every entry is human-reviewed and cited. Corrections are welcome — this
+          site is a repository of text files, and being wrong in public is fixable.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-nav__search { position: relative; }
+  @media (max-width: 30rem) {
+    .site-header__inner { padding-block: 0.6rem; }
+    .site-nav { width: 100%; }
+    .site-nav a { padding-inline: 0.5rem; font-size: 0.85rem; }
+  }
+</style>

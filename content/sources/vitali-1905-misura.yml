@@ -1,0 +1,11 @@
+id: vitali-1905-misura
+type: paper
+title: "Sul problema della misura dei gruppi di punti di una retta"
+authors:
+  - Giuseppe Vitali
+year: 1905
+publisher: Tip. Gamberini e Parmeggiani, Bologna
+notes: >-
+  The first non-measurable set, built with the axiom of choice by picking one
+  representative from each coset of the rationals in the reals. The prototype
+  for every piece in the Banach–Tarski decomposition.

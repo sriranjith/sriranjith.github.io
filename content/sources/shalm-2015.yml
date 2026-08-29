@@ -1,0 +1,13 @@
+id: shalm-2015
+type: paper
+title: "Strong Loophole-Free Test of Local Realism"
+authors:
+  - Lynden K. Shalm
+  - et al.
+year: 2015
+journal: Physical Review Letters
+volume: "115, 250402"
+doi: 10.1103/PhysRevLett.115.250402
+notes: >-
+  The NIST photonic loophole-free test, with high-efficiency transition-edge
+  sensor detectors and randomness extracted from independent sources.

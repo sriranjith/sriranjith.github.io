@@ -1,0 +1,14 @@
+id: condorcet-1785-essai
+type: primary-source
+title: "Essai sur l'application de l'analyse à la probabilité des décisions rendues à la pluralité des voix"
+authors:
+  - Nicolas de Condorcet
+year: 1785
+publisher: Imprimerie Royale, Paris
+notes: >-
+  The founding text of social choice theory. Best known for the jury theorem, it
+  also contains the first statement of the cyclical majority now called the
+  Condorcet paradox, which Condorcet encountered while trying to extend the jury
+  argument beyond two options. Notoriously difficult: dense, disorganised and
+  printed with errors. English translations of the key passages appear in McLean
+  and Urken, Classics of Social Choice (1995).

@@ -1,0 +1,81 @@
+# Controlled vocabulary: Domain
+# Adding a domain here automatically creates its browse page, adds it to filters,
+# home entry points, and the coverage dashboard. No code changes required.
+- id: philosophy
+  label: Philosophy
+  short: Questions about reality, knowledge, and meaning.
+  blurb: Paradoxes that press on what exists, what we can know, and what words mean.
+  color: "#7c5cff"
+  order: 10
+- id: logic
+  label: Logic
+  short: The rules of valid reasoning — and where they break.
+  blurb: Self-reference, contradiction, and the limits of formal systems.
+  color: "#4f7cff"
+  order: 20
+- id: mathematics
+  label: Mathematics
+  short: Infinity, sets, and results that defy intuition.
+  blurb: Where rigorous proof leads somewhere your gut refuses to follow.
+  color: "#00a2a2"
+  order: 30
+- id: probability
+  label: Probability
+  short: Chance behaves nothing like people expect.
+  blurb: Puzzles where the correct answer feels obviously wrong.
+  color: "#e0762b"
+  order: 40
+- id: statistics
+  label: Statistics
+  short: What data does and does not tell you.
+  blurb: Aggregation, selection, and inference traps hiding in real numbers.
+  color: "#c85a2b"
+  order: 50
+- id: physics
+  label: Physics
+  short: Space, time, matter, and observation.
+  blurb: Relativity, quantum mechanics, and thermodynamics against common sense.
+  color: "#2f7bd6"
+  order: 60
+- id: astronomy
+  label: Astronomy
+  short: The sky, the cosmos, and its silences.
+  blurb: Why the night is dark, and why nobody has called.
+  color: "#3b4a8c"
+  order: 70
+- id: biology
+  label: Biology
+  short: Life, evolution, and genomes.
+  blurb: Puzzles in fitness, cooperation, cancer, and complexity.
+  color: "#2e9e5b"
+  order: 80
+- id: psychology
+  label: Psychology
+  short: How minds misjudge themselves and the world.
+  blurb: Choice, preference, memory, and confidence turning on themselves.
+  color: "#d1487f"
+  order: 90
+- id: economics
+  label: Economics
+  short: Value, incentives, markets, and choice.
+  blurb: Where rational individuals produce irrational collective outcomes.
+  color: "#b8862b"
+  order: 100
+- id: society
+  label: Society
+  short: Groups, voting, tolerance, and cooperation.
+  blurb: What happens when many people's preferences must become one decision.
+  color: "#8a6d3b"
+  order: 110
+- id: computer-science
+  label: Computer Science
+  short: Computation, algorithms, and distributed systems.
+  blurb: Provable limits on what machines can decide, agree, or guarantee.
+  color: "#5b6470"
+  order: 120
+- id: ai
+  label: AI
+  short: Machine intelligence and its unexpected shapes.
+  blurb: Alignment, capability, and metrics that stop meaning what they measured.
+  color: "#00857c"
+  order: 130

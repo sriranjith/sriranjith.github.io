@@ -1,0 +1,13 @@
+id: pearl-causality
+type: book
+title: "Causality: Models, Reasoning, and Inference"
+authors:
+  - Judea Pearl
+year: 2009
+publisher: Cambridge University Press
+notes: >-
+  Second edition. Chapter 6 treats Simpson's paradox and shows that the choice
+  between the aggregated and the partitioned table is not a statistical question
+  at all: it is fixed by the causal graph, through the back-door criterion. The
+  book also introduces the do-operator and the adjustment formula used throughout
+  this entry.

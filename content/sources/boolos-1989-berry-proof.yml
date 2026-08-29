@@ -1,0 +1,13 @@
+id: boolos-1989-berry-proof
+type: paper
+title: "A New Proof of the Gödel Incompleteness Theorem"
+authors:
+  - George Boolos
+year: 1989
+journal: Notices of the American Mathematical Society
+volume: "36"
+pages: "388–390"
+notes: >-
+  A one-page proof of incompleteness built directly on Berry's paradox rather
+  than the Liar. It uses no explicit self-reference and no diagonal lemma, which
+  makes the connection between naming, defining and proving unusually visible.

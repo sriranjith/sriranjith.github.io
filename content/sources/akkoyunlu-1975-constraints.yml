@@ -1,0 +1,15 @@
+id: akkoyunlu-1975-constraints
+type: primary-source
+title: "Some constraints and tradeoffs in the design of network communications"
+authors:
+  - E. A. Akkoyunlu
+  - K. Ekanadham
+  - R. V. Huber
+year: 1975
+journal: "Proceedings of the Fifth ACM Symposium on Operating Systems Principles (SOSP '75)"
+pages: "67–74"
+notes: >-
+  The first statement of the result now known as the Two Generals' Problem,
+  posed not as a fable about armies but as a constraint on the design of network
+  communication protocols: no finite exchange of messages over an unreliable
+  channel can make an agreement common knowledge.

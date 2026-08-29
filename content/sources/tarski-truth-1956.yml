@@ -1,0 +1,12 @@
+id: tarski-truth-1956
+type: primary-source
+title: "The Concept of Truth in Formalized Languages"
+authors:
+  - Alfred Tarski
+year: 1956
+publisher: "In Logic, Semantics, Metamathematics, trans. J. H. Woodger (Oxford: Clarendon Press)"
+notes: >-
+  The English translation of Tarski's monograph of the early 1930s. It contains
+  the undefinability theorem: for a sufficiently rich consistent language, the
+  set of true sentences of that language is not definable within it. The
+  semantic paradoxes are what force the language/metalanguage split.

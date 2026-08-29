@@ -1,0 +1,11 @@
+id: sep-russell-paradox
+type: encyclopedia
+title: "Russell's Paradox"
+authors:
+  - Andrew David Irvine
+  - Harry Deutsch
+publisher: Stanford Encyclopedia of Philosophy
+url: https://plato.stanford.edu/entries/russell-paradox/
+notes: >-
+  Covers the history, the letter to Frege, the independent discovery by Zermelo,
+  and the range of responses from type theory to ZFC to paraconsistent logic.

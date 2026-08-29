@@ -1,0 +1,13 @@
+id: jim-gray
+name: Jim Gray
+born: 1944
+died: 2007
+tradition: American computer science
+bio: >-
+  American computer scientist who did more than anyone to make database
+  transactions a rigorous, engineerable idea: the ACID properties, two-phase
+  locking, two-phase commit, and recovery. His 1978 lecture notes on database
+  operating systems named the two generals paradox and set out the problem of
+  agreement over unreliable communication for a generation of practitioners. He
+  received the 1998 Turing Award. He was lost at sea in January 2007.
+url: https://en.wikipedia.org/wiki/Jim_Gray_(computer_scientist)

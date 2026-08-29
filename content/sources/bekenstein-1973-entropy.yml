@@ -1,0 +1,12 @@
+id: bekenstein-1973-entropy
+type: paper
+title: "Black Holes and Entropy"
+authors:
+  - Jacob D. Bekenstein
+year: 1973
+journal: Physical Review D
+volume: "7, 2333–2346"
+doi: 10.1103/PhysRevD.7.2333
+notes: >-
+  Proposed that a black hole carries entropy proportional to its horizon area.
+  Hawking's 1974 temperature calculation fixed the constant of proportionality.

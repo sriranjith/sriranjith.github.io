@@ -1,0 +1,10 @@
+id: sep-set-theory
+type: encyclopedia
+title: "Set Theory"
+authors:
+  - Thomas Jech
+publisher: Stanford Encyclopedia of Philosophy
+url: https://plato.stanford.edu/entries/set-theory/
+notes: >-
+  Overview of the axioms, the cardinal and ordinal hierarchies, and the
+  continuum hypothesis.

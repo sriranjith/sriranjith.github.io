@@ -1,0 +1,11 @@
+id: roughgarden-2005-selfish-routing-book
+type: book
+title: Selfish Routing and the Price of Anarchy
+authors:
+  - Tim Roughgarden
+year: 2005
+publisher: MIT Press
+notes: >-
+  Book-length treatment of equilibrium flows, the price of anarchy, Braess-type
+  networks in general graphs, and the design of tolls and network topologies
+  that avoid the effect.

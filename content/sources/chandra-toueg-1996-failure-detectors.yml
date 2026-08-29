@@ -1,0 +1,15 @@
+id: chandra-toueg-1996-failure-detectors
+type: paper
+title: "Unreliable Failure Detectors for Reliable Distributed Systems"
+authors:
+  - Tushar Deepak Chandra
+  - Sam Toueg
+year: 1996
+journal: Journal of the ACM
+volume: "43(2)"
+pages: "225–267"
+notes: >-
+  Isolates exactly how much extra information about failures is needed to escape
+  FLP. Consensus becomes solvable given a failure detector that is eventually
+  weakly accurate; a companion paper shows this detector is the weakest
+  possible.

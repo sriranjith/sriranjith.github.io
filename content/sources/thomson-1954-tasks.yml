@@ -1,0 +1,15 @@
+id: thomson-1954-tasks
+type: primary-source
+title: Tasks and Super-Tasks
+authors:
+  - James F. Thomson
+year: 1954
+journal: Analysis
+volume: "15(1), 1-13"
+notes: >-
+  Introduces the term "super-task" and the lamp that is switched on at one half a
+  minute, off at three quarters, on at seven eighths, and so on. Thomson argued
+  that since the lamp can be neither on nor off at the end of the minute, the
+  completion of infinitely many tasks is incoherent. Paul Benacerraf replied in
+  1962 that the switching sequence simply does not determine the final state, so
+  no contradiction follows.

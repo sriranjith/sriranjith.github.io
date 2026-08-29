@@ -1,0 +1,14 @@
+id: chaitin-1974-jacm
+type: paper
+title: "Information-Theoretic Limitations of Formal Systems"
+authors:
+  - Gregory J. Chaitin
+year: 1974
+journal: Journal of the ACM
+volume: "21(3)"
+pages: "403–424"
+notes: >-
+  Berry's paradox made into a theorem. For each consistent, effectively
+  axiomatised formal system there is a finite bound L such that the system can
+  never prove of any particular string that its Kolmogorov complexity exceeds L,
+  even though almost every string does.

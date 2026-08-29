@@ -1,0 +1,45 @@
+id: probability-that-tricks-you
+title: Probability That Tricks Your Intuition
+summary: >-
+  Five puzzles where the correct answer feels obviously wrong. Together they
+  form a short course in the two questions people never think to ask: how many
+  chances were there really, and how did I come to be shown this?
+difficulty: beginner
+domains:
+  - probability
+  - statistics
+  - psychology
+order: 30
+steps:
+  - paradox: birthday-problem
+    why: >-
+      The gentlest possible start. Nothing is hidden and nobody is tricking you
+      — you simply counted people when you should have counted pairs.
+
+  - paradox: bertrands-box-paradox
+    why: >-
+      Now something is hidden. The information you receive depends on how it was
+      produced, and this 1889 puzzle is where that lesson was first packaged.
+
+  - paradox: monty-hall-problem
+    why: >-
+      Bertrand's box with a television set and a goat. Famous because it is easy
+      and people still get it wrong — including, reportedly, Paul Erdős.
+
+  - paradox: boy-or-girl-paradox
+    why: >-
+      The turn. Here the honest answer is that the question was never precise
+      enough to have one answer, which is a more useful thing to learn than any
+      particular number.
+
+  - paradox: simpsons-paradox
+    why: >-
+      Out of the puzzle books and into real data. Every group in a study can
+      show one trend and the combined data the opposite, and this actually
+      happened at Berkeley in 1973.
+
+  - paradox: berksons-paradox
+    why: >-
+      The final form: the trend is not merely reversed, it was manufactured by
+      the way the sample was collected. Once you can see this you cannot stop
+      seeing it.

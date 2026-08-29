@@ -1,0 +1,186 @@
+---
+---
+<div class="mh" data-monty>
+  <p class="mh__prompt" data-mh-prompt>Pick a door.</p>
+
+  <div class="mh__doors" role="group" aria-label="Three doors">
+    {
+      [1, 2, 3].map((n) => (
+        <button class="mh__door" data-mh-door={n} type="button" aria-label={`Door ${n}`}>
+          <span class="mh__num">{n}</span>
+          <span class="mh__reveal" data-mh-reveal aria-hidden="true" />
+        </button>
+      ))
+    }
+  </div>
+
+  <div class="iv-controls" data-mh-choice hidden>
+    <button class="btn btn--primary" type="button" data-mh-switch>Switch</button>
+    <button class="btn" type="button" data-mh-stay>Stay</button>
+  </div>
+
+  <div class="iv-controls">
+    <button class="btn" type="button" data-mh-reset hidden>Play again</button>
+    <button class="btn" type="button" data-mh-auto>Simulate 1,000 games</button>
+  </div>
+
+  <div class="iv-stats">
+    <div class="iv-stat">
+      <b data-mh-switch-rate>—</b>
+      <span>Win rate switching</span>
+    </div>
+    <div class="iv-stat">
+      <b data-mh-stay-rate>—</b>
+      <span>Win rate staying</span>
+    </div>
+    <div class="iv-stat">
+      <b data-mh-games>0</b>
+      <span>Games played</span>
+    </div>
+  </div>
+
+  <p class="iv-note">Expected: 66.7% switching, 33.3% staying.</p>
+  <noscript><p class="iv-noscript">This demonstration needs JavaScript. The worked table in the Examples section proves the same result without it.</p></noscript>
+</div>
+
+<style>
+  .mh__prompt { font-weight: 560; min-height: 1.5em; }
+  .mh__doors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-bottom: 1rem; }
+  .mh__door {
+    aspect-ratio: 3 / 4;
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-alt);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    position: relative;
+    font-family: var(--font-ui);
+    transition: border-color 0.15s, transform 0.1s, background 0.15s;
+  }
+  .mh__door:hover:not(:disabled) { border-color: var(--accent); transform: translateY(-2px); }
+  .mh__door:disabled { cursor: default; }
+  .mh__num { font-size: 1.6rem; font-weight: 700; color: var(--ink-faint); }
+  .mh__reveal { position: absolute; inset: 0; display: grid; place-items: center; font-size: clamp(2rem, 9vw, 3rem); }
+  .mh__door[data-state='picked'] { border-color: var(--accent); background: var(--accent-wash); }
+  .mh__door[data-state='open'] { background: var(--surface); border-style: dashed; }
+  .mh__door[data-state='open'] .mh__num,
+  .mh__door[data-state='won'] .mh__num,
+  .mh__door[data-state='lost'] .mh__num { opacity: 0.15; }
+  .mh__door[data-state='won'] { border-color: #16a34a; background: #f0fdf4; }
+  .mh__door[data-state='lost'] { border-color: var(--warm); }
+  @media (prefers-color-scheme: dark) {
+    .mh__door[data-state='won'] { background: #10241a; }
+  }
+</style>
+
+<script>
+  const root = document.querySelector('[data-monty]');
+  if (root) {
+    const doors = [...root.querySelectorAll('[data-mh-door]')];
+    const prompt = root.querySelector('[data-mh-prompt]');
+    const choice = root.querySelector('[data-mh-choice]');
+    const resetBtn = root.querySelector('[data-mh-reset]');
+
+    const tally = { switchWins: 0, switchGames: 0, stayWins: 0, stayGames: 0 };
+    let car, picked, opened, phase = 'pick';
+
+    const pct = (w, n) => (n === 0 ? '—' : `${((w / n) * 100).toFixed(1)}%`);
+
+    function paintStats() {
+      root.querySelector('[data-mh-switch-rate]').textContent = pct(tally.switchWins, tally.switchGames);
+      root.querySelector('[data-mh-stay-rate]').textContent = pct(tally.stayWins, tally.stayGames);
+      root.querySelector('[data-mh-games]').textContent = String(tally.switchGames + tally.stayGames);
+    }
+
+    function reset() {
+      car = 1 + Math.floor(Math.random() * 3);
+      picked = null;
+      opened = null;
+      phase = 'pick';
+      prompt.textContent = 'Pick a door.';
+      choice.hidden = true;
+      resetBtn.hidden = true;
+      for (const d of doors) {
+        d.disabled = false;
+        d.removeAttribute('data-state');
+        d.querySelector('[data-mh-reveal]').textContent = '';
+      }
+    }
+
+    function hostOpens() {
+      const options = [1, 2, 3].filter((n) => n !== picked && n !== car);
+      return options[Math.floor(Math.random() * options.length)];
+    }
+
+    function finish(finalPick, didSwitch) {
+      const won = finalPick === car;
+      if (didSwitch) {
+        tally.switchGames++;
+        if (won) tally.switchWins++;
+      } else {
+        tally.stayGames++;
+        if (won) tally.stayWins++;
+      }
+      for (const d of doors) {
+        const n = Number(d.dataset.mhDoor);
+        d.disabled = true;
+        d.querySelector('[data-mh-reveal]').textContent = n === car ? '🚗' : '🐐';
+        if (n === finalPick) d.dataset.state = won ? 'won' : 'lost';
+      }
+      prompt.textContent = won
+        ? `You won the car by ${didSwitch ? 'switching' : 'staying'}.`
+        : `A goat. You ${didSwitch ? 'switched' : 'stayed'} — try the other strategy.`;
+      choice.hidden = true;
+      resetBtn.hidden = false;
+      phase = 'done';
+      paintStats();
+    }
+
+    for (const door of doors) {
+      door.addEventListener('click', () => {
+        if (phase !== 'pick') return;
+        picked = Number(door.dataset.mhDoor);
+        opened = hostOpens();
+        door.dataset.state = 'picked';
+        const openedEl = doors.find((d) => Number(d.dataset.mhDoor) === opened);
+        openedEl.dataset.state = 'open';
+        openedEl.querySelector('[data-mh-reveal]').textContent = '🐐';
+        openedEl.disabled = true;
+        const other = [1, 2, 3].find((n) => n !== picked && n !== opened);
+        prompt.textContent = `The host opens Door ${opened} — a goat. Stay with Door ${picked}, or switch to Door ${other}?`;
+        choice.hidden = false;
+        phase = 'choose';
+      });
+    }
+
+    root.querySelector('[data-mh-switch]').addEventListener('click', () => {
+      if (phase !== 'choose') return;
+      finish([1, 2, 3].find((n) => n !== picked && n !== opened), true);
+    });
+    root.querySelector('[data-mh-stay]').addEventListener('click', () => {
+      if (phase !== 'choose') return;
+      finish(picked, false);
+    });
+    resetBtn.addEventListener('click', reset);
+
+    root.querySelector('[data-mh-auto]').addEventListener('click', () => {
+      for (let i = 0; i < 1000; i++) {
+        const c = 1 + Math.floor(Math.random() * 3);
+        const p = 1 + Math.floor(Math.random() * 3);
+        const opts = [1, 2, 3].filter((n) => n !== p && n !== c);
+        const o = opts[Math.floor(Math.random() * opts.length)];
+        const swap = [1, 2, 3].find((n) => n !== p && n !== o);
+        tally.switchGames++;
+        if (swap === c) tally.switchWins++;
+        tally.stayGames++;
+        if (p === c) tally.stayWins++;
+      }
+      paintStats();
+      prompt.textContent = 'Simulated 1,000 games of each strategy. Look at the numbers below.';
+    });
+
+    reset();
+    paintStats();
+  }
+</script>

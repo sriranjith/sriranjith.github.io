@@ -1,0 +1,314 @@
+---
+import Base from '../../layouts/Base.astro';
+import { publicCatalog } from '../../lib/catalog.js';
+import { url, AXES } from '../../lib/site.js';
+
+// Every card is rendered at build time and filtered in the browser by toggling
+// a class. The page is fully usable, and fully indexable, with JavaScript off.
+const catalog = publicCatalog();
+const tx = catalog.taxonomy;
+
+const facets = AXES.map((axis) => ({
+  ...axis,
+  terms: tx[axis.kind]
+    .map((term) => ({
+      ...term,
+      count: catalog.paradoxes.filter((p) =>
+        axis.multi ? p[axis.field].includes(term.id) : p[axis.field] === term.id
+      ).length,
+    }))
+    .filter((t) => t.count > 0),
+})).filter((f) => f.terms.length > 1);
+
+const items = catalog.paradoxes
+  .slice()
+  .sort((a, b) => a.year - b.year)
+  .map((p) => ({
+    p,
+    domain: tx.get('domains', p.domains[0]),
+    haystack: [
+      p.title,
+      ...p.alternateNames,
+      p.summary,
+      ...p.concepts,
+      ...p.people.map((id) => catalog.personById.get(id)?.name ?? ''),
+      ...p.domains.map((d) => tx.label('domains', d)),
+      ...p.types.map((t) => tx.label('types', t)),
+    ]
+      .join(' ')
+      .toLowerCase(),
+  }));
+---
+
+<Base
+  title="Browse all paradoxes"
+  description={`Filter ${catalog.paradoxes.length} paradoxes by domain, type, era, difficulty, nature and status.`}
+>
+  <header class="bhead">
+    <h1>Browse</h1>
+    <p class="lede">
+      {catalog.paradoxes.length} entries. Combine any filters — "beginner and
+      probability", "ancient and philosophy", "impossibility results in computer
+      science".
+    </p>
+  </header>
+
+  <div class="blayout">
+    <aside class="bfilters">
+      <form id="bform" role="search">
+        <div class="bfield">
+          <label for="q">Search</label>
+          <input type="search" id="q" name="q" placeholder="Name, idea, person…" autocomplete="off" />
+        </div>
+
+        {
+          facets.map((facet) => (
+            <fieldset class="bfacet">
+              <legend>{facet.plural}</legend>
+              <div class="bfacet__options">
+                {facet.terms.map((term) => (
+                  <label class="bcheck">
+                    <input type="checkbox" name={facet.key} value={term.id} />
+                    <span>{term.label}</span>
+                    <em>{term.count}</em>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          ))
+        }
+
+        <button type="reset" class="btn breset">Clear all filters</button>
+      </form>
+    </aside>
+
+    <div class="bresults">
+      <p class="bcount" role="status" aria-live="polite">
+        Showing <b data-count>{items.length}</b> of {items.length}
+      </p>
+
+      <ul class="blist" data-list>
+        {
+          items.map(({ p, domain, haystack }) => (
+            <li
+              class="brow"
+              data-item
+              data-domains={p.domains.join(' ')}
+              data-types={p.types.join(' ')}
+              data-eras={p.era}
+              data-difficulties={p.difficulty}
+              data-natures={p.nature}
+              data-statuses={p.status}
+              data-text={haystack}
+            >
+              <a href={url.paradox(p.slug)}>
+                <span class="brow__year">{p.date}</span>
+                <span class="brow__main">
+                  <b>{p.title}</b>
+                  <span class="brow__summary">{p.summary}</span>
+                </span>
+                <span class="brow__tags">
+                  {domain && (
+                    <span class="tag tag--dot" style={`--dot:${domain.color}`}>{domain.label}</span>
+                  )}
+                  <span class="tag">{tx.label('difficulties', p.difficulty)}</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="bempty" data-empty hidden>
+        Nothing matches that combination. Try removing a filter.
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .bhead { padding-block: 2rem 1.5rem; max-width: 40rem; }
+  .bhead h1 { margin-bottom: 0.4rem; }
+
+  .blayout {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+  @media (max-width: 58rem) {
+    .blayout { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  .bfilters { position: sticky; top: 5rem; font-family: var(--font-ui); }
+  @media (max-width: 58rem) { .bfilters { position: static; } }
+
+  .bfield { margin-bottom: 1.25rem; }
+  .bfield label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin-bottom: 0.35rem;
+  }
+  .bfield input {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.9rem;
+  }
+
+  .bfacet { border: 0; padding: 0; margin: 0 0 1.25rem; }
+  .bfacet legend {
+    font-size: 0.72rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    padding: 0;
+    margin-bottom: 0.35rem;
+  }
+  .bfacet__options { display: flex; flex-direction: column; gap: 0.1rem; }
+
+  .bcheck {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.28rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.86rem;
+    cursor: pointer;
+  }
+  .bcheck:hover { background: var(--surface-alt); }
+  .bcheck input { accent-color: var(--accent); margin: 0; }
+  .bcheck em { font-style: normal; font-size: 0.74rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+  .bcheck:has(input:checked) { background: var(--accent-wash); color: var(--accent-ink); font-weight: 560; }
+
+  .breset { width: 100%; justify-content: center; font-size: 0.85rem; }
+
+  .bcount {
+    font-family: var(--font-ui);
+    font-size: 0.83rem;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+  }
+  .bcount b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  .blist { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+  .brow { border-bottom: 1px solid var(--line-soft); content-visibility: auto; contain-intrinsic-size: auto 5rem; }
+  .brow[hidden] { display: none; }
+  .brow a {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.9rem 0.6rem;
+    text-decoration: none;
+    border-radius: var(--radius);
+  }
+  .brow a:hover { background: var(--surface-alt); }
+  .brow__year {
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .brow__main { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+  .brow__main b { font-family: var(--font-ui); font-size: 1rem; font-weight: 600; color: var(--ink); }
+  .brow a:hover .brow__main b { color: var(--accent-ink); }
+  .brow__summary { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.45; }
+  .brow__tags { display: flex; gap: 0.3rem; flex-wrap: wrap; justify-content: flex-end; }
+
+  @media (max-width: 46rem) {
+    .brow a { grid-template-columns: 1fr; gap: 0.4rem; }
+    .brow__tags { justify-content: flex-start; }
+  }
+
+  .bempty {
+    padding: 3rem 1rem;
+    text-align: center;
+    color: var(--ink-faint);
+    font-family: var(--font-ui);
+  }
+</style>
+
+<script>
+  const form = document.getElementById('bform');
+  const rows = [...document.querySelectorAll('[data-item]')];
+  const countEl = document.querySelector('[data-count]');
+  const emptyEl = document.querySelector('[data-empty]');
+  const search = document.getElementById('q');
+
+  const FACETS = ['domains', 'types', 'eras', 'difficulties', 'natures', 'statuses'];
+
+  function readState() {
+    const data = new FormData(form);
+    const selected = {};
+    for (const key of FACETS) selected[key] = new Set(data.getAll(key));
+    return { selected, query: (data.get('q') ?? '').toString().trim().toLowerCase() };
+  }
+
+  function apply({ selected, query }) {
+    let shown = 0;
+    for (const row of rows) {
+      let ok = true;
+      for (const key of FACETS) {
+        const wanted = selected[key];
+        if (wanted.size === 0) continue;
+        const has = row.dataset[key].split(' ');
+        // Within a facet: OR. Across facets: AND.
+        if (!has.some((v) => wanted.has(v))) { ok = false; break; }
+      }
+      if (ok && query) ok = row.dataset.text.includes(query);
+      row.hidden = !ok;
+      if (ok) shown++;
+    }
+    countEl.textContent = String(shown);
+    emptyEl.hidden = shown > 0;
+    syncUrl({ selected, query });
+  }
+
+  // Filter state lives in the URL so a filtered view can be shared or bookmarked.
+  function syncUrl({ selected, query }) {
+    const params = new URLSearchParams();
+    for (const key of FACETS) {
+      for (const value of selected[key]) params.append(key, value);
+    }
+    if (query) params.set('q', query);
+    const next = params.toString();
+    history.replaceState(null, '', next ? `?${next}` : location.pathname);
+  }
+
+  function restore() {
+    const params = new URLSearchParams(location.search);
+    for (const key of FACETS) {
+      const wanted = new Set(params.getAll(key));
+      for (const input of form.querySelectorAll(`input[name="${key}"]`)) {
+        input.checked = wanted.has(input.value);
+      }
+    }
+    search.value = params.get('q') ?? '';
+  }
+
+  let timer;
+  form.addEventListener('input', (event) => {
+    if (event.target === search) {
+      clearTimeout(timer);
+      timer = setTimeout(() => apply(readState()), 120);
+    } else {
+      apply(readState());
+    }
+  });
+  form.addEventListener('reset', () => setTimeout(() => apply(readState()), 0));
+
+  restore();
+  apply(readState());
+</script>

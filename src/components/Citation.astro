@@ -1,0 +1,82 @@
+---
+// Renders one structured source as a citation. The source system is shared, so
+// the same record formats identically everywhere it appears.
+const { source, locator = null, note = null, showUsage = false } = Astro.props;
+
+const authors =
+  source.authors.length === 0
+    ? ''
+    : source.authors.length <= 2
+      ? source.authors.join(' and ')
+      : `${source.authors[0]} et al.`;
+
+const bits = [
+  source.journal,
+  source.volume,
+  source.publisher,
+  source.pages ? `pp. ${source.pages}` : null,
+].filter(Boolean);
+
+const href = source.url ?? (source.doi ? `https://doi.org/${source.doi}` : null);
+---
+
+<li class="cite">
+  <p class="cite__main">
+    {authors && <span class="cite__authors">{authors}</span>}
+    {source.year && <span class="cite__year">({source.year})</span>}
+    {href ? (
+      <a class="cite__title" href={href} target="_blank" rel="noopener noreferrer">{source.title}</a>
+    ) : (
+      <span class="cite__title">{source.title}</span>
+    )}
+    {bits.length > 0 && <span class="cite__where">{bits.join(', ')}.</span>}
+    {locator && <span class="cite__locator">{locator}.</span>}
+  </p>
+
+  {note && <p class="cite__note">{note}</p>}
+
+  <p class="cite__ids">
+    {source.doi && (
+      <a href={`https://doi.org/${source.doi}`} target="_blank" rel="noopener noreferrer">doi:{source.doi}</a>
+    )}
+    {source.isbn && <span>ISBN {source.isbn}</span>}
+    {showUsage && source.citedBy.length > 0 && (
+      <span>Cited by {source.citedBy.length} {source.citedBy.length === 1 ? 'entry' : 'entries'}</span>
+    )}
+  </p>
+</li>
+
+<style>
+  .cite {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--line-soft);
+    list-style: none;
+  }
+  .cite:last-child { border-bottom: 0; }
+  .cite__main {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+  .cite__authors { font-weight: 560; }
+  .cite__year { color: var(--ink-faint); }
+  .cite__title { font-style: italic; }
+  .cite__where, .cite__locator { color: var(--ink-soft); font-size: 0.9em; }
+  .cite__note {
+    margin: 0.3rem 0 0;
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    font-family: var(--font-ui);
+  }
+  .cite__ids {
+    margin: 0.3rem 0 0;
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+  .cite__ids:empty { display: none; }
+  .cite__ids a { color: var(--ink-faint); }
+</style>

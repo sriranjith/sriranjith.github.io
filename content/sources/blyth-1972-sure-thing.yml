@@ -1,0 +1,13 @@
+id: blyth-1972-sure-thing
+type: paper
+title: "On Simpson's Paradox and the Sure-Thing Principle"
+authors:
+  - Colin R. Blyth
+year: 1972
+journal: Journal of the American Statistical Association
+volume: "67(338), 364–366"
+notes: >-
+  The paper that coined the name "Simpson's paradox" and framed the effect as an
+  apparent counterexample to Savage's sure-thing principle. Blyth's constructed
+  numbers are extreme on purpose, to show that the reversal is not a small-sample
+  curiosity.

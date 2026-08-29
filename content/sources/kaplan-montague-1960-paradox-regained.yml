@@ -1,0 +1,16 @@
+id: kaplan-montague-1960-paradox-regained
+type: paper
+title: A Paradox Regained
+authors:
+  - David Kaplan
+  - Richard Montague
+year: 1960
+journal: Notre Dame Journal of Formal Logic
+volume: "1(3)"
+pages: "79–90"
+notes: >-
+  Answers Quine by constructing a formal version - the "Designated Student"
+  paradox - in which the elimination argument is valid and the contradiction
+  survives. The paper shows the puzzle is not dissolved by noting that the
+  prisoner reasons badly, because a self-referential sentence can be built for
+  which the reasoning is faultless.

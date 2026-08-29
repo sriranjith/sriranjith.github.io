@@ -1,0 +1,12 @@
+id: lucas-1976-econometric-policy-evaluation
+type: paper
+title: "Econometric Policy Evaluation: A Critique"
+authors:
+  - Robert E. Lucas Jr.
+year: 1976
+journal: Carnegie-Rochester Conference Series on Public Policy
+volume: "1, 19–46"
+notes: >-
+  The formal economic sibling of Goodhart's Law. Relationships estimated from
+  historical data are not structural: they embed the policy regime that produced
+  the data, so they shift when the regime shifts.

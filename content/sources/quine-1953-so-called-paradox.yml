@@ -1,0 +1,16 @@
+id: quine-1953-so-called-paradox
+type: primary-source
+title: On a So-called Paradox
+authors:
+  - Willard Van Orman Quine
+year: 1953
+journal: Mind
+volume: "62(245)"
+pages: "65–67"
+notes: >-
+  Two pages that reset the debate. Quine argues that the prisoner's elimination
+  argument fails at its very first step: on the final day the prisoner cannot
+  rule out being hanged, because from the assumption that he will not be hanged
+  it follows that a hanging on that day would in fact be unexpected. The
+  prisoner's error is accepting only one of the four cases that his evidence
+  leaves open.

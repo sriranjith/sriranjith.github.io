@@ -1,0 +1,19 @@
+id: friedman-novikov-1990
+type: paper
+title: "Cauchy problem in spacetimes with closed timelike curves"
+authors:
+  - John Friedman
+  - Michael S. Morris
+  - Igor D. Novikov
+  - Fernando Echeverria
+  - Gunnar Klinkhammer
+  - Kip S. Thorne
+  - Ulvi Yurtsever
+year: 1990
+journal: Physical Review D
+volume: "42, 1915–1930"
+doi: 10.1103/PhysRevD.42.1915
+notes: >-
+  The technical statement of self-consistency. For the billiard-ball model
+  studied here, every initial condition admits at least one globally consistent
+  solution, and paradoxical initial data simply has none.

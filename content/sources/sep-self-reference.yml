@@ -1,0 +1,11 @@
+id: sep-self-reference
+type: encyclopedia
+title: "Self-Reference"
+authors:
+  - Thomas Bolander
+publisher: Stanford Encyclopedia of Philosophy
+url: https://plato.stanford.edu/entries/self-reference/
+notes: >-
+  Treats the Liar, Berry, Grelling and Richard paradoxes together with the
+  diagonal lemma, and sets out the standard classification of semantic versus
+  set-theoretic paradoxes.

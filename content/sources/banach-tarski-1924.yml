@@ -1,0 +1,14 @@
+id: banach-tarski-1924
+type: primary-source
+title: "Sur la décomposition des ensembles de points en parties respectivement congruentes"
+authors:
+  - Stefan Banach
+  - Alfred Tarski
+year: 1924
+journal: Fundamenta Mathematicae
+volume: "6, 244–277"
+notes: >-
+  The original paper. Proves that a ball in three-dimensional space can be split
+  into finitely many pieces and reassembled by rigid motions into two balls of
+  the same size, and more generally that any two bounded sets with non-empty
+  interior in dimension three or higher are equidecomposable.

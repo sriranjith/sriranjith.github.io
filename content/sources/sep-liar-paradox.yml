@@ -1,0 +1,14 @@
+id: sep-liar-paradox
+type: encyclopedia
+title: Liar Paradox
+authors:
+  - JC Beall
+  - Michael Glanzberg
+  - David Ripley
+publisher: Stanford Encyclopedia of Philosophy
+notes: >-
+  The best available map of the competing solutions - Tarskian hierarchies,
+  Kripkean fixed points, contextualist, paracomplete, paraconsistent and revision
+  approaches - together with the strengthened Liar and Curry's paradox as the
+  standard tests any solution must survive.
+url: https://plato.stanford.edu/entries/liar-paradox/

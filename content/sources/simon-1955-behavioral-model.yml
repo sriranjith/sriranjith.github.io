@@ -1,0 +1,14 @@
+id: simon-1955-behavioral-model
+type: paper
+title: A Behavioral Model of Rational Choice
+authors:
+  - Herbert A. Simon
+year: 1955
+journal: Quarterly Journal of Economics
+volume: "69(1), 99-118"
+doi: 10.2307/1884852
+notes: >-
+  Introduces bounded rationality and, in effect, satisficing: an agent with
+  limited time and attention searches until an option clears an aspiration
+  level, rather than ranking every alternative. The theoretical ancestor of the
+  maximiser-satisficer distinction.

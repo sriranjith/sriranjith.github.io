@@ -1,0 +1,15 @@
+id: cohen-2003-immunization
+type: paper
+title: "Efficient immunization strategies for computer networks and populations"
+authors:
+  - Reuven Cohen
+  - Shlomo Havlin
+  - Daniel ben-Avraham
+year: 2003
+journal: Physical Review Letters
+volume: "91(24), 247901"
+notes: >-
+  The acquaintance immunization strategy: vaccinate a randomly named friend of a
+  randomly chosen person. It reaches high-degree nodes without any knowledge of
+  the network, and cuts the fraction that must be immunised dramatically in
+  scale-free networks.

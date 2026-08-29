@@ -1,0 +1,17 @@
+id: lamport-shostak-pease-1982-byzantine
+type: primary-source
+title: "The Byzantine Generals Problem"
+authors:
+  - Leslie Lamport
+  - Robert Shostak
+  - Marshall Pease
+year: 1982
+journal: ACM Transactions on Programming Languages and Systems
+volume: "4(3)"
+pages: "382–401"
+doi: 10.1145/357172.357176
+notes: >-
+  The paper that named the problem. Gives the impossibility of oral-message
+  agreement with three generals and one traitor, the general 3f+1 bound, the
+  recursive OM(m) algorithm, and the signed-message algorithm SM(m) that works
+  with any number of generals.

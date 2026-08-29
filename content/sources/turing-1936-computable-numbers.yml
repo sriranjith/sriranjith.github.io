@@ -1,0 +1,16 @@
+id: turing-1936-computable-numbers
+type: primary-source
+title: "On Computable Numbers, with an Application to the Entscheidungsproblem"
+authors:
+  - Alan M. Turing
+year: 1936
+journal: Proceedings of the London Mathematical Society
+volume: "s2-42"
+pages: "230–265"
+doi: 10.1112/plms/s2-42.1.230
+notes: >-
+  The founding paper of computability theory. Turing defines his automatic
+  machines, constructs a universal machine, and proves by diagonalisation that
+  no machine can decide of an arbitrary machine whether it is "circle-free" —
+  the result now stated as the unsolvability of the halting problem. A
+  correction appeared in the same journal in 1937 (s2-43, 544–546).

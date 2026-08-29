@@ -1,0 +1,16 @@
+id: gilbert-lynch-2002-brewers-conjecture
+type: paper
+title: "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services"
+authors:
+  - Seth Gilbert
+  - Nancy Lynch
+year: 2002
+journal: ACM SIGACT News
+volume: "33(2)"
+pages: "51–59"
+notes: >-
+  Turns the conjecture into a theorem by fixing definitions: consistency means
+  linearizability of a single register, availability means every request to a
+  non-failing node eventually returns, and partition tolerance means arbitrary
+  message loss is permitted. The paper also proves the weaker guarantees that
+  are attainable in a partially synchronous model.

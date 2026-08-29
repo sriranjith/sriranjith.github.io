@@ -1,0 +1,10 @@
+id: daniel-abadi
+name: Daniel Abadi
+tradition: American computer science
+bio: >-
+  American computer scientist and database researcher, professor at the
+  University of Maryland and previously at Yale. He worked on column-store
+  systems and on the architecture of distributed databases, and in 2012 proposed
+  PACELC, an extension of CAP that adds the trade-off systems actually face most
+  of the time: when there is no partition, consistency must be paid for in
+  latency.

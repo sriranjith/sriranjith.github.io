@@ -1,0 +1,12 @@
+id: geanakoplos-2005-three-proofs
+type: paper
+title: "Three Brief Proofs of Arrow's Impossibility Theorem"
+authors:
+  - John Geanakoplos
+year: 2005
+journal: Economic Theory
+volume: "26(1), 211–215"
+notes: >-
+  The first of the three proofs is the pivotal-voter argument in its cleanest
+  form: an extremal lemma, a pivot constructed by moving one alternative from
+  bottom to top voter by voter, and a dictatorship extracted by independence.

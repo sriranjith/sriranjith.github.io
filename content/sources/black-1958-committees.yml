@@ -1,0 +1,12 @@
+id: black-1958-committees
+type: book
+title: The Theory of Committees and Elections
+authors:
+  - Duncan Black
+year: 1958
+publisher: Cambridge University Press
+notes: >-
+  Proves that single-peaked preferences guarantee a Condorcet winner at the
+  median voter's ideal point, and recovers the lost work of Condorcet, Borda and
+  Charles Dodgson from the archives. The book that made public choice theory a
+  field.

@@ -1,0 +1,12 @@
+id: alan-turing
+name: Alan Turing
+born: 1912
+died: 1954
+tradition: British mathematics and the theory of computation
+bio: >-
+  British mathematician who in 1936 defined the abstract machine model that bears
+  his name, proved that no machine can decide whether an arbitrary machine halts,
+  and used that result to settle Hilbert's Entscheidungsproblem in the negative.
+  His argument recast Gödel's incompleteness as a fact about computation, and
+  founded computer science in the process.
+url: https://plato.stanford.edu/entries/turing/

@@ -1,0 +1,15 @@
+id: kahneman-tversky-1979-prospect
+type: paper
+title: "Prospect Theory: An Analysis of Decision under Risk"
+authors:
+  - Daniel Kahneman
+  - Amos Tversky
+year: 1979
+journal: Econometrica
+volume: "47(2), 263–291"
+doi: 10.2307/1914185
+notes: >-
+  Replicates the Allais pattern with a battery of smaller-stakes problems, names
+  the certainty effect, and introduces the value function over gains and losses
+  together with the decision-weight function that overweights small
+  probabilities. Among the most cited papers in the history of economics.

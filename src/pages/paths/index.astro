@@ -1,0 +1,104 @@
+---
+import Base from '../../layouts/Base.astro';
+import { publicCatalog } from '../../lib/catalog.js';
+import { url } from '../../lib/site.js';
+
+const catalog = publicCatalog();
+const tx = catalog.taxonomy;
+---
+
+<Base
+  title="Learning paths"
+  description="Curated sequences through the collection, where each paradox sets up the next."
+>
+  <header class="thead">
+    <h1>Learning paths</h1>
+    <p class="lede">
+      Ordered routes through the collection. Each step explains why it follows
+      the one before it, so a path is an argument rather than a list.
+    </p>
+  </header>
+
+  {catalog.paths.length === 0 && <p class="empty">No paths published yet.</p>}
+
+  <div class="plist">
+    {
+      catalog.paths.map((path) => (
+        <article class="pitem">
+          <div class="pitem__head">
+            <h2><a href={url.path(path.id)}>{path.title}</a></h2>
+            <p class="pitem__meta">
+              <span class="tag">{tx.label('difficulties', path.difficulty)}</span>
+              {path.domains.map((d) => (
+                <a class="tag tag--dot" style={`--dot:${tx.get('domains', d)?.color}`} href={url.domain(d)}>
+                  {tx.label('domains', d)}
+                </a>
+              ))}
+              <span class="pitem__steps">{path.steps.length} steps</span>
+            </p>
+          </div>
+
+          <p class="pitem__summary">{path.summary}</p>
+
+          <ol class="pchain">
+            {
+              path.steps.map((step, i) => {
+                const p = catalog.bySlug.get(step.paradox);
+                return (
+                  <li>
+                    {i > 0 && <span class="pchain__arrow" aria-hidden="true">→</span>}
+                    <a href={url.paradox(step.paradox)}>{p?.title ?? step.paradox}</a>
+                  </li>
+                );
+              })
+            }
+          </ol>
+        </article>
+      ))
+    }
+  </div>
+</Base>
+
+<style>
+  .thead { padding-block: 2rem 2rem; max-width: 42rem; }
+  .thead h1 { margin-bottom: 0.4rem; }
+
+  .plist { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 4rem; }
+  .pitem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    padding: 1.35rem 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .pitem__head { margin-bottom: 0.65rem; }
+  .pitem h2 { font-size: 1.2rem; margin: 0 0 0.45rem; }
+  .pitem h2 a { color: var(--ink); text-decoration: none; }
+  .pitem h2 a:hover { color: var(--accent-ink); }
+  .pitem__meta { display: flex; gap: 0.35rem; align-items: center; flex-wrap: wrap; margin: 0; }
+  .pitem__steps { font-family: var(--font-ui); font-size: 0.76rem; color: var(--ink-faint); }
+  .pitem__summary { font-size: 0.95rem; color: var(--ink-soft); margin: 0 0 0.9rem; max-width: 44rem; }
+
+  .pchain {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem 0.45rem;
+    padding: 0.85rem 0 0;
+    margin: 0;
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--font-ui);
+    font-size: 0.86rem;
+  }
+  .pchain li { display: inline-flex; align-items: center; gap: 0.45rem; margin: 0; }
+  .pchain__arrow { color: var(--ink-faint); }
+  .pchain a {
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: var(--surface-alt);
+    text-decoration: none;
+    color: var(--ink-soft);
+  }
+  .pchain a:hover { background: var(--accent-wash); color: var(--accent-ink); }
+</style>

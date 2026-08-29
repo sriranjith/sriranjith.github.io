@@ -1,0 +1,13 @@
+id: gupta-belnap-revision-theory
+type: book
+title: The Revision Theory of Truth
+authors:
+  - Anil Gupta
+  - Nuel Belnap
+year: 1993
+publisher: MIT Press
+notes: >-
+  Develops truth as a circular concept whose extension is not fixed but revised:
+  starting from any guess, repeated application of the T-schema produces a
+  sequence of hypotheses. Ordinary sentences settle down; the Liar oscillates
+  forever. The instability is the analysis, not a defect in it.

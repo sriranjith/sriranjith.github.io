@@ -1,0 +1,108 @@
+---
+---
+<div data-simpson>
+  <p>Real numbers from the 1973 Berkeley graduate admissions data. Toggle departments and watch the overall rate flip.</p>
+
+  <fieldset class="sp__depts">
+    <legend class="visually-hidden">Departments to include</legend>
+    <label><input type="checkbox" data-sp-dept="A" checked /> Dept A</label>
+    <label><input type="checkbox" data-sp-dept="B" checked /> Dept B</label>
+    <label><input type="checkbox" data-sp-dept="C" checked /> Dept C</label>
+    <label><input type="checkbox" data-sp-dept="D" checked /> Dept D</label>
+    <label><input type="checkbox" data-sp-dept="E" checked /> Dept E</label>
+    <label><input type="checkbox" data-sp-dept="F" checked /> Dept F</label>
+  </fieldset>
+
+  <table class="sp__table">
+    <thead>
+      <tr><th>Department</th><th>Men admitted</th><th>Women admitted</th><th>Better</th></tr>
+    </thead>
+    <tbody data-sp-rows></tbody>
+    <tfoot>
+      <tr>
+        <th>Combined</th>
+        <td data-sp-men>—</td>
+        <td data-sp-women>—</td>
+        <td data-sp-winner>—</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <p class="iv-note" data-sp-note></p>
+  <noscript><p class="iv-noscript">This explorer needs JavaScript. The full table appears in the Examples section.</p></noscript>
+</div>
+
+<style>
+  .sp__depts {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.7rem 0.9rem;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+  .sp__depts label { font-size: 0.85rem; display: inline-flex; gap: 0.35rem; align-items: center; cursor: pointer; }
+  .sp__depts input { accent-color: var(--accent); }
+  .sp__table { font-size: 0.85rem; }
+  .sp__table tfoot th, .sp__table tfoot td { border-top: 2px solid var(--ink-faint); font-weight: 650; background: var(--surface-alt); }
+  .sp__win { color: #15803d; font-weight: 650; }
+  @media (prefers-color-scheme: dark) { .sp__win { color: #4ade80; } }
+</style>
+
+<script>
+  const root = document.querySelector('[data-simpson]');
+  if (root) {
+    // Bickel, Hammel & O'Connell, Science 187:398–404 (1975).
+    const DATA = [
+      { id: 'A', mApp: 825, mAdm: 512, wApp: 108, wAdm: 89 },
+      { id: 'B', mApp: 560, mAdm: 353, wApp: 25, wAdm: 17 },
+      { id: 'C', mApp: 325, mAdm: 120, wApp: 593, wAdm: 202 },
+      { id: 'D', mApp: 417, mAdm: 138, wApp: 375, wAdm: 131 },
+      { id: 'E', mApp: 191, mAdm: 53, wApp: 393, wAdm: 94 },
+      { id: 'F', mApp: 373, mAdm: 22, wApp: 341, wAdm: 24 },
+    ];
+
+    const pct = (a, b) => (b === 0 ? '—' : `${((a / b) * 100).toFixed(1)}%`);
+    const boxes = [...root.querySelectorAll('[data-sp-dept]')];
+
+    function update() {
+      const on = new Set(boxes.filter((b) => b.checked).map((b) => b.dataset.spDept));
+      const rows = DATA.filter((d) => on.has(d.id));
+
+      root.querySelector('[data-sp-rows]').innerHTML = rows
+        .map((d) => {
+          const m = d.mAdm / d.mApp;
+          const w = d.wAdm / d.wApp;
+          const better = w > m ? 'Women' : m > w ? 'Men' : 'Tie';
+          return `<tr><td>${d.id}</td><td>${pct(d.mAdm, d.mApp)}</td><td>${pct(d.wAdm, d.wApp)}</td><td class="sp__win">${better}</td></tr>`;
+        })
+        .join('');
+
+      const mApp = rows.reduce((s, d) => s + d.mApp, 0);
+      const mAdm = rows.reduce((s, d) => s + d.mAdm, 0);
+      const wApp = rows.reduce((s, d) => s + d.wApp, 0);
+      const wAdm = rows.reduce((s, d) => s + d.wAdm, 0);
+
+      root.querySelector('[data-sp-men]').textContent = pct(mAdm, mApp);
+      root.querySelector('[data-sp-women]').textContent = pct(wAdm, wApp);
+
+      const mRate = mApp ? mAdm / mApp : 0;
+      const wRate = wApp ? wAdm / wApp : 0;
+      const winner = rows.length === 0 ? '—' : wRate > mRate ? 'Women' : mRate > wRate ? 'Men' : 'Tie';
+      root.querySelector('[data-sp-winner]').textContent = winner;
+
+      const womenBetterCount = rows.filter((d) => d.wAdm / d.wApp > d.mAdm / d.mApp).length;
+      const note = root.querySelector('[data-sp-note]');
+      if (rows.length === 0) note.textContent = 'Select at least one department.';
+      else if (womenBetterCount > rows.length / 2 && winner === 'Men') {
+        note.textContent = `Women do better in ${womenBetterCount} of ${rows.length} departments, yet men have the higher combined rate. That is Simpson's paradox — women applied disproportionately to departments A and B's harder neighbours.`;
+      } else {
+        note.textContent = `Women do better in ${womenBetterCount} of ${rows.length} selected departments; combined, ${winner.toLowerCase()} lead. Toggle A and B to see the reversal appear and disappear.`;
+      }
+    }
+
+    boxes.forEach((b) => b.addEventListener('change', update));
+    update();
+  }
+</script>

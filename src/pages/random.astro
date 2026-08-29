@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import ParadoxCard from '../components/ParadoxCard.astro';
+import { publicCatalog } from '../lib/catalog.js';
+import { shuffleStable } from '../lib/graph.js';
+import { url } from '../lib/site.js';
+
+// A static page that still feels random: the server ships a shuffled deck and
+// a few lines of script deal one card. No server, no request per visit.
+const catalog = publicCatalog();
+const deck = shuffleStable(catalog.paradoxes, 7).map((p) => p.slug);
+const shown = catalog.paradoxes.slice(0, 12);
+---
+
+<Base
+  title="Surprise me"
+  description="Discover a paradox at random."
+  noindex
+>
+  <div class="rnd">
+    <h1>Surprise me</h1>
+    <p class="lede">
+      {catalog.paradoxes.length} entries. No preferences, no history, no
+      profiling — just a shuffle.
+    </p>
+
+    <p class="rnd__actions">
+      <a class="btn btn--primary" href={url.paradox(deck[0])} data-random-link>
+        Take me somewhere
+      </a>
+      <button class="btn" type="button" data-random-reshuffle hidden>Shuffle again</button>
+    </p>
+
+    <p class="rnd__preview" data-random-preview hidden></p>
+  </div>
+
+  <section class="section">
+    <div class="section__head">
+      <div>
+        <h2>Or pick one yourself</h2>
+        <p>Being shown a random thing is only fun if you can also choose.</p>
+      </div>
+      <a class="section__more" href="/browse/">See all →</a>
+    </div>
+    <div class="grid grid--3">
+      {shown.map((p) => <ParadoxCard paradox={p} compact />)}
+    </div>
+  </section>
+</Base>
+
+<script define:vars={{ deck }}>
+  const link = document.querySelector('[data-random-link]');
+  const reshuffle = document.querySelector('[data-random-reshuffle]');
+  const preview = document.querySelector('[data-random-preview]');
+
+  function pick() {
+    const slug = deck[Math.floor(Math.random() * deck.length)];
+    link.href = `/paradox/${slug}/`;
+    preview.textContent = `Next up: ${slug.replace(/-/g, ' ')}`;
+    preview.hidden = false;
+  }
+
+  reshuffle.hidden = false;
+  reshuffle.addEventListener('click', pick);
+  pick();
+</script>
+
+<style>
+  .rnd { padding-block: 3rem 1rem; max-width: 40rem; }
+  .rnd h1 { margin-bottom: 0.4rem; }
+  .rnd__actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin: 1.75rem 0 0; }
+  .rnd__preview {
+    font-family: var(--font-ui);
+    font-size: 0.83rem;
+    color: var(--ink-faint);
+    margin-top: 0.85rem;
+    text-transform: capitalize;
+  }
+</style>

@@ -1,0 +1,14 @@
+id: chalmers-2002-st-petersburg-two-envelope
+type: paper
+title: The St. Petersburg Two-Envelope Paradox
+authors:
+  - David J. Chalmers
+year: 2002
+journal: Analysis
+volume: "62(2), 155–157"
+doi: 10.1093/analys/62.2.155
+notes: >-
+  Three pages linking the two problems directly: the versions of the envelope
+  paradox that survive the standard diagnosis are exactly the ones with
+  St-Petersburg-like infinite expectations, so the two paradoxes have a common
+  root in undefined expected values.

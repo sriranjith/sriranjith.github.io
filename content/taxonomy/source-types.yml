@@ -1,0 +1,25 @@
+# Controlled vocabulary: Source type
+- id: primary-source
+  label: Primary source
+  short: The original text where the idea first appears.
+  order: 10
+- id: book
+  label: Book
+  short: Book-length treatment, popular or scholarly.
+  order: 20
+- id: paper
+  label: Paper
+  short: Journal article or conference paper.
+  order: 30
+- id: academic-reference
+  label: Academic reference
+  short: Textbook, survey, or monograph used as a reference work.
+  order: 40
+- id: encyclopedia
+  label: Encyclopedia
+  short: Curated reference entry, e.g. Stanford Encyclopedia of Philosophy.
+  order: 50
+- id: further-reading
+  label: Further reading
+  short: Accessible secondary material for continuing on your own.
+  order: 60

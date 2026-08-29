@@ -1,0 +1,13 @@
+id: menger-1934-unsicherheitsmoment
+type: paper
+title: Das Unsicherheitsmoment in der Wertlehre
+authors:
+  - Karl Menger
+year: 1934
+journal: Zeitschrift für Nationalökonomie
+volume: "5(4), 459–485"
+notes: >-
+  Shows that logarithmic utility does not solve the problem, only postpones it:
+  for any unbounded utility function a modified lottery can be constructed whose
+  expected utility diverges again. The standard argument that utility must be
+  bounded above.

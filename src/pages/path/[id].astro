@@ -1,0 +1,160 @@
+---
+import Base from '../../layouts/Base.astro';
+import { publicCatalog } from '../../lib/catalog.js';
+import { url } from '../../lib/site.js';
+
+export function getStaticPaths() {
+  const catalog = publicCatalog();
+  return catalog.paths.map((path) => ({ params: { id: path.id }, props: { path } }));
+}
+
+const { path } = Astro.props;
+const catalog = publicCatalog();
+const tx = catalog.taxonomy;
+
+const steps = path.steps
+  .map((step) => ({ ...step, paradox: catalog.bySlug.get(step.paradox) }))
+  .filter((s) => s.paradox);
+
+const minutes = steps.reduce((n, s) => n + s.paradox.readingMinutes, 0);
+---
+
+<Base title={path.title} description={path.summary}>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href="/paths/">Learning paths</a>
+  </nav>
+
+  <header class="lhead">
+    <p class="eyebrow">Learning path</p>
+    <h1>{path.title}</h1>
+    <p class="lede">{path.summary}</p>
+    <p class="lhead__meta">
+      <span class="tag">{tx.label('difficulties', path.difficulty)}</span>
+      {path.domains.map((d) => (
+        <a class="tag tag--dot" style={`--dot:${tx.get('domains', d)?.color}`} href={url.domain(d)}>
+          {tx.label('domains', d)}
+        </a>
+      ))}
+      <span>{steps.length} steps · about {minutes} minutes of reading</span>
+    </p>
+  </header>
+
+  <ol class="lsteps">
+    {
+      steps.map((step, i) => (
+        <li class="lstep">
+          <div class="lstep__num" aria-hidden="true">{i + 1}</div>
+          <div class="lstep__card">
+            <h2><a href={url.paradox(step.paradox.slug)}>{step.paradox.title}</a></h2>
+            <p class="lstep__why">{step.why}</p>
+            <p class="lstep__summary">{step.paradox.summary}</p>
+            <p class="lstep__foot">
+              <span class="tag">{tx.label('difficulties', step.paradox.difficulty)}</span>
+              <span class="tag">{tx.label('natures', step.paradox.nature)}</span>
+              <span class="lstep__time">{step.paradox.readingMinutes} min</span>
+            </p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+
+  <p class="ldone">
+    That is the path. <a href="/paths/">Try another</a>, or
+    <a href="/random/">let the site pick something for you</a>.
+  </p>
+</Base>
+
+<style>
+  .lhead { padding-block: 1.5rem 2.5rem; max-width: 42rem; }
+  .lhead h1 { margin-bottom: 0.5rem; }
+  .lhead__meta {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: var(--font-ui);
+    font-size: 0.83rem;
+    color: var(--ink-faint);
+    margin: 1.25rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .lsteps { list-style: none; padding: 0; margin: 0 0 2.5rem; max-width: 46rem; }
+  .lstep {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 1.25rem;
+    position: relative;
+    padding-bottom: 1.25rem;
+  }
+  .lstep:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 1.24rem;
+    top: 2.6rem;
+    bottom: 0;
+    width: 2px;
+    background: var(--line);
+  }
+  .lstep__num {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 0.95rem;
+    z-index: 1;
+  }
+  .lstep__card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    padding: 1.1rem 1.25rem;
+    box-shadow: var(--shadow);
+  }
+  .lstep h2 { font-size: 1.12rem; margin: 0 0 0.5rem; }
+  .lstep h2 a { color: var(--ink); text-decoration: none; }
+  .lstep h2 a:hover { color: var(--accent-ink); }
+  .lstep__why {
+    font-family: var(--font-ui);
+    font-size: 0.89rem;
+    line-height: 1.55;
+    color: var(--accent-ink);
+    background: var(--accent-wash);
+    padding: 0.6rem 0.8rem;
+    border-radius: var(--radius);
+    margin: 0 0 0.75rem;
+  }
+  .lstep__summary { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 0.85rem; }
+  .lstep__foot {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line-soft);
+  }
+  .lstep__time { font-family: var(--font-ui); font-size: 0.75rem; color: var(--ink-faint); }
+
+  .ldone {
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    padding: 1.25rem 0 4rem;
+  }
+
+  @media (max-width: 34rem) {
+    .lstep { grid-template-columns: 2rem minmax(0, 1fr); gap: 0.85rem; }
+    .lstep__num { width: 2rem; height: 2rem; font-size: 0.85rem; }
+    .lstep:not(:last-child)::before { left: 0.97rem; top: 2.2rem; }
+  }
+</style>

@@ -1,0 +1,14 @@
+id: rosser-1936
+type: paper
+title: "Extensions of Some Theorems of Gödel and Church"
+authors:
+  - J. Barkley Rosser
+year: 1936
+journal: The Journal of Symbolic Logic
+volume: "1(3)"
+pages: "87–91"
+notes: >-
+  Replaces Gödel's hypothesis of omega-consistency with plain consistency by
+  using a sentence that says, in effect, "for every proof of me there is a
+  shorter proof of my negation". The modern statement of the first incompleteness
+  theorem is Rosser's, not Gödel's.

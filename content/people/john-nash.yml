@@ -1,0 +1,12 @@
+id: john-nash
+name: John F. Nash Jr.
+born: 1928
+died: 2015
+tradition: American mathematics and game theory
+bio: >-
+  Proved in 1950 that every finite game with mixed strategies has at least one
+  equilibrium point, the concept now called the Nash equilibrium. It is the
+  solution concept that makes the Prisoner's Dilemma precise: mutual defection is
+  an equilibrium even though both players would prefer mutual cooperation. Shared
+  the 1994 Nobel Memorial Prize in Economic Sciences.
+url: https://en.wikipedia.org/wiki/John_Forbes_Nash_Jr.

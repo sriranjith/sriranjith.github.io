@@ -1,0 +1,13 @@
+id: nash-1950-equilibrium-points
+type: paper
+title: Equilibrium Points in N-Person Games
+authors:
+  - John F. Nash Jr.
+year: 1950
+journal: Proceedings of the National Academy of Sciences
+volume: "36(1), 48-49"
+doi: 10.1073/pnas.36.1.48
+notes: >-
+  One page. Proves that every finite game has at least one equilibrium point in
+  mixed strategies. Supplies the solution concept that makes mutual defection in
+  the Prisoner's Dilemma a precise prediction rather than a hunch.

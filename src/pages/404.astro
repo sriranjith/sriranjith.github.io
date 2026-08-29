@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import ParadoxCard from '../components/ParadoxCard.astro';
+import { publicCatalog } from '../lib/catalog.js';
+import { shuffleStable } from '../lib/graph.js';
+
+const catalog = publicCatalog();
+const picks = shuffleStable(catalog.paradoxes, 42).slice(0, 3);
+---
+
+<Base title="Not found" noindex>
+  <div class="nf">
+    <p class="eyebrow">404</p>
+    <h1>This page does not exist.</h1>
+    <p class="lede">
+      Which is at least straightforwardly true, unlike most things on this site.
+    </p>
+    <p class="nf__actions">
+      <a class="btn btn--primary" href="/">Go home</a>
+      <a class="btn" href="/browse/">Browse everything</a>
+      <a class="btn" href="/search/">Search</a>
+    </p>
+  </div>
+
+  <section class="section">
+    <div class="section__head">
+      <h2>Since you are here anyway</h2>
+    </div>
+    <div class="grid grid--3">
+      {picks.map((p) => <ParadoxCard paradox={p} compact />)}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { padding-block: 4rem 1rem; max-width: 38rem; }
+  .nf h1 { margin-bottom: 0.4rem; }
+  .nf__actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.75rem; }
+</style>

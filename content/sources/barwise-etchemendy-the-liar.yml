@@ -1,0 +1,13 @@
+id: barwise-etchemendy-the-liar
+type: book
+title: "The Liar: An Essay on Truth and Circularity"
+authors:
+  - Jon Barwise
+  - John Etchemendy
+year: 1987
+publisher: Oxford University Press
+notes: >-
+  Analyses the Liar using situation semantics and a non-well-founded set theory,
+  and argues that the Liar's denial is evaluated relative to a different situation
+  from the original - so the apparent contradiction of the strengthened Liar
+  involves a shift the argument does not notice.

@@ -1,0 +1,15 @@
+id: halpern-moses-1990-knowledge
+type: paper
+title: "Knowledge and Common Knowledge in a Distributed Environment"
+authors:
+  - Joseph Y. Halpern
+  - Yoram Moses
+year: 1990
+journal: Journal of the ACM
+volume: "37(3)"
+pages: "549–587"
+notes: >-
+  Formalises the Two Generals' Problem in epistemic logic. Shows that
+  coordinated simultaneous action requires common knowledge, and that common
+  knowledge cannot be attained in a system where message delivery is not
+  guaranteed — turning a protocol puzzle into a theorem about knowledge.

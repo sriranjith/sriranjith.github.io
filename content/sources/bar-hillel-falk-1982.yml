@@ -1,0 +1,14 @@
+id: bar-hillel-falk-1982
+type: paper
+title: Some teasers concerning conditional probabilities
+authors:
+  - Maya Bar-Hillel
+  - Ruma Falk
+year: 1982
+journal: Cognition
+volume: "11(2), 109–122"
+notes: >-
+  The standard psychological treatment of the two-children problem and its
+  relatives. Argues that the puzzles are hard not because conditional
+  probability is hard but because natural language does not specify the sampling
+  protocol, and readers silently supply different ones.

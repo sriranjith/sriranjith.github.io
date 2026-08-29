@@ -1,0 +1,15 @@
+id: aristotle-physics
+type: primary-source
+title: Physics
+authors:
+  - Aristotle
+year: "c. 350 BCE"
+notes: >-
+  Book VI chapter 9 (239b9-240a18) is the earliest surviving statement of Zeno's
+  four arguments against motion, including the Dichotomy and the Achilles.
+  Aristotle's first reply is at VI.2 (233a21-31): a length and the time taken to
+  cross it are divisible in exactly the same way. He revisits and sharpens the
+  answer at VIII.8 (263a4-b9) using the distinction between potential and actual
+  division. Standard English text: the Hardie and Gaye translation, reprinted in
+  Barnes' Revised Oxford Translation.
+url: http://classics.mit.edu/Aristotle/physics.html

@@ -1,0 +1,13 @@
+id: taylor-wheeler-spacetime-physics
+type: book
+title: "Spacetime Physics: Introduction to Special Relativity"
+authors:
+  - Edwin F. Taylor
+  - John Archibald Wheeler
+year: 1992
+publisher: "W. H. Freeman, New York"
+notes: >-
+  Second edition. Builds special relativity around the invariant interval rather
+  than the Lorentz transformation, which makes the twin and pole-in-barn
+  problems into statements about path length in spacetime. Both appear as worked
+  exercises.

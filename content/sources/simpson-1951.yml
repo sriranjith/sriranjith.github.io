@@ -1,0 +1,13 @@
+id: simpson-1951
+type: primary-source
+title: "The Interpretation of Interaction in Contingency Tables"
+authors:
+  - Edward H. Simpson
+year: 1951
+journal: "Journal of the Royal Statistical Society, Series B"
+volume: "13(2), 238–241"
+notes: >-
+  Four pages that gave the effect its name. Simpson's own point is subtler than
+  the one usually attributed to him: he argues that which table is "sensible"
+  depends on the meaning of the variables, not on the numbers, and he gives two
+  arithmetically identical examples where opposite conclusions are correct.

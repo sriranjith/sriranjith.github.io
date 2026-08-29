@@ -1,0 +1,15 @@
+id: fitch-goedelized-prediction-paradox
+type: paper
+title: A Goedelized Formulation of the Prediction Paradox
+authors:
+  - Frederic B. Fitch
+journal: American Philosophical Quarterly
+volume: "1(2)"
+pages: "161–164"
+notes: >-
+  Builds the announcement as a self-referential sentence in the manner of
+  Gödel's diagonal lemma, so that the judge's decree literally refers to its own
+  unknowability. The construction makes precise the point Shaw made informally
+  and shows that the surprise clause behaves like a provability predicate. The
+  paper is variously dated 1963 and 1964 in the literature; the American
+  Philosophical Quarterly volume 1 appeared in 1964.

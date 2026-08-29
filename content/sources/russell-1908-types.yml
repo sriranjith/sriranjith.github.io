@@ -1,0 +1,14 @@
+id: russell-1908-types
+type: paper
+title: "Mathematical Logic as Based on the Theory of Types"
+authors:
+  - Bertrand Russell
+year: 1908
+journal: American Journal of Mathematics
+volume: "30(3)"
+pages: "222–262"
+notes: >-
+  Russell's own solution: a ramified hierarchy of types in which a class and its
+  members belong to different levels, so that "x is a member of x" is not a
+  well-formed statement at all. Also contains his vicious-circle principle and a
+  survey of seven paradoxes, including Berry's.

@@ -1,0 +1,165 @@
+---
+import Base from '../layouts/Base.astro';
+import { publicCatalog } from '../lib/catalog.js';
+import { AXES } from '../lib/site.js';
+
+// Renders the controlled vocabularies straight from content/taxonomy/.
+// Editing a YAML file changes this page, the filters, and every browse page.
+const catalog = publicCatalog();
+const tx = catalog.taxonomy;
+
+const axes = AXES.map((axis) => ({
+  ...axis,
+  terms: tx[axis.kind].map((term) => ({
+    ...term,
+    count: catalog.paradoxes.filter((p) =>
+      axis.multi ? p[axis.field].includes(term.id) : p[axis.field] === term.id
+    ).length,
+  })),
+}));
+---
+
+<Base
+  title="How this is classified"
+  description="The controlled vocabulary behind the site: domain, type, nature, difficulty, status and era."
+>
+  <header class="thead">
+    <h1>How this is classified</h1>
+    <p class="lede">
+      Six axes, each a fixed list rather than free-form tags. You never need to
+      learn this to use the site — but if you want to slice the collection
+      precisely, this is the vocabulary.
+    </p>
+  </header>
+
+  <section class="txnote">
+    <h2>A note on the word “paradox”</h2>
+    <p>
+      Most collections call everything surprising a paradox. That flattens some
+      genuinely different things: a proof that no solution exists is not the same
+      as a sentence that contradicts itself, and neither is the same as a correct
+      answer that feels wrong. The <b>Nature</b> axis below is this site's answer
+      to that, and it is the field authors are asked to think hardest about.
+    </p>
+  </section>
+
+  {
+    axes.map((axis) => (
+      <section class="section txaxis">
+        <div class="section__head">
+          <div>
+            <h2 id={axis.key}>{axis.plural}</h2>
+            <p>{axis.multi ? 'An entry can have several.' : 'An entry has exactly one.'}</p>
+          </div>
+        </div>
+
+        <dl class="txterms">
+          {axis.terms.map((term) => (
+            <div class={term.count === 0 ? 'txterm txterm--empty' : 'txterm'}>
+              <dt>
+                {term.count > 0 ? (
+                  <a href={axis.build(term.id)} style={term.color ? `--dot:${term.color}` : ''}>
+                    {term.label}
+                  </a>
+                ) : (
+                  <span>{term.label}</span>
+                )}
+                <em>{term.count}</em>
+              </dt>
+              <dd>
+                {term.explanation ?? term.blurb ?? term.short}
+                {term.audience && <span class="txterm__aud"> {term.audience}</span>}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ))
+  }
+
+  <section class="section">
+    <h2>Relationship kinds</h2>
+    <p class="txlede">
+      Connections between entries are typed. Each kind has an inverse, so an
+      author writes a link once and the site generates the other direction.
+    </p>
+    <ul class="txrels">
+      {
+        tx.relationshipKinds.map((kind) => (
+          <li>
+            <b>{kind.label}</b>
+            <span>{kind.short}</span>
+            <em>inverse: {tx.label('relationshipKinds', kind.inverse)}</em>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .thead { padding-block: 2rem 1.5rem; max-width: 42rem; }
+  .thead h1 { margin-bottom: 0.4rem; }
+
+  .txnote {
+    border-left: 3px solid var(--accent);
+    background: var(--surface-alt);
+    padding: 1.15rem 1.35rem;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    max-width: 44rem;
+    margin-bottom: 1rem;
+  }
+  .txnote h2 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .txnote p { margin: 0; font-size: 0.95rem; color: var(--ink-soft); }
+
+  .txaxis h2 { scroll-margin-top: 5rem; }
+  .txterms { margin: 0; display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+  .txterm {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.75rem 0.95rem;
+    background: var(--surface);
+  }
+  .txterm--empty { opacity: 0.55; background: none; border-style: dashed; }
+  .txterm dt {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: var(--font-ui);
+    font-weight: 620;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+  .txterm dt a {
+    color: var(--ink);
+    text-decoration: none;
+    border-left: 3px solid var(--dot, transparent);
+    padding-left: 0.5rem;
+    margin-left: -0.5rem;
+  }
+  .txterm dt a:hover { color: var(--accent-ink); }
+  .txterm dt em {
+    font-style: normal;
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .txterm dd { margin: 0; font-size: 0.88rem; color: var(--ink-soft); line-height: 1.5; }
+  .txterm__aud { display: block; color: var(--ink-faint); font-size: 0.85em; margin-top: 0.25rem; }
+
+  .txlede { color: var(--ink-soft); max-width: 42rem; margin-bottom: 1rem; }
+  .txrels { list-style: none; padding: 0; margin: 0 0 4rem; display: grid; gap: 0.4rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+  .txrels li {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.65rem 0.9rem;
+    font-family: var(--font-ui);
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .txrels b { font-size: 0.92rem; }
+  .txrels span { font-size: 0.84rem; color: var(--ink-soft); }
+  .txrels em { font-style: normal; font-size: 0.73rem; color: var(--ink-faint); }
+</style>

@@ -1,0 +1,16 @@
+id: ghirardi-rimini-weber-1986
+type: primary-source
+title: "Unified dynamics for microscopic and macroscopic systems"
+authors:
+  - G. C. Ghirardi
+  - A. Rimini
+  - T. Weber
+year: 1986
+journal: Physical Review D
+volume: "34, 470–491"
+doi: 10.1103/PhysRevD.34.470
+notes: >-
+  The GRW model: a stochastic modification of the Schrödinger equation with
+  spontaneous localisation, so that superposition really does fail for large
+  objects. Unlike an interpretation, it makes different predictions and can be
+  tested.

@@ -1,0 +1,13 @@
+id: ohno-1972-so-much-junk-dna
+type: paper
+title: So Much "Junk" DNA in Our Genome
+authors:
+  - Susumu Ohno
+year: 1972
+journal: Brookhaven Symposia in Biology
+volume: "23, 366–370"
+notes: >-
+  Coins the term "junk DNA". Ohno's argument is a mutational load calculation:
+  the number of genes a mammal can maintain under selection is bounded, so most
+  of the genome cannot be genes. The term has been widely misread as a claim that
+  the DNA does nothing.

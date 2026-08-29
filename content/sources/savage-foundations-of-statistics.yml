@@ -1,0 +1,11 @@
+id: savage-foundations-of-statistics
+type: book
+title: The Foundations of Statistics
+authors:
+  - Leonard J. Savage
+year: 1954
+publisher: John Wiley & Sons
+notes: >-
+  Where the sure-thing principle is stated: if you would prefer act A to act B
+  whichever way an event turns out, you should prefer A to B without waiting to
+  learn how it turns out. Simpson's paradox is the standard challenge to it.

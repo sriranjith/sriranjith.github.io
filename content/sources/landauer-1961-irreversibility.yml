@@ -1,0 +1,14 @@
+id: landauer-1961-irreversibility
+type: paper
+title: "Irreversibility and Heat Generation in the Computing Process"
+authors:
+  - Rolf Landauer
+year: 1961
+journal: "IBM Journal of Research and Development"
+volume: "5(3)"
+pages: "183–191"
+doi: 10.1147/rd.53.0183
+notes: >-
+  Establishes that logically irreversible operations — those with no
+  single-valued inverse, erasure above all — require the dissipation of at least
+  kT ln 2 of heat per bit. The bound is on erasure, not on computation as such.

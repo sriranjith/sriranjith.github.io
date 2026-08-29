@@ -1,0 +1,64 @@
+---
+import MontyHall from './interactive/MontyHall.astro';
+import Birthday from './interactive/Birthday.astro';
+import ZenoDichotomy from './interactive/ZenoDichotomy.astro';
+import SimpsonsParadox from './interactive/SimpsonsParadox.astro';
+
+// The only place component ids map to components. Validation reads the id list
+// from src/lib/interactive.js; this file wires them up.
+const REGISTRY = {
+  'monty-hall': MontyHall,
+  'birthday-problem': Birthday,
+  'zeno-dichotomy': ZenoDichotomy,
+  'simpsons-paradox': SimpsonsParadox,
+};
+
+const { id } = Astro.props;
+const Component = REGISTRY[id];
+---
+
+{
+  Component && (
+    <aside class="interactive" aria-label="Interactive demonstration">
+      <p class="interactive__label">Try it yourself</p>
+      <Component />
+    </aside>
+  )
+}
+
+<style is:global>
+  .interactive {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-block: 2rem;
+    box-shadow: var(--shadow);
+    font-family: var(--font-ui);
+  }
+  .interactive__label {
+    font-size: 0.71rem;
+    font-weight: 660;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--accent-ink);
+    margin: 0 0 0.9rem;
+  }
+  .interactive p { font-size: 0.92rem; }
+
+  .iv-controls { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; margin-bottom: 1rem; }
+  .iv-stat { display: flex; flex-direction: column; gap: 0.1rem; }
+  .iv-stat b { font-size: 1.5rem; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .iv-stat span { font-size: 0.72rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em; }
+  .iv-stats { display: flex; gap: 1.75rem; flex-wrap: wrap; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line-soft); }
+  .iv-note { font-size: 0.83rem; color: var(--ink-faint); margin: 0.75rem 0 0; }
+  .iv-bar { height: 0.5rem; border-radius: 999px; background: var(--surface-alt); overflow: hidden; }
+  .iv-bar > i { display: block; height: 100%; background: var(--accent); transition: width 0.3s ease; }
+  .iv-noscript {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    background: var(--surface-alt);
+    padding: 0.7rem 0.9rem;
+    border-radius: var(--radius);
+  }
+</style>

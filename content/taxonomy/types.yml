@@ -1,0 +1,58 @@
+# Controlled vocabulary: Type
+# What kind of intellectual machinery generates the paradox.
+- id: self-reference
+  label: Self-reference
+  short: A statement or system that talks about itself.
+  order: 10
+- id: infinity
+  label: Infinity
+  short: Unbounded quantities, limits, and completed infinities.
+  order: 20
+- id: identity
+  label: Identity
+  short: What makes a thing the same thing over time or change.
+  order: 30
+- id: causality
+  label: Causality
+  short: Cause, effect, and their possible loops.
+  order: 40
+- id: probability
+  label: Probability
+  short: Chance, conditioning, and updating on evidence.
+  order: 50
+- id: knowledge
+  label: Knowledge
+  short: What can be known, proved, or announced.
+  order: 60
+- id: decision-making
+  label: Decision-making
+  short: Choosing rationally under uncertainty or conflict.
+  order: 70
+- id: aggregation
+  label: Aggregation
+  short: Combining many parts, votes, or groups into one result.
+  order: 80
+- id: optimization
+  label: Optimization
+  short: Maximising a target and what that target destroys.
+  order: 90
+- id: computation
+  label: Computation
+  short: What algorithms and machines can and cannot do.
+  order: 100
+- id: time
+  label: Time
+  short: Duration, ordering, motion, and travel.
+  order: 110
+- id: measurement
+  label: Measurement
+  short: The act of quantifying changing what is quantified.
+  order: 120
+- id: observation
+  label: Observation
+  short: Selection effects and the observer's place in the data.
+  order: 130
+- id: vagueness
+  label: Vagueness
+  short: Boundaries that admit no sharp line.
+  order: 140

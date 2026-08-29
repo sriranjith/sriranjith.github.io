@@ -1,0 +1,13 @@
+id: von-neumann-1929-mass
+type: paper
+title: "Zur allgemeinen Theorie des Maßes"
+authors:
+  - John von Neumann
+year: 1929
+journal: Fundamenta Mathematicae
+volume: "13, 73–116"
+notes: >-
+  Introduces what is now called amenability and shows that it, rather than
+  dimension as such, is what decides whether paradoxical decompositions exist.
+  The isometry groups of the line and the plane are amenable; that of
+  three-space is not, because it contains a free group on two generators.

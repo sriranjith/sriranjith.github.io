@@ -1,0 +1,14 @@
+id: cantor-1874-uncountability
+type: paper
+title: "Über eine Eigenschaft des Inbegriffes aller reellen algebraischen Zahlen"
+authors:
+  - Georg Cantor
+year: 1874
+journal: Journal für die reine und angewandte Mathematik (Crelle's Journal)
+volume: "77, 258–262"
+notes: >-
+  The first proof that the real numbers are uncountable. It does not use the
+  diagonal method: it builds two interleaved sequences of nested intervals whose
+  common point is missed by the enumeration. The title advertises the
+  countability of the algebraic numbers instead — Cantor, on Weierstrass's
+  advice, downplayed the more provocative half of the paper.

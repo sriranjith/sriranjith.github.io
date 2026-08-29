@@ -1,0 +1,14 @@
+id: tarski-1944-semantic-conception
+type: primary-source
+title: The Semantic Conception of Truth and the Foundations of Semantics
+authors:
+  - Alfred Tarski
+year: 1944
+journal: Philosophy and Phenomenological Research
+volume: "4(3), 341-376"
+notes: >-
+  Tarski's own non-technical presentation of the results first published in
+  Polish in 1933 and in German in 1935. Sets out the material adequacy condition
+  known as Convention T, argues that the Liar arises from the semantic closure of
+  natural language, and concludes that a consistent truth predicate must live in
+  a metalanguage stronger than the language it applies to.

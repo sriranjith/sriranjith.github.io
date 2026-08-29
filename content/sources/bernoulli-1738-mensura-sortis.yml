@@ -1,0 +1,15 @@
+id: bernoulli-1738-mensura-sortis
+type: primary-source
+title: Specimen Theoriae Novae de Mensura Sortis
+authors:
+  - Daniel Bernoulli
+year: 1738
+journal: Commentarii Academiae Scientiarum Imperialis Petropolitanae
+volume: "5, 175–192"
+doi: 10.2307/1909829
+notes: >-
+  The paper that named the paradox, after the journal it appeared in. Proposes
+  that the value of a gain is inversely proportional to the wealth already held
+  — logarithmic utility — and shows this makes the wager's value finite. The DOI
+  is for Louise Sommer's English translation, "Exposition of a New Theory on the
+  Measurement of Risk", Econometrica 22(1), 1954, 23–36.

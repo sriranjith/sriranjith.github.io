@@ -1,0 +1,15 @@
+id: einstein-podolsky-rosen-1935
+type: primary-source
+title: "Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?"
+authors:
+  - Albert Einstein
+  - Boris Podolsky
+  - Nathan Rosen
+year: 1935
+journal: Physical Review
+volume: "47, 777–780"
+doi: 10.1103/PhysRev.47.777
+notes: >-
+  The EPR paper. States the reality criterion, the separability assumption, and
+  the conclusion that the quantum-mechanical description of physical reality is
+  incomplete.

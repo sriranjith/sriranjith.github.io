@@ -1,0 +1,12 @@
+id: kleppmann-2017-ddia
+type: book
+title: "Designing Data-Intensive Applications"
+authors:
+  - Martin Kleppmann
+year: 2017
+publisher: O'Reilly Media
+isbn: "9781449373320"
+notes: >-
+  The bridge between the distributed-systems literature and working engineers.
+  Chapters 8 and 9 cover unreliable networks, linearizability, consensus and the
+  precise sense in which the CAP theorem is both true and unhelpful.

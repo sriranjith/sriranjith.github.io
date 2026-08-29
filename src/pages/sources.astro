@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import Citation from '../components/Citation.astro';
+import { publicCatalog } from '../lib/catalog.js';
+import { url } from '../lib/site.js';
+
+// The bibliography is generated from content/sources/. Because sources are
+// shared records rather than per-page strings, this page is always complete.
+const catalog = publicCatalog();
+const tx = catalog.taxonomy;
+
+const cited = catalog.sources.filter((s) => s.citedBy.length > 0);
+const groups = tx.sourceTypes
+  .map((type) => ({ type, items: cited.filter((s) => s.type === type.id) }))
+  .filter((g) => g.items.length > 0);
+---
+
+<Base
+  title="Bibliography"
+  description="Every primary source, book, paper and reference work cited across the collection."
+>
+  <header class="thead">
+    <h1>Bibliography</h1>
+    <p class="lede">
+      {cited.length} sources behind {catalog.paradoxes.length} entries. Each one
+      is a structured record shared across every page that cites it, so a
+      correction here fixes it everywhere.
+    </p>
+  </header>
+
+  <nav class="sjump" aria-label="Jump to source type">
+    {groups.map((g) => <a href={`#${g.type.id}`}>{g.type.label} ({g.items.length})</a>)}
+  </nav>
+
+  {
+    groups.map((group) => (
+      <section class="section sgroup">
+        <h2 id={group.type.id}>{group.type.label}</h2>
+        <p class="sgroup__note">{group.type.short}</p>
+        <ul class="srefs">
+          {group.items.map((source) => (
+            <li class="sref">
+              <ul class="srefs__inner"><Citation source={source} showUsage /></ul>
+              <p class="sref__used">
+                {source.citedBy.slice(0, 6).map((slug, i) => (
+                  <>
+                    {i > 0 && <span aria-hidden="true"> · </span>}
+                    <a href={url.paradox(slug)}>{catalog.bySlug.get(slug)?.title ?? slug}</a>
+                  </>
+                ))}
+                {source.citedBy.length > 6 && <span> and {source.citedBy.length - 6} more</span>}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .thead { padding-block: 2rem 1.5rem; max-width: 42rem; }
+  .thead h1 { margin-bottom: 0.4rem; }
+
+  .sjump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0.85rem 0;
+    border-block: 1px solid var(--line);
+    font-family: var(--font-ui);
+    font-size: 0.83rem;
+    margin-bottom: 1rem;
+  }
+  .sjump a {
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    background: var(--surface-alt);
+    text-decoration: none;
+    color: var(--ink-soft);
+  }
+  .sjump a:hover { background: var(--accent-wash); color: var(--accent-ink); }
+
+  .sgroup h2 { scroll-margin-top: 5rem; margin-bottom: 0.15rem; }
+  .sgroup__note { font-family: var(--font-ui); font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 1rem; }
+  .srefs { list-style: none; padding: 0; margin: 0; }
+  .srefs__inner { list-style: none; padding: 0; margin: 0; }
+  .sref { border-bottom: 1px solid var(--line-soft); padding-bottom: 0.5rem; margin-bottom: 0.5rem; }
+  .sref:last-child { border-bottom: 0; }
+  .sref__used {
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    margin: 0.15rem 0 0;
+  }
+  .sref__used a { color: var(--ink-faint); }
+  .sref__used a:hover { color: var(--accent-ink); }
+</style>

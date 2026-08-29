@@ -1,0 +1,15 @@
+id: pease-shostak-lamport-1980-agreement
+type: paper
+title: "Reaching Agreement in the Presence of Faults"
+authors:
+  - Marshall Pease
+  - Robert Shostak
+  - Leslie Lamport
+year: 1980
+journal: Journal of the ACM
+volume: "27(2)"
+pages: "228–234"
+notes: >-
+  The technical result two years before the famous retelling: agreement among
+  processes exchanging unauthenticated messages is possible if and only if more
+  than two-thirds of them are non-faulty, and authentication changes the bound.

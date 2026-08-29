@@ -1,0 +1,13 @@
+id: bell-1964-epr
+type: primary-source
+title: "On the Einstein Podolsky Rosen Paradox"
+authors:
+  - John Stewart Bell
+year: 1964
+journal: "Physics Physique Fizika"
+volume: "1, 195–200"
+doi: 10.1103/PhysicsPhysiqueFizika.1.195
+notes: >-
+  Six pages that turned a philosophical dispute into an experimental question.
+  Derives an inequality obeyed by every local hidden-variable theory and shows
+  that quantum mechanics violates it.

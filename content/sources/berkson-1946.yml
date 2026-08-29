@@ -1,0 +1,13 @@
+id: berkson-1946
+type: primary-source
+title: "Limitations of the Application of Fourfold Table Analysis to Hospital Data"
+authors:
+  - Joseph Berkson
+year: 1946
+journal: Biometrics Bulletin
+volume: "2(3), 47–53"
+notes: >-
+  The original demonstration that two conditions independent in the general
+  population will appear associated — usually negatively — among hospital
+  inpatients, purely because either condition raises the chance of admission.
+  Berkson worked the arithmetic through for cholecystitis and diabetes.

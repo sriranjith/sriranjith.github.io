@@ -1,0 +1,45 @@
+id: what-is-truth
+title: What Is Truth?
+summary: >-
+  A single sentence about itself brings down a 2,000-year-old assumption, then
+  takes set theory and finally arithmetic with it. This is the shortest route
+  from a schoolyard riddle to the limits of mathematics.
+difficulty: advanced
+domains:
+  - logic
+  - philosophy
+  - mathematics
+order: 20
+steps:
+  - paradox: liar-paradox
+    why: >-
+      Four words — "this sentence is false" — and there is still no agreed way
+      out. Everything downstream is a response to this.
+
+  - paradox: barber-paradox
+    why: >-
+      A deliberate detour, and the most useful one on this path. The barber
+      looks exactly like the Liar and dissolves in a second. Learning why it is
+      easy is how you understand why the Liar is not.
+
+  - paradox: berrys-paradox
+    why: >-
+      The same trouble moved from truth to definability. Two different words
+      break in the same way, which suggests the problem is self-reference itself.
+
+  - paradox: russells-paradox
+    why: >-
+      Now it stops being a curiosity. The same move destroys the foundation
+      Frege had just spent decades building, and the letter announcing it is one
+      of the most consequential in the history of mathematics.
+
+  - paradox: godels-incompleteness
+    why: >-
+      The summit. Gödel takes the Liar sentence, swaps "true" for "provable",
+      and turns a paradox into a theorem: any system strong enough to describe
+      arithmetic contains truths it cannot prove.
+
+  - paradox: halting-problem
+    why: >-
+      The same argument, one more time, in machines instead of sentences. Once
+      you have seen it here you will recognise the diagonal move anywhere.

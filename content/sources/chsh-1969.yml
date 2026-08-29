@@ -1,0 +1,16 @@
+id: chsh-1969
+type: paper
+title: "Proposed Experiment to Test Local Hidden-Variable Theories"
+authors:
+  - John F. Clauser
+  - Michael A. Horne
+  - Abner Shimony
+  - Richard A. Holt
+year: 1969
+journal: Physical Review Letters
+volume: "23, 880–884"
+doi: 10.1103/PhysRevLett.23.880
+notes: >-
+  The CHSH inequality. Generalises Bell's result to a form testable with
+  imperfect detectors and non-ideal correlations, which is what made real
+  experiments possible.

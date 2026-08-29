@@ -1,0 +1,15 @@
+id: brewer-2012-cap-twelve-years
+type: paper
+title: "CAP Twelve Years Later: How the \"Rules\" Have Changed"
+authors:
+  - Eric Brewer
+year: 2012
+journal: IEEE Computer
+volume: "45(2)"
+pages: "23–29"
+notes: >-
+  Brewer's own correction. He writes that the "two of three" formulation has
+  always been misleading, that partitions are rare enough that systems should
+  provide all three properties most of the time, and that the useful engineering
+  question is how to detect a partition, enter an explicit partition mode, and
+  compensate afterwards.

@@ -1,0 +1,16 @@
+id: fitch-1963-value-concepts
+type: paper
+title: A Logical Analysis of Some Value Concepts
+authors:
+  - Frederic B. Fitch
+year: 1963
+journal: The Journal of Symbolic Logic
+volume: "28(2)"
+pages: "135–142"
+notes: >-
+  Theorem 5 is the knowability paradox: if every truth is knowable, then every
+  truth is known. The proof turns on a sentence of the form "p and p is not
+  known", which is consistent but cannot consistently be known - the same
+  structure that makes the judge's decree true and unknowable by the prisoner.
+  Fitch credits the argument to an anonymous referee, later identified as Alonzo
+  Church.

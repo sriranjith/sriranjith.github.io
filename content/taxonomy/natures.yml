@@ -1,0 +1,53 @@
+# Controlled vocabulary: Nature
+# The single most important classification on this site.
+# "Paradox" is used loosely in the world. Here it is used precisely.
+- id: logical-contradiction
+  label: Logical contradiction
+  short: A genuine contradiction derivable from apparently sound premises.
+  explanation: >-
+    Accepting the premises and the reasoning forces you to accept both P and
+    not-P. Something in the premises must go. These are the rarest and most
+    consequential paradoxes.
+  order: 10
+- id: apparent-contradiction
+  label: Apparent contradiction
+  short: Looks contradictory, dissolves under careful analysis.
+  explanation: >-
+    The contradiction comes from an unstated assumption or an equivocation. Once
+    named, the paradox resolves without abandoning anything important.
+  order: 20
+- id: counterintuitive-result
+  label: Counterintuitive result
+  short: True, provable, and deeply surprising.
+  explanation: >-
+    Nothing is wrong with the reasoning. The result is simply correct and human
+    intuition is simply unreliable here. Not a contradiction at all.
+  order: 30
+- id: thought-experiment
+  label: Thought experiment
+  short: A constructed scenario that exposes a conceptual tension.
+  explanation: >-
+    Not a proof but a probe. Its value is in the disagreement it reveals about
+    concepts like identity, personhood, or responsibility.
+  order: 40
+- id: impossibility-result
+  label: Impossibility result
+  short: A theorem proving no solution can exist.
+  explanation: >-
+    Mathematically established. Not paradoxical in the strict sense, but almost
+    always experienced as one because the impossible thing feels achievable.
+  order: 50
+- id: open-problem
+  label: Open problem
+  short: Unresolved. Live disagreement among experts.
+  explanation: >-
+    No consensus resolution exists. Presenting one as settled would be
+    misleading, so this site presents the competing positions instead.
+  order: 60
+- id: veridical
+  label: Veridical paradox
+  short: The absurd-sounding conclusion is simply true.
+  explanation: >-
+    Quine's term. The result seems absurd but is demonstrably correct. Closely
+    related to counterintuitive results, used where a formal demonstration exists.
+  order: 70

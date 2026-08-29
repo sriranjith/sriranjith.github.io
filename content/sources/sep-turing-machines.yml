@@ -1,0 +1,11 @@
+id: sep-turing-machines
+type: encyclopedia
+title: "Turing Machines"
+authors:
+  - Liesbeth De Mol
+publisher: Stanford Encyclopedia of Philosophy
+url: https://plato.stanford.edu/entries/turing-machine/
+notes: >-
+  Careful account of what Turing actually wrote in 1936, including how far the
+  modern textbook statement of the halting problem departs from his own
+  formulation in terms of circle-free machines.

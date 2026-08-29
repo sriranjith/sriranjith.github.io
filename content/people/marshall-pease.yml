@@ -1,0 +1,9 @@
+id: marshall-pease
+name: Marshall Pease
+tradition: American computer science
+bio: >-
+  Researcher at SRI International and lead author of the 1980 paper "Reaching
+  Agreement in the Presence of Faults", which first proved that agreement among
+  processes exchanging unauthenticated messages requires more than three times
+  as many participants as there are faulty ones. He co-authored the 1982
+  Byzantine Generals paper that gave the result its enduring name.

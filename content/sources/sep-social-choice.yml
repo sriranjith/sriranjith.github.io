@@ -1,0 +1,11 @@
+id: sep-social-choice
+type: encyclopedia
+title: "Social Choice Theory"
+authors:
+  - Christian List
+year: 2022
+publisher: Stanford Encyclopedia of Philosophy
+url: https://plato.stanford.edu/entries/social-choice/
+notes: >-
+  Careful survey covering Condorcet cycles, Arrow's theorem, the escape routes
+  and the strategy-proofness results, with the conditions stated precisely.

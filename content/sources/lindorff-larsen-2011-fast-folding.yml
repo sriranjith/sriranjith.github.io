@@ -1,0 +1,16 @@
+id: lindorff-larsen-2011-fast-folding
+type: paper
+title: How Fast-Folding Proteins Fold
+authors:
+  - Kresten Lindorff-Larsen
+  - Stefano Piana
+  - Ron O. Dror
+  - David E. Shaw
+year: 2011
+journal: Science
+volume: "334(6055), 517–520"
+notes: >-
+  All-atom molecular dynamics on the special-purpose Anton machine, reproducing
+  reversible folding and unfolding of twelve small proteins on timescales up to
+  the millisecond. The first direct computational observation of folding
+  pathways, and evidence that the routes are diverse rather than unique.

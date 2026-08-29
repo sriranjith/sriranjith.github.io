@@ -1,0 +1,12 @@
+id: brooks-1990-elephants-dont-play-chess
+type: paper
+title: Elephants Don't Play Chess
+authors:
+  - Rodney A. Brooks
+year: 1990
+journal: Robotics and Autonomous Systems
+volume: "6(1–2), 3–15"
+notes: >-
+  The manifesto for behaviour-based robotics. Argues that the symbol-manipulation
+  tradition mistook the visible tip of intelligence for the whole of it, and that
+  situated perception and action must come first.

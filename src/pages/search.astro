@@ -1,0 +1,227 @@
+---
+import Base from '../layouts/Base.astro';
+import { publicCatalog } from '../lib/catalog.js';
+
+const catalog = publicCatalog();
+const total =
+  catalog.paradoxes.length + catalog.people.length + catalog.sources.length + catalog.paths.length;
+---
+
+<Base
+  title="Search"
+  description="Search paradoxes, people, books, papers and learning paths."
+  noindex
+>
+  <div class="sx">
+    <h1>Search</h1>
+    <p class="lede">
+      {total} records — paradoxes, the people behind them, every book and paper
+      cited, and the learning paths.
+    </p>
+
+    <form class="sx__form" role="search" onsubmit="return false">
+      <label class="visually-hidden" for="sq">Search</label>
+      <input
+        type="search"
+        id="sq"
+        placeholder="Try “infinity”, “Gödel”, “selection bias”, “voting”…"
+        autocomplete="off"
+        autofocus
+        data-sx-input
+      />
+    </form>
+
+    <p class="sx__status" role="status" aria-live="polite" data-sx-status>
+      Type to search.
+    </p>
+
+    <ul class="sx__results" data-sx-results></ul>
+
+    <noscript>
+      <p class="empty">
+        Search needs JavaScript. <a href="/browse/">Browse the full list</a> instead —
+        it works without it.
+      </p>
+    </noscript>
+  </div>
+</Base>
+
+<style>
+  .sx { max-width: 44rem; padding-block: 2rem 4rem; }
+  .sx h1 { margin-bottom: 0.4rem; }
+  .sx .lede { margin-bottom: 1.75rem; }
+
+  .sx__form { margin-bottom: 1rem; }
+  .sx__form input {
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    font: inherit;
+    font-family: var(--font-ui);
+    font-size: 1.05rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: var(--shadow);
+  }
+  .sx__form input:focus { border-color: var(--accent); }
+
+  .sx__status {
+    font-family: var(--font-ui);
+    font-size: 0.83rem;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+  }
+
+  .sx__results { list-style: none; padding: 0; margin: 0; }
+  .sx__results li { border-bottom: 1px solid var(--line-soft); }
+  .sx__results a {
+    display: block;
+    padding: 0.85rem 0.6rem;
+    text-decoration: none;
+    border-radius: var(--radius);
+  }
+  .sx__results a:hover { background: var(--surface-alt); }
+  .sx__kind {
+    font-family: var(--font-ui);
+    font-size: 0.68rem;
+    font-weight: 660;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-ink);
+    background: var(--accent-wash);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+  }
+  .sx__title { font-family: var(--font-ui); font-weight: 620; color: var(--ink); font-size: 1rem; }
+  .sx__meta { font-family: var(--font-ui); font-size: 0.75rem; color: var(--ink-faint); }
+  .sx__desc { display: block; font-size: 0.88rem; color: var(--ink-soft); line-height: 1.45; margin-top: 0.2rem; }
+  .sx__head { display: flex; gap: 0.5rem; align-items: baseline; flex-wrap: wrap; }
+  mark { background: color-mix(in srgb, var(--accent) 22%, transparent); color: inherit; border-radius: 2px; padding: 0 0.1em; }
+</style>
+
+<script>
+  const input = document.querySelector('[data-sx-input]');
+  const results = document.querySelector('[data-sx-results]');
+  const status = document.querySelector('[data-sx-status]');
+
+  const HREF = {
+    paradox: (s) => `/paradox/${s}/`,
+    person: (s) => `/person/${s}/`,
+    path: (s) => `/path/${s}/`,
+    source: () => `/sources/`,
+  };
+  const LABEL = { paradox: 'Paradox', person: 'Person', source: 'Source', path: 'Path' };
+
+  let index = null;
+  let loading = null;
+
+  // The index is fetched once, on first keystroke — nothing downloads for
+  // visitors who never search.
+  function load() {
+    if (index) return Promise.resolve(index);
+    if (!loading) {
+      loading = fetch('/search-index.json')
+        .then((r) => r.json())
+        .then((data) => {
+          index = data.documents;
+          return index;
+        });
+    }
+    return loading;
+  }
+
+  const escapeHtml = (s) =>
+    s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+
+  function highlight(text, terms) {
+    let out = escapeHtml(text);
+    for (const term of terms) {
+      if (term.length < 2) continue;
+      out = out.replace(
+        new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'),
+        '<mark>$1</mark>'
+      );
+    }
+    return out;
+  }
+
+  // Field-weighted scoring. Exact title match beats a body mention, and a
+  // prefix match on the title beats a mid-word one.
+  function score(doc, terms) {
+    const title = doc.t.toLowerCase();
+    const keywords = doc.w.toLowerCase();
+    const desc = doc.d.toLowerCase();
+    const body = doc.b.toLowerCase();
+    let total = 0;
+
+    for (const term of terms) {
+      let best = 0;
+      if (title === term) best = 100;
+      else if (title.startsWith(term)) best = 60;
+      else if (title.includes(term)) best = 40;
+      else if (keywords.includes(term)) best = 22;
+      else if (desc.includes(term)) best = 12;
+      else if (body.includes(term)) best = 5;
+      if (best === 0) return 0; // every term must match somewhere
+      total += best;
+    }
+    if (doc.k === 'paradox') total *= 1.25;
+    return total;
+  }
+
+  function render(query) {
+    const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+    if (terms.length === 0) {
+      results.innerHTML = '';
+      status.textContent = 'Type to search.';
+      return;
+    }
+
+    const hits = index
+      .map((doc) => ({ doc, s: score(doc, terms) }))
+      .filter((x) => x.s > 0)
+      .sort((a, b) => b.s - a.s)
+      .slice(0, 40);
+
+    status.textContent =
+      hits.length === 0
+        ? `Nothing found for “${query}”.`
+        : `${hits.length}${hits.length === 40 ? '+' : ''} result${hits.length === 1 ? '' : 's'}`;
+
+    results.innerHTML = hits
+      .map(
+        ({ doc }) => `
+        <li>
+          <a href="${HREF[doc.k](doc.s)}">
+            <span class="sx__head">
+              <span class="sx__kind">${LABEL[doc.k]}</span>
+              <span class="sx__title">${highlight(doc.t, terms)}</span>
+              <span class="sx__meta">${escapeHtml(doc.m)}</span>
+            </span>
+            <span class="sx__desc">${highlight(doc.d, terms)}</span>
+          </a>
+        </li>`
+      )
+      .join('');
+  }
+
+  let timer;
+  input.addEventListener('input', () => {
+    const query = input.value.trim();
+    clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!query) return render('');
+      status.textContent = 'Searching…';
+      await load();
+      render(query);
+    }, 110);
+  });
+
+  // Support /search/?q=… so the page can be linked to directly.
+  const initial = new URLSearchParams(location.search).get('q');
+  if (initial) {
+    input.value = initial;
+    load().then(() => render(initial));
+  }
+</script>

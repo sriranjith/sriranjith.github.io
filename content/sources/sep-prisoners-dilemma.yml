@@ -1,0 +1,12 @@
+id: sep-prisoners-dilemma
+type: encyclopedia
+title: Prisoner's Dilemma
+authors:
+  - Steven Kuhn
+year: 2019
+publisher: Stanford Encyclopedia of Philosophy
+url: https://plato.stanford.edu/entries/prisoner-dilemma/
+notes: >-
+  Careful survey of the formal definition, the asymmetric and multi-player
+  variants, the finite-iteration backward induction argument, and the
+  philosophical literature on whether defection is genuinely rational.

@@ -1,0 +1,16 @@
+id: dwork-lynch-stockmeyer-1988
+type: paper
+title: "Consensus in the Presence of Partial Synchrony"
+authors:
+  - Cynthia Dwork
+  - Nancy Lynch
+  - Larry Stockmeyer
+year: 1988
+journal: Journal of the ACM
+volume: "35(2)"
+pages: "288–323"
+notes: >-
+  Defines the partially synchronous models that let real systems sidestep FLP:
+  bounds on message delay and clock drift that hold eventually, or hold always
+  but are unknown. Safety is preserved unconditionally; termination is
+  guaranteed only once the system becomes well behaved.

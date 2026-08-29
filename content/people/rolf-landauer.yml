@@ -1,0 +1,11 @@
+id: rolf-landauer
+name: Rolf Landauer
+born: 1927
+died: 1999
+tradition: German-American condensed-matter physics
+bio: >-
+  IBM physicist whose 1961 paper established that logically irreversible
+  operations — above all, erasing a bit — carry an unavoidable thermodynamic
+  cost of at least kT ln 2 of heat per bit. His slogan, "information is
+  physical", became the organising principle of the physics of computation.
+url: https://en.wikipedia.org/wiki/Rolf_Landauer

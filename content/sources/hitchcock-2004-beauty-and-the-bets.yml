@@ -1,0 +1,12 @@
+id: hitchcock-2004-beauty-and-the-bets
+type: paper
+title: "Beauty and the Bets"
+authors:
+  - Christopher Hitchcock
+year: 2004
+journal: Synthese
+volume: "139(3), 405–420"
+notes: >-
+  Constructs the Dutch book against the halfer: a bookie who offers Beauty a
+  bet on every awakening extracts a sure loss from anyone betting at even odds,
+  because the tails branch is billed twice.

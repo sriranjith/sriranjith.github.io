@@ -1,0 +1,12 @@
+id: nickerson-2004-cognition-and-chance
+type: book
+title: "Cognition and Chance: The Psychology of Probabilistic Reasoning"
+authors:
+  - Raymond S. Nickerson
+year: 2004
+publisher: Lawrence Erlbaum Associates
+notes: >-
+  Book-length survey of how people reason about chance. Its chapter on
+  conditional-probability puzzles works through the two-children problem in
+  detail and shows how easily plausible background assumptions push the answer
+  from 1/3 to 1/2.

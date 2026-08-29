@@ -1,0 +1,14 @@
+id: zadeh-1965-fuzzy-sets
+type: paper
+title: Fuzzy Sets
+authors:
+  - L. A. Zadeh
+year: 1965
+journal: Information and Control
+volume: "8(3)"
+pages: "338–353"
+notes: >-
+  Introduces sets whose members belong to a degree in [0, 1] rather than
+  absolutely. Written for engineering rather than philosophy, it nonetheless
+  supplied the formal apparatus behind degree-theoretic responses to the
+  sorites, and behind the fuzzy controllers deployed in industry from the 1980s.

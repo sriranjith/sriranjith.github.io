@@ -1,0 +1,15 @@
+id: ugander-2011-facebook
+type: paper
+title: "The Anatomy of the Facebook Social Graph"
+authors:
+  - Johan Ugander
+  - Brian Karrer
+  - Lars Backstrom
+  - Cameron Marlow
+year: 2011
+journal: "arXiv preprint arXiv:1111.4503"
+url: https://arxiv.org/abs/1111.4503
+notes: >-
+  A census of the active Facebook graph — 721 million users, 69 billion
+  friendships. Documents the heavily skewed degree distribution that makes the
+  friendship paradox so pronounced on social platforms.

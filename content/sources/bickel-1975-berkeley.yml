@@ -1,0 +1,17 @@
+id: bickel-1975-berkeley
+type: paper
+title: "Sex Bias in Graduate Admissions: Data from Berkeley"
+authors:
+  - P. J. Bickel
+  - E. A. Hammel
+  - J. W. O'Connell
+year: 1975
+journal: Science
+volume: "187(4175), 398–404"
+doi: 10.1126/science.187.4175.398
+notes: >-
+  The single most cited real instance of Simpson's paradox. The 1973 Berkeley
+  graduate admissions figures showed a large aggregate gap favouring men that
+  largely vanished, and slightly reversed, once applications were broken down by
+  department. The paper is unusually careful about what the data can and cannot
+  establish about discrimination.

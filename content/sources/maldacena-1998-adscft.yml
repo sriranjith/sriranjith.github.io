@@ -1,0 +1,13 @@
+id: maldacena-1998-adscft
+type: primary-source
+title: "The Large N Limit of Superconformal Field Theories and Supergravity"
+authors:
+  - Juan Maldacena
+year: 1998
+journal: "Advances in Theoretical and Mathematical Physics"
+volume: "2, 231–252 (arXiv:hep-th/9711200)"
+url: https://arxiv.org/abs/hep-th/9711200
+notes: >-
+  The AdS/CFT correspondence. A gravitational theory in the bulk is equivalent to
+  an ordinary, manifestly unitary quantum field theory on the boundary — the
+  strongest existing evidence that black hole evaporation preserves information.

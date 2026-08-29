@@ -1,0 +1,13 @@
+id: leslie-lamport
+name: Leslie Lamport
+born: 1941
+tradition: American computer science
+bio: >-
+  American computer scientist whose work defined how the field reasons about
+  distributed systems: logical clocks and the happened-before relation (1978),
+  the Byzantine Generals Problem (1982) with Robert Shostak and Marshall Pease,
+  sequential consistency, and the Paxos consensus algorithm (1998). He also
+  wrote LaTeX. He received the 2013 ACM Turing Award for imposing "clear,
+  well-defined coherence on the seemingly chaotic behaviour of distributed
+  computing systems".
+url: https://en.wikipedia.org/wiki/Leslie_Lamport

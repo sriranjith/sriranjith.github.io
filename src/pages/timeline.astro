@@ -1,0 +1,137 @@
+---
+import Base from '../layouts/Base.astro';
+import { publicCatalog } from '../lib/catalog.js';
+import { url } from '../lib/site.js';
+
+// Generated entirely from `year` and `era` in the content. There is no
+// hand-maintained timeline page and never should be.
+const catalog = publicCatalog();
+const tx = catalog.taxonomy;
+
+const formatYear = (y) => (y < 0 ? `${Math.abs(y)} BCE` : `${y}`);
+
+const eras = tx.eras
+  .map((era) => ({
+    era,
+    items: catalog.paradoxes.filter((p) => p.era === era.id).sort((a, b) => a.year - b.year),
+  }))
+  .filter((group) => group.items.length > 0);
+
+const span = {
+  from: Math.min(...catalog.paradoxes.map((p) => p.year)),
+  to: Math.max(...catalog.paradoxes.map((p) => p.year)),
+};
+---
+
+<Base
+  title="Timeline"
+  description="Walk through the history of paradox, from ancient philosophy to modern computing and AI."
+>
+  <header class="thead">
+    <h1>A timeline of trouble</h1>
+    <p class="lede">
+      Roughly {formatYear(span.from)} to {span.to}. Read it top to bottom and you
+      can watch the same handful of problems — infinity, self-reference,
+      aggregation, measurement — reappear in each new field that gets rigorous
+      enough to notice them.
+    </p>
+  </header>
+
+  <ol class="tl">
+    {
+      eras.map((group) => (
+        <li class="tl__era">
+          <div class="tl__eraheader">
+            <h2 id={group.era.id}>
+              <a href={url.era(group.era.id)}>{group.era.label}</a>
+            </h2>
+            <p>{group.era.short} · {group.items.length} entries</p>
+          </div>
+
+          <ol class="tl__items">
+            {group.items.map((p) => {
+              const domain = tx.get('domains', p.domains[0]);
+              return (
+                <li class="tl__item" style={`--dot:${domain?.color ?? 'var(--accent)'}`}>
+                  <a href={url.paradox(p.slug)}>
+                    <span class="tl__year">{p.date}</span>
+                    <span class="tl__body">
+                      <b>{p.title}</b>
+                      <span class="tl__summary">{p.summary}</span>
+                      <span class="tl__tags">
+                        <span class="tag tag--dot" style={`--dot:${domain?.color}`}>{domain?.label}</span>
+                        <span class="tag">{tx.label('natures', p.nature)}</span>
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ol>
+        </li>
+      ))
+    }
+  </ol>
+</Base>
+
+<style>
+  .thead { padding-block: 2rem 2rem; max-width: 42rem; }
+  .thead h1 { margin-bottom: 0.5rem; }
+
+  .tl { list-style: none; padding: 0; margin: 0 0 4rem; }
+  .tl__era { margin-bottom: 3rem; }
+  .tl__eraheader { position: sticky; top: 3.75rem; background: var(--paper); padding-block: 0.75rem; z-index: 5; }
+  .tl__eraheader h2 { margin: 0; font-size: 1.35rem; scroll-margin-top: 5rem; }
+  .tl__eraheader h2 a { color: var(--ink); text-decoration: none; }
+  .tl__eraheader h2 a:hover { color: var(--accent-ink); }
+  .tl__eraheader p {
+    margin: 0.1rem 0 0;
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+  }
+
+  .tl__items {
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0 0 0 1.25rem;
+    border-left: 2px solid var(--line);
+  }
+  .tl__item { position: relative; }
+  .tl__item::before {
+    content: '';
+    position: absolute;
+    left: -1.68rem;
+    top: 1.3rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--dot);
+    border: 2px solid var(--paper);
+  }
+  .tl__item a {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0.85rem 0.7rem;
+    text-decoration: none;
+    border-radius: var(--radius);
+    align-items: baseline;
+  }
+  .tl__item a:hover { background: var(--surface-alt); }
+  .tl__year {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .tl__body { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
+  .tl__body b { font-family: var(--font-ui); font-size: 1.02rem; font-weight: 620; color: var(--ink); }
+  .tl__item a:hover .tl__body b { color: var(--accent-ink); }
+  .tl__summary { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.45; }
+  .tl__tags { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.15rem; }
+
+  @media (max-width: 46rem) {
+    .tl__item a { grid-template-columns: 1fr; gap: 0.25rem; }
+  }
+</style>

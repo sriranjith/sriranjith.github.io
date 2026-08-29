@@ -1,0 +1,15 @@
+id: christakis-fowler-2010-sensors
+type: paper
+title: "Social Network Sensors for Early Detection of Contagious Outbreaks"
+authors:
+  - Nicholas A. Christakis
+  - James H. Fowler
+year: 2010
+journal: PLoS ONE
+volume: "5(9), e12948"
+doi: 10.1371/journal.pone.0012948
+notes: >-
+  Turns the friendship paradox into surveillance. Names of friends supplied by a
+  random sample of Harvard undergraduates formed a more central group whose
+  H1N1 influenza curve rose measurably earlier than the random group's, with no
+  need to map the network first.

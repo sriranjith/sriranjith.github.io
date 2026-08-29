@@ -1,0 +1,13 @@
+id: elga-2000-sleeping-beauty
+type: primary-source
+title: "Self-locating belief and the Sleeping Beauty problem"
+authors:
+  - Adam Elga
+year: 2000
+journal: Analysis
+volume: "60(2), 143–147"
+doi: 10.1093/analys/60.2.143
+notes: >-
+  Three pages. Names the problem, states the thirder argument, and frames it as
+  a question about how self-locating information interacts with ordinary
+  conditionalisation. Everything written since is a response to this.

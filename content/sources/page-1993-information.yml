@@ -1,0 +1,13 @@
+id: page-1993-information
+type: paper
+title: "Information in black hole radiation"
+authors:
+  - Don N. Page
+year: 1993
+journal: Physical Review Letters
+volume: "71, 3743–3746"
+doi: 10.1103/PhysRevLett.71.3743
+notes: >-
+  Derives the Page curve. If evaporation is unitary, the entanglement entropy of
+  the emitted radiation must rise, turn over at roughly half the black hole's
+  lifetime, and fall back to zero.

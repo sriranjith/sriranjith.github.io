@@ -1,0 +1,14 @@
+id: godel-1931
+type: primary-source
+title: "Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I"
+authors:
+  - Kurt Gödel
+year: 1931
+journal: Monatshefte für Mathematik und Physik
+volume: "38"
+pages: "173–198"
+notes: >-
+  The paper containing both incompleteness theorems. Theorem VI is the first
+  theorem; the second is stated as Theorem XI and its proof only sketched.
+  English translation ("On formally undecidable propositions of Principia
+  Mathematica and related systems I") in van Heijenoort, From Frege to Gödel.

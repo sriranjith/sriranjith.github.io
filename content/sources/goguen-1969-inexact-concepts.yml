@@ -1,0 +1,16 @@
+id: goguen-1969-inexact-concepts
+type: paper
+title: The Logic of Inexact Concepts
+authors:
+  - J. A. Goguen
+year: 1969
+journal: Synthese
+volume: "19(3/4)"
+pages: "325–373"
+notes: >-
+  The first sustained application of many-valued and fuzzy logic to
+  philosophical vagueness. Truth values are taken from an ordered structure
+  rather than {true, false}, so "this is a heap" can be true to degree 0.6, and
+  the sorites conditional comes out very nearly but not quite true. The paper
+  sets up the machinery that degree theorists still use, and the higher-order
+  vagueness objection that they still face.

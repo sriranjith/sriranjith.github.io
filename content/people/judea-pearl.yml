@@ -1,0 +1,12 @@
+id: judea-pearl
+name: Judea Pearl
+born: 1936
+tradition: Israeli-American computer science and philosophy of causation
+bio: >-
+  Computer scientist at UCLA and winner of the 2011 Turing Award for his work on
+  probabilistic and causal reasoning in artificial intelligence. He developed
+  Bayesian networks and then the do-calculus, which turns causal questions into
+  formal ones. His treatment of Simpson's paradox — that no amount of data can
+  tell you which table to trust, only a causal model can — is the standard modern
+  resolution.
+url: https://en.wikipedia.org/wiki/Judea_Pearl

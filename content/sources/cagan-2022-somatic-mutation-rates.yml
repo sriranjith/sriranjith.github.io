@@ -1,0 +1,18 @@
+id: cagan-2022-somatic-mutation-rates
+type: paper
+title: Somatic Mutation Rates Scale with Lifespan Across Mammals
+authors:
+  - Alex Cagan
+  - Adrian Baez-Ortega
+  - Natalia Brzozowska
+  - Federico Abascal
+  - Iñigo Martincorena
+year: 2022
+journal: Nature
+volume: "604, 517–524"
+notes: >-
+  Whole-genome sequencing of single intestinal crypts across sixteen mammal
+  species. Species with longer lifespans accumulate somatic mutations more slowly,
+  and the total accumulated by the end of life is roughly similar across species —
+  direct evidence for one of the mechanisms proposed for Peto's paradox. Author
+  list abbreviated.

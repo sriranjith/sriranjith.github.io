@@ -1,0 +1,46 @@
+id: limits-of-computing
+title: The Limits of Computing
+summary: >-
+  Five theorems that say "you cannot do this", in order of how much they hurt.
+  Between them they explain why distributed systems are hard in a way that no
+  amount of better engineering will fix.
+difficulty: advanced
+domains:
+  - computer-science
+  - logic
+order: 40
+steps:
+  - paradox: halting-problem
+    why: >-
+      The first and cleanest impossibility. One machine, one question, and a
+      proof that no program can answer it in general.
+
+  - paradox: two-generals-problem
+    why: >-
+      Add a second machine and an unreliable wire, and agreement itself becomes
+      impossible. Two friends trying to fix a meeting time by passing notes that
+      might get lost — that is the whole result.
+
+  - paradox: byzantine-generals-problem
+    why: >-
+      Now the messages arrive but some participants lie. The answer is a hard
+      number: you need more than three times as many honest parties as
+      dishonest ones.
+
+  - paradox: flp-impossibility
+    why: >-
+      The most quietly devastating of the five. Honest participants, reliable
+      messages, and just one that might crash — and deterministic consensus is
+      still impossible.
+
+  - paradox: cap-theorem
+    why: >-
+      Where all of this reaches production. And where it is most often
+      misquoted, so this entry spends as much time on what CAP does not say as
+      on what it does.
+
+  - paradox: goodharts-law
+    why: >-
+      An unexpected ending, and the point of it. Having learned that some things
+      are provably impossible, finish with something worse: a system that
+      achieves exactly the target you set and destroys what you wanted anyway.

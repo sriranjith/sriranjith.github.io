@@ -1,0 +1,12 @@
+id: brewer-2000-podc-keynote
+type: primary-source
+title: "Towards Robust Distributed Systems (invited keynote, PODC 2000)"
+authors:
+  - Eric A. Brewer
+year: 2000
+publisher: ACM Symposium on Principles of Distributed Computing
+notes: >-
+  The keynote in which the CAP conjecture was first stated publicly, drawn from
+  Brewer's experience building large clustered services at Inktomi. It was never
+  published as a paper, which is part of why the slogan travelled further than
+  the argument.

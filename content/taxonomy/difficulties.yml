@@ -1,0 +1,24 @@
+# Controlled vocabulary: Difficulty
+# Difficulty describes the *deepest* layer, not the entry point.
+# Every paradox on this site must be understandable at the Discover layer
+# regardless of its difficulty rating.
+- id: beginner
+  label: Beginner
+  short: Anyone can follow the whole thing.
+  audience: Ages 8+, no background needed.
+  order: 10
+- id: intermediate
+  label: Intermediate
+  short: Comfortable with basic reasoning or arithmetic.
+  audience: Curious teenagers and general adult readers.
+  order: 20
+- id: advanced
+  label: Advanced
+  short: Assumes some formal or technical background at depth.
+  audience: Undergraduate level in the relevant field.
+  order: 30
+- id: expert
+  label: Expert
+  short: The deep layer is genuinely technical.
+  audience: Graduate level or specialist readers.
+  order: 40

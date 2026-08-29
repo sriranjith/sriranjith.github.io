@@ -1,0 +1,16 @@
+id: youn-gastner-jeong-2008-price-of-anarchy
+type: paper
+title: "Price of Anarchy in Transportation Networks: Efficiency and Optimality Control"
+authors:
+  - Hyejin Youn
+  - Michael T. Gastner
+  - Hawoong Jeong
+year: 2008
+journal: Physical Review Letters
+volume: "101(12), 128701"
+doi: 10.1103/PhysRevLett.101.128701
+notes: >-
+  Measures the price of anarchy on the real road networks of Boston, London and
+  New York, and identifies specific streets whose closure would reduce
+  equilibrium travel time - Braess links in live cities rather than in a
+  textbook.

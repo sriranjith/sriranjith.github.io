@@ -1,0 +1,16 @@
+id: roughgarden-tardos-2002-selfish-routing
+type: paper
+title: How Bad Is Selfish Routing?
+authors:
+  - Tim Roughgarden
+  - "Éva Tardos"
+year: 2002
+journal: Journal of the ACM
+volume: "49(2), 236-259"
+doi: 10.1145/506147.506153
+notes: >-
+  Bounds the damage. For networks with linear latency functions the cost of
+  selfish routing is at most 4/3 the optimum, and for general latency functions
+  selfish routing on a network costs no more than the optimum on the same
+  network with twice the traffic. The Braess network is exactly the worst case
+  for the linear bound.

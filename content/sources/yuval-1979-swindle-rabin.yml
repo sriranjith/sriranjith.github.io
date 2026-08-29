@@ -1,0 +1,13 @@
+id: yuval-1979-swindle-rabin
+type: paper
+title: How to Swindle Rabin
+authors:
+  - Gideon Yuval
+year: 1979
+journal: Cryptologia
+volume: "3(3), 187–189"
+notes: >-
+  The first published description of the birthday attack on hash functions:
+  finding two messages with the same digest costs about the square root of the
+  output space, not the whole of it. This is why hash lengths are chosen at
+  twice the security level you actually want.

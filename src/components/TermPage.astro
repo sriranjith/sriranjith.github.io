@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+import ParadoxCard from './ParadoxCard.astro';
+import { publicCatalog } from '../lib/catalog.js';
+import { url } from '../lib/site.js';
+
+// One component behind all six classification axes. Adding a taxonomy term
+// creates its page automatically; adding an axis is one thin route file.
+const { term, axis, paradoxes, siblings } = Astro.props;
+const tx = publicCatalog().taxonomy;
+
+const byDifficulty = tx.difficulties
+  .map((d) => ({ difficulty: d, items: paradoxes.filter((p) => p.difficulty === d.id) }))
+  .filter((g) => g.items.length > 0);
+
+const groupIt = axis.key !== 'difficulties' && paradoxes.length > 6;
+---
+
+<Base
+  title={`${term.label} — ${axis.label}`}
+  description={term.blurb ?? term.explanation ?? term.short ?? `Paradoxes classified as ${term.label}.`}
+>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href={url.browse()}>Browse</a>
+    <span aria-hidden="true">/</span>
+    <span>{axis.label}</span>
+  </nav>
+
+  <header class="thead" style={term.color ? `--dot:${term.color}` : ''}>
+    <p class="eyebrow">{axis.label}</p>
+    <h1>{term.label}</h1>
+    <p class="lede">{term.blurb ?? term.explanation ?? term.short}</p>
+    {term.explanation && term.short && term.short !== term.explanation && (
+      <p class="thead__short">{term.short}</p>
+    )}
+    {term.audience && <p class="thead__short">Written for: {term.audience}</p>}
+    <p class="thead__count">
+      {paradoxes.length} {paradoxes.length === 1 ? 'entry' : 'entries'}
+      <a href={`/browse/?${axis.key}=${term.id}`}>Filter these further →</a>
+    </p>
+  </header>
+
+  {paradoxes.length === 0 && (
+    <p class="empty">Nothing here yet. This is a known gap — see the coverage notes in the admin dashboard.</p>
+  )}
+
+  {
+    groupIt
+      ? byDifficulty.map((group) => (
+          <section class="section">
+            <div class="section__head">
+              <div>
+                <h2>{group.difficulty.label}</h2>
+                <p>{group.difficulty.audience}</p>
+              </div>
+            </div>
+            <div class="grid grid--3">
+              {group.items.map((p) => <ParadoxCard paradox={p} compact />)}
+            </div>
+          </section>
+        ))
+      : paradoxes.length > 0 && (
+          <div class="grid grid--3 tgrid">
+            {paradoxes.map((p) => <ParadoxCard paradox={p} compact />)}
+          </div>
+        )
+  }
+
+  {siblings.length > 1 && (
+    <section class="section">
+      <div class="section__head">
+        <h2>Other {axis.plural.toLowerCase()}</h2>
+      </div>
+      <ul class="tags">
+        {
+          siblings.map((s) => (
+            <li>
+              <a
+                class={`tag ${s.id === term.id ? 'tag--accent' : ''}`}
+                href={axis.build(s.id)}
+              >
+                {s.label} <em class="tsib__n">{s.count}</em>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  )}
+</Base>
+
+<style>
+  .thead {
+    padding-block: 2rem 1.5rem;
+    max-width: 42rem;
+    border-left: 3px solid var(--dot, transparent);
+    padding-left: var(--dot, 0) ;
+  }
+  .thead[style*='--dot'] { padding-left: 1.1rem; }
+  .thead h1 { margin-bottom: 0.4rem; }
+  .thead__short {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+    margin: 0 0 0.5rem;
+  }
+  .thead__count {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+  .tgrid { margin-bottom: 3rem; }
+  .tsib__n { font-style: normal; opacity: 0.6; font-size: 0.9em; }
+</style>

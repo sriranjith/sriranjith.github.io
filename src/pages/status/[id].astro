@@ -1,0 +1,8 @@
+---
+import TermPage from '../../components/TermPage.astro';
+import { termPaths } from '../../lib/termpages.js';
+
+export const getStaticPaths = () => termPaths('statuses');
+---
+
+<TermPage {...Astro.props} />

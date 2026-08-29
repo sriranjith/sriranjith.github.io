@@ -1,0 +1,11 @@
+id: eric-brewer
+name: Eric Brewer
+tradition: American computer science
+bio: >-
+  American computer scientist, professor at UC Berkeley and later a vice
+  president at Google. He built some of the first large clustered web services
+  at Inktomi, and in a 2000 keynote to the ACM Symposium on Principles of
+  Distributed Computing proposed the conjecture that consistency, availability
+  and partition tolerance cannot all be had at once. Twelve years later he wrote
+  a widely read correction of how his own conjecture had come to be misused.
+url: https://en.wikipedia.org/wiki/Eric_Brewer_(scientist)

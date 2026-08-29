@@ -1,0 +1,15 @@
+id: aspect-grangier-roger-1982
+type: paper
+title: "Experimental Realization of Einstein-Podolsky-Rosen-Bohm Gedankenexperiment: A New Violation of Bell's Inequalities"
+authors:
+  - Alain Aspect
+  - Philippe Grangier
+  - Gérard Roger
+year: 1982
+journal: Physical Review Letters
+volume: "49, 91–94"
+doi: 10.1103/PhysRevLett.49.91
+notes: >-
+  The Orsay experiment with calcium cascade photons, violating the CHSH bound
+  by more than 40 standard deviations. A companion 1982 paper (PRL 49, 1804)
+  used time-varying analysers to address the locality loophole.

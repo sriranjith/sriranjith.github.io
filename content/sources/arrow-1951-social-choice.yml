@@ -1,0 +1,13 @@
+id: arrow-1951-social-choice
+type: primary-source
+title: "Social Choice and Individual Values"
+authors:
+  - Kenneth J. Arrow
+year: 1951
+publisher: "John Wiley & Sons, New York"
+notes: >-
+  The monograph version of the dissertation. The conditions in this first edition
+  used citizens' sovereignty and a monotonicity requirement, and Julian Blau
+  showed in 1957 that the argument as stated had a gap. The second edition (Yale
+  University Press, 1963) replaced them with the weak Pareto condition, and that
+  is the formulation now standard.

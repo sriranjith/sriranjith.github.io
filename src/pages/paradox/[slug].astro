@@ -1,0 +1,366 @@
+---
+import Base from '../../layouts/Base.astro';
+import Section from '../../components/Section.astro';
+import DepthRail from '../../components/DepthRail.astro';
+import ParadoxCard from '../../components/ParadoxCard.astro';
+import Citation from '../../components/Citation.astro';
+import Interactive from '../../components/Interactive.astro';
+
+import { publicCatalog } from '../../lib/catalog.js';
+import { LAYERS, DEPTHS } from '../../lib/sections.js';
+import { relatedParadoxes } from '../../lib/graph.js';
+import { toPlainText } from '../../lib/markdown.js';
+import { url, SITE } from '../../lib/site.js';
+
+export async function getStaticPaths() {
+  const catalog = publicCatalog();
+  return catalog.paradoxes.map((paradox) => ({
+    params: { slug: paradox.slug },
+    props: { paradox },
+  }));
+}
+
+const { paradox } = Astro.props;
+const catalog = publicCatalog();
+const tx = catalog.taxonomy;
+
+const nature = tx.get('natures', paradox.nature);
+const status = tx.get('statuses', paradox.status);
+const difficulty = tx.get('difficulties', paradox.difficulty);
+const era = tx.get('eras', paradox.era);
+const primaryDomain = tx.get('domains', paradox.domains[0]);
+
+// Only render layers this entry actually has, in canonical order.
+const layers = LAYERS.filter((l) => (paradox.sections[l.id] ?? '').trim());
+const activeDepths = DEPTHS.filter(
+  (d) => d.id === 'research' || layers.some((l) => l.depth === d.id)
+);
+
+const people = paradox.people.map((id) => catalog.personById.get(id)).filter(Boolean);
+
+// Group relationships by kind so the page reads as a set of statements.
+const relGroups = new Map();
+for (const rel of paradox.allRelationships ?? []) {
+  const target = catalog.bySlug.get(rel.to);
+  if (!target) continue;
+  if (!relGroups.has(rel.kind)) relGroups.set(rel.kind, []);
+  relGroups.get(rel.kind).push({ ...rel, target });
+}
+const orderedRelGroups = tx.relationshipKinds
+  .filter((k) => relGroups.has(k.id))
+  .map((k) => ({ kind: k, items: relGroups.get(k.id) }));
+
+// References grouped by role, in taxonomy order.
+const refs = paradox.references
+  .map((r) => ({ ...r, source: catalog.sourceById.get(r.source) }))
+  .filter((r) => r.source);
+const refGroups = tx.sourceTypes
+  .map((type) => ({
+    type,
+    items: refs.filter((r) => (r.role ?? r.source.type) === type.id),
+  }))
+  .filter((g) => g.items.length > 0);
+
+const related = relatedParadoxes(catalog, paradox, 6);
+const description = paradox.summary;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: paradox.title,
+  alternativeHeadline: paradox.alternateNames,
+  description,
+  about: paradox.domains.map((d) => tx.label('domains', d)),
+  keywords: [...paradox.concepts, ...paradox.alternateNames].join(', '),
+  datePublished: paradox.publishing.created,
+  dateModified: paradox.publishing.updated,
+  url: new URL(url.paradox(paradox.slug), Astro.site ?? 'https://localhost').href,
+  isPartOf: { '@type': 'WebSite', name: SITE.name },
+  citation: refs.map((r) => ({
+    '@type': 'CreativeWork',
+    name: r.source.title,
+    author: r.source.authors.join(', ') || undefined,
+    datePublished: r.source.year ? String(r.source.year) : undefined,
+  })),
+};
+---
+
+<Base title={paradox.title} description={description} type="article" jsonLd={jsonLd}>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href={url.browse()}>Browse</a>
+    {primaryDomain && (
+      <>
+        <span aria-hidden="true">/</span>
+        <a href={url.domain(primaryDomain.id)}>{primaryDomain.label}</a>
+      </>
+    )}
+  </nav>
+
+  <article class="px">
+    <header class="px__header">
+      <p class="px__kicker">
+        <a class="tag tag--dot" style={`--dot:${primaryDomain?.color}`} href={url.domain(paradox.domains[0])}>
+          {primaryDomain?.label}
+        </a>
+        <a class="tag" href={url.nature(paradox.nature)}>{nature?.label}</a>
+        <a class="tag" href={url.status(paradox.status)}>{status?.label}</a>
+      </p>
+
+      <h1>{paradox.title}</h1>
+
+      {paradox.alternateNames.length > 0 && (
+        <p class="px__alt">Also known as {paradox.alternateNames.join(', ')}</p>
+      )}
+
+      <p class="px__summary lede">{paradox.summary}</p>
+
+      <dl class="px__facts">
+        <div>
+          <dt>When</dt>
+          <dd><a href={url.era(paradox.era)}>{paradox.date}</a></dd>
+        </div>
+        <div>
+          <dt>Difficulty</dt>
+          <dd><a href={url.difficulty(paradox.difficulty)}>{difficulty?.label}</a></dd>
+        </div>
+        <div>
+          <dt>Reading time</dt>
+          <dd>{paradox.readingMinutes} minutes</dd>
+        </div>
+        {people.length > 0 && (
+          <div>
+            <dt>People</dt>
+            <dd>{people.map((p, i) => (
+              <>{i > 0 && ', '}<a href={url.person(p.id)}>{p.name}</a></>
+            ))}</dd>
+          </div>
+        )}
+      </dl>
+
+      {nature && (
+        <p class="px__nature-note">
+          <b>{nature.label}.</b> {nature.explanation}
+        </p>
+      )}
+    </header>
+
+    <div class="px__layout">
+      <aside class="px__rail">
+        <div class="px__rail-inner">
+          <DepthRail depths={activeDepths} />
+        </div>
+      </aside>
+
+      <div class="px__body prose">
+        {layers.map((layer) => (
+          <>
+            <Section layer={layer} markdown={paradox.sections[layer.id]} open={layer.openByDefault} />
+            {layer.id === 'understand' && paradox.interactive && (
+              <Interactive id={paradox.interactive} />
+            )}
+          </>
+        ))}
+
+        <section class="layer" id="research">
+          <h2 class="layer__heading">Sources &amp; further reading</h2>
+
+          {refGroups.length === 0 && paradox.furtherReading.length === 0 && (
+            <p class="px__norefs">No references recorded yet.</p>
+          )}
+
+          {refGroups.map((group) => (
+            <div class="px__refgroup">
+              <h3>{group.type.label}</h3>
+              <ul class="px__refs">
+                {group.items.map((r) => (
+                  <Citation source={r.source} locator={r.locator} note={r.note} />
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {paradox.furtherReading.length > 0 && (
+            <div class="px__refgroup">
+              <h3>Elsewhere on the web</h3>
+              <ul class="px__links">
+                {paradox.furtherReading.map((link) => (
+                  <li>
+                    <a href={link.url} target="_blank" rel="noopener noreferrer">{link.title}</a>
+                    {link.note && <span> — {link.note}</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+
+        {orderedRelGroups.length > 0 && (
+          <section class="layer" id="connections">
+            <h2 class="layer__heading">How this connects</h2>
+            <dl class="px__rels">
+              {orderedRelGroups.map((group) => (
+                <div>
+                  <dt>{group.kind.label}</dt>
+                  <dd>
+                    <ul>
+                      {group.items.map((item) => (
+                        <li>
+                          <a href={url.paradox(item.target.slug)}>{item.target.title}</a>
+                          {item.note && <span class="px__relnote">{item.note}</span>}
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
+
+        {paradox.concepts.length > 0 && (
+          <section class="layer">
+            <h2 class="layer__heading">Ideas involved</h2>
+            <ul class="tags">
+              {paradox.concepts.map((c) => <li><span class="tag">{c}</span></li>)}
+              {paradox.types.map((t) => (
+                <li><a class="tag tag--accent" href={url.type(t)}>{tx.label('types', t)}</a></li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {paradox.paths.length > 0 && (
+          <section class="layer">
+            <h2 class="layer__heading">Part of a learning path</h2>
+            <ul class="px__paths">
+              {paradox.paths.map(({ path, index }) => (
+                <li>
+                  <a href={url.path(path.id)}>{path.title}</a>
+                  <span> — step {index + 1} of {path.steps.length}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+    </div>
+  </article>
+
+  {related.length > 0 && (
+    <section class="section">
+      <div class="section__head">
+        <div>
+          <h2>Where to go next</h2>
+          <p>Chosen by shared ideas and explicit connections — not by an algorithm you cannot inspect.</p>
+        </div>
+        <a class="section__more" href="/random/">Or surprise me →</a>
+      </div>
+      <div class="grid grid--3">
+        {related.map((r) => <ParadoxCard paradox={r.paradox} reason={r.reason} compact />)}
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .px { margin-bottom: 3rem; }
+
+  .px__header { padding-block: 1rem 2rem; }
+  .px__kicker { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .px__header h1 { margin-bottom: 0.35rem; }
+  .px__alt {
+    font-family: var(--font-ui);
+    font-size: 0.86rem;
+    color: var(--ink-faint);
+    margin: 0 0 1rem;
+  }
+  .px__summary { max-width: 44rem; margin-bottom: 1.5rem; }
+
+  .px__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 2.25rem;
+    margin: 0 0 1.5rem;
+    padding: 1rem 0;
+    border-block: 1px solid var(--line);
+    font-family: var(--font-ui);
+  }
+  .px__facts > div { display: flex; flex-direction: column; gap: 0.15rem; padding-block: 0.35rem; }
+  .px__facts dt {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    font-weight: 620;
+  }
+  .px__facts dd { margin: 0; font-size: 0.92rem; }
+
+  .px__nature-note {
+    font-family: var(--font-ui);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    background: var(--surface-alt);
+    border-left: 3px solid var(--accent);
+    padding: 0.8rem 1rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 0;
+    max-width: 44rem;
+  }
+  .px__nature-note b { color: var(--ink); }
+
+  .px__layout {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: 3rem;
+    align-items: start;
+  }
+  .px__rail-inner { position: sticky; top: 5rem; }
+  .px__body { width: min(100%, 40rem); }
+
+  @media (max-width: 62rem) {
+    .px__layout { grid-template-columns: 1fr; gap: 1.5rem; }
+    .px__rail-inner { position: static; }
+    .px__body { width: 100%; }
+  }
+
+  .px__refgroup { margin-bottom: 1.75rem; }
+  .px__refgroup h3 {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin-bottom: 0.35rem;
+  }
+  .px__refs { list-style: none; padding: 0; margin: 0; }
+  .px__links { padding-left: 1.1rem; font-family: var(--font-ui); font-size: 0.92rem; }
+  .px__links span { color: var(--ink-faint); }
+  .px__norefs { color: var(--ink-faint); font-style: italic; }
+
+  .px__rels { margin: 0; }
+  .px__rels > div { margin-bottom: 1.25rem; }
+  .px__rels dt {
+    font-family: var(--font-ui);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    font-weight: 620;
+    margin-bottom: 0.3rem;
+  }
+  .px__rels dd { margin: 0; }
+  .px__rels ul { list-style: none; padding: 0; margin: 0; }
+  .px__rels li { margin-bottom: 0.5rem; }
+  .px__rels a { font-family: var(--font-ui); font-weight: 550; font-size: 0.95rem; }
+  .px__relnote {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  .px__paths { list-style: none; padding: 0; font-family: var(--font-ui); font-size: 0.93rem; }
+  .px__paths span { color: var(--ink-faint); }
+</style>

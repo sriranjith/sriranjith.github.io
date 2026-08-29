@@ -1,0 +1,10 @@
+id: robert-shostak
+name: Robert Shostak
+tradition: American computer science
+bio: >-
+  American computer scientist who worked at SRI International on SIFT, a
+  fault-tolerant flight-control computer built for NASA, where the Byzantine
+  agreement problem arose as a concrete engineering requirement rather than a
+  puzzle. He co-authored both the 1980 agreement paper and the 1982 Byzantine
+  Generals paper, and contributed to early automated theorem proving. He later
+  founded companies including Vocera Communications.

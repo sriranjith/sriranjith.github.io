@@ -1,0 +1,12 @@
+id: bloom-1973-birthday
+type: paper
+title: A Birthday Problem
+authors:
+  - David M. Bloom
+year: 1973
+journal: The American Mathematical Monthly
+volume: "80, 1141–1142"
+notes: >-
+  Two pages. Proves that the uniform distribution of birthdays minimises the
+  probability of a match, so 23 people is a worst case — real, unevenly
+  distributed birthdays only make collisions more likely.

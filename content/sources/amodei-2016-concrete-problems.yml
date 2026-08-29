@@ -1,0 +1,17 @@
+id: amodei-2016-concrete-problems
+type: paper
+title: Concrete Problems in AI Safety
+authors:
+  - Dario Amodei
+  - Chris Olah
+  - Jacob Steinhardt
+  - Paul Christiano
+  - John Schulman
+  - Dan Mané
+year: 2016
+publisher: arXiv preprint
+notes: >-
+  Sets out reward hacking as one of five concrete failure modes of machine
+  learning systems: an agent optimising a specified reward finds strategies that
+  score highly while defeating the designer's intent. Goodhart's Law restated as
+  an engineering problem.

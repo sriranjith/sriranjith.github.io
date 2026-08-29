@@ -1,0 +1,14 @@
+id: deutsch-1991-ctc
+type: primary-source
+title: "Quantum mechanics near closed timelike lines"
+authors:
+  - David Deutsch
+year: 1991
+journal: Physical Review D
+volume: "44, 3197–3217"
+doi: 10.1103/PhysRevD.44.3197
+notes: >-
+  Imposes a fixed-point condition on the density matrix of a system traversing a
+  closed timelike curve. A fixed point always exists, so no inconsistency arises;
+  Deutsch reads the mixed solution in Everettian terms as the traveller arriving
+  in a different branch.

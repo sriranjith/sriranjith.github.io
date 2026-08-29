@@ -1,0 +1,13 @@
+id: sep-bell-theorem
+type: encyclopedia
+title: "Bell's Theorem"
+authors:
+  - Wayne Myrvold
+  - Marco Genovese
+  - Abner Shimony
+year: 2021
+publisher: Stanford Encyclopedia of Philosophy
+url: https://plato.stanford.edu/entries/bell-theorem/
+notes: >-
+  Careful on exactly which assumptions the theorem uses, and on the difference
+  between the locality condition and determinism.

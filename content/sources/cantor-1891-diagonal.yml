@@ -1,0 +1,13 @@
+id: cantor-1891-diagonal
+type: primary-source
+title: "Über eine elementare Frage der Mannigfaltigkeitslehre"
+authors:
+  - Georg Cantor
+year: 1891
+journal: Jahresbericht der Deutschen Mathematiker-Vereinigung
+volume: "1, 75–78"
+notes: >-
+  Four pages containing the diagonal argument. Cantor states it first for
+  infinite sequences of the two symbols m and w, then derives both the
+  uncountability of the continuum and the general theorem that no set can be put
+  in one-to-one correspondence with the set of its subsets.

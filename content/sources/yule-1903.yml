@@ -1,0 +1,12 @@
+id: yule-1903
+type: paper
+title: "Notes on the Theory of Association of Attributes in Statistics"
+authors:
+  - George Udny Yule
+year: 1903
+journal: Biometrika
+volume: "2(2), 121–134"
+notes: >-
+  Describes the reversal effect nearly half a century before Simpson, which is
+  why the phenomenon is sometimes called the Yule–Simpson effect. Yule called it
+  a "fallacy" arising from the illegitimate pooling of heterogeneous records.

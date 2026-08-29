@@ -1,0 +1,12 @@
+id: ernst-zermelo
+name: Ernst Zermelo
+born: 1871
+died: 1953
+tradition: German mathematics, axiomatic set theory
+bio: >-
+  German mathematician who discovered the paradox of the set of all sets not
+  members of themselves independently of Russell, around 1899-1902, and discussed
+  it with Hilbert's circle in Göttingen without publishing it. His 1908
+  axiomatisation of set theory replaced unrestricted comprehension with the axiom
+  schema of separation, the move that still keeps mathematics consistent today.
+url: https://en.wikipedia.org/wiki/Ernst_Zermelo

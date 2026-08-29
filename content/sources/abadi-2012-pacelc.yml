@@ -1,0 +1,14 @@
+id: abadi-2012-pacelc
+type: paper
+title: "Consistency Tradeoffs in Modern Distributed Database System Design"
+authors:
+  - Daniel J. Abadi
+year: 2012
+journal: IEEE Computer
+volume: "45(2)"
+pages: "37–42"
+notes: >-
+  Introduces PACELC: if there is a Partition, trade Availability against
+  Consistency; Else, trade Latency against Consistency. Argues the second
+  trade-off explains far more about real database designs than the first,
+  because partitions are rare and latency is constant.

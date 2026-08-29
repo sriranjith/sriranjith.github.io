@@ -1,0 +1,11 @@
+id: nancy-lynch
+name: Nancy Lynch
+born: 1948
+tradition: American computer science
+bio: >-
+  American computer scientist and professor at MIT, the leading figure in the
+  theory of distributed computing. She co-authored the 1985 FLP impossibility
+  result, the 2002 proof of Brewer's CAP conjecture with Seth Gilbert, and the
+  input/output automata framework used to specify and verify concurrent systems.
+  Her textbook "Distributed Algorithms" (1996) is the standard reference.
+url: https://en.wikipedia.org/wiki/Nancy_Lynch

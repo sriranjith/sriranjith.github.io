@@ -1,0 +1,15 @@
+id: bryngelson-wolynes-1987-spin-glasses
+type: paper
+title: Spin Glasses and the Statistical Mechanics of Protein Folding
+authors:
+  - Joseph D. Bryngelson
+  - Peter G. Wolynes
+year: 1987
+journal: Proceedings of the National Academy of Sciences
+volume: "84(21), 7524–7528"
+doi: 10.1073/pnas.84.21.7524
+notes: >-
+  Introduces the principle of minimal frustration. Sequences that evolution kept
+  are those whose native contacts are mutually consistent, giving a smooth,
+  funnelled landscape rather than the rugged one a random heteropolymer would
+  have.

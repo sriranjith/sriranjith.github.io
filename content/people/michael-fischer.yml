@@ -1,0 +1,9 @@
+id: michael-fischer
+name: Michael J. Fischer
+tradition: American computer science
+bio: >-
+  American computer scientist, long a professor at Yale, whose work spans
+  computational complexity, cryptography and distributed computing. With Nancy
+  Lynch and Michael Paterson he proved in 1985 that no deterministic protocol
+  can solve consensus in an asynchronous system if even one process may crash —
+  a result that reshaped how distributed systems are specified and built.

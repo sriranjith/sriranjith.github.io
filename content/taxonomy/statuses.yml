@@ -1,0 +1,25 @@
+# Controlled vocabulary: Status
+- id: resolved
+  label: Resolved
+  short: Settled. There is a correct answer and experts agree on it.
+  order: 10
+- id: explained
+  label: Explained
+  short: Well understood mechanically, though it still surprises people.
+  order: 20
+- id: debated
+  label: Debated
+  short: Competing serious positions, no consensus winner.
+  order: 30
+- id: open
+  label: Open
+  short: Genuinely unresolved.
+  order: 40
+- id: dissolved
+  label: Dissolved
+  short: Shown to rest on a confused question rather than a real one.
+  order: 50
+- id: historically-significant
+  label: Historically significant
+  short: Its importance is what it changed, not whether it stands today.
+  order: 60

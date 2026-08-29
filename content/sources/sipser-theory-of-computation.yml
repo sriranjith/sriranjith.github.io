@@ -1,0 +1,11 @@
+id: sipser-theory-of-computation
+type: book
+title: "Introduction to the Theory of Computation"
+authors:
+  - Michael Sipser
+year: 2012
+publisher: Cengage Learning
+notes: >-
+  The standard undergraduate text. Chapters 4 and 5 give the diagonalisation
+  proof of undecidability and the reduction technique that extends it to
+  essentially every other interesting question about programs.

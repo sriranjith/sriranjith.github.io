@@ -1,0 +1,15 @@
+id: einstein-1905-elektrodynamik
+type: primary-source
+title: "Zur Elektrodynamik bewegter Körper"
+authors:
+  - Albert Einstein
+year: 1905
+journal: Annalen der Physik
+volume: "17"
+pages: "891–921"
+doi: 10.1002/andp.19053221004
+notes: >-
+  The founding paper of special relativity. Section 4 already contains the
+  clock asymmetry that became the twin paradox, and the relativity of
+  simultaneity established in section 2 is what resolves the barn-and-pole
+  problem.

@@ -1,0 +1,11 @@
+id: sep-type-theory
+type: encyclopedia
+title: "Type Theory"
+authors:
+  - Thierry Coquand
+publisher: Stanford Encyclopedia of Philosophy
+url: https://plato.stanford.edu/entries/type-theory/
+notes: >-
+  Traces the line from Russell's ramified types through Church's simple type
+  theory to the dependent type theories used by modern proof assistants, and
+  explains why "Type : Type" is inconsistent.

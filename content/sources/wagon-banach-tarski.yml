@@ -1,0 +1,13 @@
+id: wagon-banach-tarski
+type: book
+title: "The Banach–Tarski Paradox"
+authors:
+  - Stan Wagon
+year: 1985
+publisher: Cambridge University Press
+isbn: "9780521457040"
+notes: >-
+  The standard monograph, and the place to go for the full proof. Covers the
+  free group construction, the Hausdorff paradox, equidecomposability, the
+  Banach–Schröder–Bernstein theorem, amenability, and exactly how much choice is
+  needed. A second edition with Grzegorz Tomkowicz appeared in 2016.

@@ -1,0 +1,12 @@
+id: li-vitanyi-kolmogorov
+type: academic-reference
+title: "An Introduction to Kolmogorov Complexity and Its Applications"
+authors:
+  - Ming Li
+  - Paul Vitányi
+publisher: Springer
+notes: >-
+  The standard reference for algorithmic information theory. Covers the
+  invariance theorem, the uncomputability of the complexity function, Chaitin's
+  incompleteness result, and the historical record of the independent
+  discoveries by Solomonoff, Kolmogorov and Chaitin.

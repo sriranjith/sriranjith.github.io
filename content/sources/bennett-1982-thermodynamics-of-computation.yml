@@ -1,0 +1,15 @@
+id: bennett-1982-thermodynamics-of-computation
+type: paper
+title: "The Thermodynamics of Computation—a Review"
+authors:
+  - Charles H. Bennett
+year: 1982
+journal: "International Journal of Theoretical Physics"
+volume: "21(12)"
+pages: "905–940"
+doi: 10.1007/BF02084158
+notes: >-
+  Argues that the irreversible step in Maxwell's demon is not measurement, which
+  can in principle be performed reversibly and at arbitrarily small cost, but
+  the erasure of the record that must precede the next measurement. This is the
+  resolution now generally accepted.

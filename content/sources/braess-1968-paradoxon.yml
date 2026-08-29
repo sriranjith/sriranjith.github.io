@@ -1,0 +1,14 @@
+id: braess-1968-paradoxon
+type: primary-source
+title: "Über ein Paradoxon aus der Verkehrsplanung"
+authors:
+  - Dietrich Braess
+year: 1968
+journal: Unternehmensforschung
+volume: "12, 258-268"
+doi: 10.1007/BF01918335
+notes: >-
+  The original German paper. Constructs a small road network in which adding an
+  extra link raises the equilibrium travel time for every driver, and shows the
+  effect is a property of user equilibrium rather than an artefact of the
+  example.

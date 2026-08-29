@@ -1,0 +1,14 @@
+id: brynjolfsson-rock-syverson-2021-j-curve
+type: paper
+title: "The Productivity J-Curve: How Intangibles Complement General Purpose Technologies"
+authors:
+  - Erik Brynjolfsson
+  - Daniel Rock
+  - Chad Syverson
+year: 2021
+journal: "American Economic Journal: Macroeconomics"
+volume: "13(1)"
+notes: >-
+  Argues that a general purpose technology first depresses measured productivity,
+  because the intangible investment it requires is counted as cost rather than as
+  capital, and only later raises it. The dip and the rebound trace a J.

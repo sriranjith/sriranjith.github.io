@@ -1,0 +1,14 @@
+id: tversky-kahneman-1992-cumulative
+type: paper
+title: "Advances in Prospect Theory: Cumulative Representation of Uncertainty"
+authors:
+  - Amos Tversky
+  - Daniel Kahneman
+year: 1992
+journal: Journal of Risk and Uncertainty
+volume: "5(4), 297–323"
+doi: 10.1007/BF00122574
+notes: >-
+  Cumulative prospect theory. Applies the weighting function to cumulative rather
+  than individual probabilities, which restores respect for stochastic dominance,
+  and reports the parameter estimates now used as standard.

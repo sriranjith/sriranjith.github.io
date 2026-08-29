@@ -1,0 +1,71 @@
+---
+---
+<div data-birthday>
+  <label class="bd__label" for="bd-n">
+    People in the room: <output data-bd-n>23</output>
+  </label>
+  <input id="bd-n" type="range" min="2" max="100" value="23" step="1" data-bd-range class="bd__range" />
+
+  <div class="iv-bar"><i data-bd-bar style="width:50.7%"></i></div>
+
+  <div class="iv-stats">
+    <div class="iv-stat">
+      <b data-bd-shared>50.7%</b>
+      <span>Chance two share a birthday</span>
+    </div>
+    <div class="iv-stat">
+      <b data-bd-pairs>253</b>
+      <span>Pairs of people</span>
+    </div>
+    <div class="iv-stat">
+      <b data-bd-mine>6.1%</b>
+      <span>Chance someone shares yours</span>
+    </div>
+  </div>
+
+  <p class="iv-note" data-bd-note></p>
+  <noscript><p class="iv-noscript">This calculator needs JavaScript. The table in the Examples section gives the same figures.</p></noscript>
+</div>
+
+<style>
+  .bd__label { display: block; font-size: 0.9rem; font-weight: 550; margin-bottom: 0.5rem; }
+  .bd__label output { font-variant-numeric: tabular-nums; color: var(--accent-ink); font-weight: 700; }
+  .bd__range { width: 100%; margin-bottom: 1rem; accent-color: var(--accent); }
+</style>
+
+<script>
+  const root = document.querySelector('[data-birthday]');
+  if (root) {
+    const range = root.querySelector('[data-bd-range]');
+
+    // Computed in log space so large n stays numerically stable.
+    const sharedProbability = (n) => {
+      if (n > 365) return 1;
+      let logP = 0;
+      for (let i = 0; i < n; i++) logP += Math.log((365 - i) / 365);
+      return 1 - Math.exp(logP);
+    };
+
+    function update() {
+      const n = Number(range.value);
+      const shared = sharedProbability(n);
+      const pairs = (n * (n - 1)) / 2;
+      const mine = 1 - Math.pow(364 / 365, n - 1);
+
+      root.querySelector('[data-bd-n]').textContent = String(n);
+      root.querySelector('[data-bd-shared]').textContent = `${(shared * 100).toFixed(1)}%`;
+      root.querySelector('[data-bd-pairs]').textContent = pairs.toLocaleString();
+      root.querySelector('[data-bd-mine]').textContent = `${(mine * 100).toFixed(1)}%`;
+      root.querySelector('[data-bd-bar]').style.width = `${shared * 100}%`;
+
+      const note = root.querySelector('[data-bd-note]');
+      if (n < 23) note.textContent = `Not yet even odds. ${pairs} pairs is not quite enough.`;
+      else if (n === 23) note.textContent = 'The famous number: 23 people, 253 pairs, and the odds cross 50% for the first time.';
+      else if (n < 60) note.textContent = `${pairs} pairs. Notice the third number barely moves — that is the question people confuse this with.`;
+      else note.textContent = 'Practically certain. Yet you would still need 253 people for an even chance that someone matches you specifically.';
+    }
+
+    range.addEventListener('input', update);
+    update();
+  }
+</script>

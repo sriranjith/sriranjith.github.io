@@ -1,0 +1,16 @@
+id: kripke-1975-outline-theory-truth
+type: paper
+title: Outline of a Theory of Truth
+authors:
+  - Saul Kripke
+year: 1975
+journal: The Journal of Philosophy
+volume: "72(19), 690-716"
+doi: 10.2307/2024634
+notes: >-
+  Replaces Tarski's hierarchy of languages with one language containing its own
+  partially defined truth predicate, built up through a transfinite construction
+  to a fixed point. Grounded sentences get a truth value; the Liar gets none.
+  Kripke also gives the decisive objection to syntactic level-assignment - whether
+  a sentence is paradoxical can depend on contingent empirical facts - and
+  concedes that "the ghost of the Tarski hierarchy is still with us".

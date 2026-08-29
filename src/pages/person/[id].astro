@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import ParadoxCard from '../../components/ParadoxCard.astro';
+import { publicCatalog } from '../../lib/catalog.js';
+
+export function getStaticPaths() {
+  const catalog = publicCatalog();
+  return catalog.people
+    .filter((person) => person.paradoxes.length > 0)
+    .map((person) => ({ params: { id: person.id }, props: { person } }));
+}
+
+const { person } = Astro.props;
+const catalog = publicCatalog();
+
+const entries = person.paradoxes
+  .map((slug) => catalog.bySlug.get(slug))
+  .filter(Boolean)
+  .sort((a, b) => a.year - b.year);
+
+const year = (y) => (y == null ? null : y < 0 ? `${Math.abs(y)} BCE` : String(y));
+const lifespan = [year(person.born), year(person.died)].filter(Boolean).join(' – ');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: person.name,
+  description: person.bio,
+  sameAs: person.url ? [person.url] : undefined,
+};
+---
+
+<Base title={person.name} description={person.bio} jsonLd={jsonLd}>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href="/people/">People</a>
+  </nav>
+
+  <header class="phead">
+    <p class="eyebrow">{person.tradition ?? 'Person'}</p>
+    <h1>{person.name}</h1>
+    {lifespan && <p class="phead__dates">{lifespan}</p>}
+    <p class="lede">{person.bio}</p>
+    {person.url && (
+      <p class="phead__link">
+        <a href={person.url} target="_blank" rel="noopener noreferrer">More about {person.name} →</a>
+      </p>
+    )}
+  </header>
+
+  <section class="section">
+    <div class="section__head">
+      <h2>{entries.length} {entries.length === 1 ? 'entry' : 'entries'}</h2>
+    </div>
+    <div class="grid grid--3">
+      {entries.map((p) => <ParadoxCard paradox={p} compact />)}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .phead { padding-block: 1.5rem 1rem; max-width: 42rem; }
+  .phead h1 { margin-bottom: 0.2rem; }
+  .phead__dates {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+    margin: 0 0 1rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .phead__link { font-family: var(--font-ui); font-size: 0.9rem; margin-top: 1rem; }
+</style>

@@ -1,0 +1,13 @@
+id: hodas-2013-friendship-redux
+type: paper
+title: "Friendship Paradox Redux: Your Friends Are More Interesting Than You"
+authors:
+  - Nathan O. Hodas
+  - Farshad Kooti
+  - Kristina Lerman
+year: 2013
+journal: "Proceedings of the Seventh International AAAI Conference on Weblogs and Social Media (ICWSM)"
+notes: >-
+  Measures the paradox on Twitter and finds it holds for the overwhelming
+  majority of users, and that it extends beyond friend counts to activity and
+  to the volume of content a user is exposed to.

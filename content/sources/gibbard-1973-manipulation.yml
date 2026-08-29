@@ -1,0 +1,15 @@
+id: gibbard-1973-manipulation
+type: paper
+title: "Manipulation of Voting Schemes: A General Result"
+authors:
+  - Allan Gibbard
+year: 1973
+journal: Econometrica
+volume: "41(4), 587–601"
+notes: >-
+  Any deterministic game form with at least three possible outcomes that is not
+  dictatorial is manipulable. Because it is stated for arbitrary game forms
+  rather than rank-order ballots, it covers score, approval and grading methods —
+  the very rules that escape Arrow's theorem. Mark Satterthwaite proved the
+  rank-ballot case independently, published in the Journal of Economic Theory in
+  1975.

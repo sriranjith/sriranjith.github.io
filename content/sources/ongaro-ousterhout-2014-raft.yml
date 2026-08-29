@@ -1,0 +1,15 @@
+id: ongaro-ousterhout-2014-raft
+type: paper
+title: "In Search of an Understandable Consensus Algorithm"
+authors:
+  - Diego Ongaro
+  - John Ousterhout
+year: 2014
+journal: "Proceedings of the 2014 USENIX Annual Technical Conference"
+pages: "305–319"
+url: https://raft.github.io/raft.pdf
+notes: >-
+  Raft, designed explicitly for comprehensibility, and now the consensus layer
+  of etcd, Consul and many others. Like Paxos it lives inside FLP by decoupling
+  safety, which always holds, from liveness, which depends on election timeouts
+  eventually succeeding.

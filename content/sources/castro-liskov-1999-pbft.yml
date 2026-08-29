@@ -1,0 +1,13 @@
+id: castro-liskov-1999-pbft
+type: paper
+title: "Practical Byzantine Fault Tolerance"
+authors:
+  - Miguel Castro
+  - Barbara Liskov
+year: 1999
+journal: "Proceedings of the Third Symposium on Operating Systems Design and Implementation (OSDI '99)"
+pages: "173–186"
+notes: >-
+  The algorithm that moved Byzantine agreement from theory into deployable
+  systems, tolerating f faults with 3f+1 replicas at a cost low enough to run a
+  real network file system. The ancestor of most modern BFT consensus protocols.

@@ -1,0 +1,15 @@
+id: zwanzig-1992-levinthals-paradox
+type: paper
+title: Levinthal's Paradox
+authors:
+  - Robert Zwanzig
+  - Attila Szabo
+  - Biman Bagchi
+year: 1992
+journal: Proceedings of the National Academy of Sciences
+volume: "89(1), 20–22"
+notes: >-
+  A minimal model showing that a very small energetic bias towards correct
+  residue configurations — on the order of a couple of times the thermal energy —
+  reduces the folding time from astronomical to biologically realistic. Quantifies
+  how little bias is needed to dissolve the counting argument.

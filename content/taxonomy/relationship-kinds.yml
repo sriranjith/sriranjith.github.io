@@ -1,0 +1,63 @@
+# Controlled vocabulary: Relationship kind
+# `inverse` lets the site derive back-links automatically, so a relationship
+# only ever needs to be written once, on one side.
+- id: related
+  label: Related to
+  inverse: related
+  short: Shares a core idea.
+  order: 10
+- id: influenced-by
+  label: Influenced by
+  inverse: influences
+  short: This paradox was shaped by that one.
+  order: 20
+- id: influences
+  label: Influences
+  inverse: influenced-by
+  short: This paradox shaped that one.
+  order: 30
+- id: predecessor-of
+  label: Historical predecessor of
+  inverse: successor-of
+  short: An earlier form of the same problem.
+  order: 40
+- id: successor-of
+  label: Successor of
+  inverse: predecessor-of
+  short: A later, usually sharper, form of the same problem.
+  order: 50
+- id: resolves
+  label: Resolves
+  inverse: resolved-by
+  short: Supplies the machinery that settles that paradox.
+  order: 60
+- id: resolved-by
+  label: Resolved by
+  inverse: resolves
+  short: Settled by the ideas in that entry.
+  order: 70
+- id: generalises
+  label: Generalises
+  inverse: special-case-of
+  short: A broader statement of that result.
+  order: 80
+- id: special-case-of
+  label: Special case of
+  inverse: generalises
+  short: A narrower instance of that result.
+  order: 90
+- id: contrasts-with
+  label: Contrasts with
+  inverse: contrasts-with
+  short: Instructive precisely because it points the other way.
+  order: 100
+- id: applied-in
+  label: Modern application in
+  inverse: applies
+  short: Shows up in practice there.
+  order: 110
+- id: applies
+  label: Applies
+  inverse: applied-in
+  short: Puts that idea to work.
+  order: 120

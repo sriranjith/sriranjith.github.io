@@ -1,0 +1,15 @@
+id: kahneman-deaton-2010
+type: paper
+title: "High income improves evaluation of life but not emotional well-being"
+authors:
+  - Daniel Kahneman
+  - Angus Deaton
+year: 2010
+journal: "Proceedings of the National Academy of Sciences"
+volume: "107(38), 16489–16493"
+doi: 10.1073/pnas.1011492107
+notes: >-
+  Separates life evaluation from experienced emotional wellbeing across 450,000
+  US survey responses. Life evaluation rises with log income without limit;
+  emotional wellbeing appeared to plateau around $75,000 a year. The plateau was
+  substantially revised by later work using a continuous measure.

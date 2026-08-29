@@ -1,0 +1,40 @@
+id: when-groups-decide
+title: When Groups Decide Badly
+summary: >-
+  Every person acts sensibly and the group still ends up somewhere none of them
+  wanted. Five results showing that this is not a failure of character but a
+  structural feature of putting preferences together.
+difficulty: intermediate
+domains:
+  - economics
+  - society
+  - psychology
+order: 50
+steps:
+  - paradox: prisoners-dilemma
+    why: >-
+      The atom of the whole subject. Two people, two choices, and a stable
+      outcome that both of them dislike.
+
+  - paradox: tragedy-of-the-commons
+    why: >-
+      The prisoner's dilemma with a field and many players — and, importantly,
+      the entry where you learn why the pessimistic version of the story turned
+      out to be empirically wrong.
+
+  - paradox: braess-paradox
+    why: >-
+      The same structure in traffic, with a twist that closing a road can make
+      everyone's journey faster. Cities have tested this and it works.
+
+  - paradox: condorcet-paradox
+    why: >-
+      Now the problem moves from incentives to arithmetic. Majority preference
+      can go round in a circle even when every individual is perfectly
+      consistent.
+
+  - paradox: arrows-impossibility-theorem
+    why: >-
+      Condorcet's cycle turned into a theorem. No ranked voting system can
+      satisfy a short list of obviously reasonable conditions. This is where the
+      path stops being about behaviour and starts being about mathematics.

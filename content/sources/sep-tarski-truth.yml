@@ -1,0 +1,10 @@
+id: sep-tarski-truth
+type: encyclopedia
+title: "Tarski's Truth Definitions"
+authors:
+  - Wilfrid Hodges
+publisher: Stanford Encyclopedia of Philosophy
+url: https://plato.stanford.edu/entries/tarski-truth/
+notes: >-
+  Explains what Tarski's definition of truth does and does not achieve, and why
+  the undefinability theorem follows from it.

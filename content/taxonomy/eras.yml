@@ -1,0 +1,38 @@
+# Controlled vocabulary: Era
+# `from` / `to` are years (negative = BCE) and drive the generated timeline.
+- id: ancient
+  label: Ancient
+  short: Before 500 CE
+  from: -800
+  to: 500
+  order: 10
+- id: medieval
+  label: Medieval
+  short: 500 – 1500
+  from: 500
+  to: 1500
+  order: 20
+- id: early-modern
+  label: Early Modern
+  short: 1500 – 1800
+  from: 1500
+  to: 1800
+  order: 30
+- id: nineteenth-century
+  label: 19th Century
+  short: 1800 – 1900
+  from: 1800
+  to: 1900
+  order: 40
+- id: twentieth-century
+  label: 20th Century
+  short: 1900 – 2000
+  from: 1900
+  to: 2000
+  order: 50
+- id: contemporary
+  label: Contemporary
+  short: 2000 – today
+  from: 2000
+  to: 2100
+  order: 60

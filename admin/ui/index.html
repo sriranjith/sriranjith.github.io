@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paradox — content admin</title>
+    <link rel="stylesheet" href="/admin.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9F%B3%3C/text%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <header class="top">
+      <b class="top__brand">Paradox <span>admin</span></b>
+      <nav class="top__nav" id="tabs">
+        <button data-tab="dashboard" class="is-active">Dashboard</button>
+        <button data-tab="paradoxes">Paradoxes</button>
+        <button data-tab="coverage">Coverage</button>
+        <button data-tab="sources">Sources</button>
+        <button data-tab="people">People</button>
+        <button data-tab="paths">Paths</button>
+        <button data-tab="taxonomy">Taxonomy</button>
+      </nav>
+      <div class="top__right">
+        <span class="top__status" id="global-status"></span>
+        <button class="btn" id="refresh" title="Reload from disk">Reload</button>
+      </div>
+    </header>
+
+    <main id="view" aria-live="polite"></main>
+
+    <div class="toast" id="toast" hidden></div>
+
+    <dialog id="modal">
+      <form method="dialog" class="modal__inner">
+        <h2 id="modal-title"></h2>
+        <div id="modal-body"></div>
+        <menu class="modal__actions">
+          <button value="cancel" class="btn">Cancel</button>
+          <button value="ok" class="btn btn--primary" id="modal-ok">Confirm</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

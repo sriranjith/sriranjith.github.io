@@ -1,0 +1,15 @@
+id: aristotle-de-caelo
+type: primary-source
+title: "On the Heavens (De Caelo)"
+authors:
+  - Aristotle
+year: "c. 350 BCE"
+publisher: "Standard English text: J. L. Stocks, in Barnes' Revised Oxford Translation"
+notes: >-
+  Book II chapter 13, at 295b32, contains the earliest surviving version of the
+  choice-by-symmetry problem: a man who is equally hungry and thirsty, and
+  equally distant from food and from drink, must necessarily stay where he is.
+  Aristotle raises it as an analogy while discussing Anaximander's argument that
+  the earth stays put because it is equidistant from everything - he is
+  criticising the reasoning, not endorsing the paralysis.
+url: http://classics.mit.edu/Aristotle/heavens.html

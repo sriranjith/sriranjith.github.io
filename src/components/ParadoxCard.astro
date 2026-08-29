@@ -1,0 +1,142 @@
+---
+import { url } from '../lib/site.js';
+import { publicCatalog } from '../lib/catalog.js';
+
+const { paradox, reason = null, compact = false, index = null } = Astro.props;
+const tx = publicCatalog().taxonomy;
+const domain = tx.get('domains', paradox.domains[0]);
+const difficulty = tx.get('difficulties', paradox.difficulty);
+---
+
+<article class={`pcard ${compact ? 'pcard--compact' : ''}`}>
+  {index !== null && <span class="pcard__index" aria-hidden="true">{index}</span>}
+
+  <div class="pcard__meta">
+    {
+      domain && (
+        <span class="tag tag--dot" style={`--dot:${domain.color}`}>{domain.label}</span>
+      )
+    }
+    <span class="pcard__sep" aria-hidden="true">·</span>
+    <span class="pcard__difficulty">{difficulty?.label ?? paradox.difficulty}</span>
+  </div>
+
+  <h3 class="pcard__title">
+    <a href={url.paradox(paradox.slug)}>{paradox.title}</a>
+  </h3>
+
+  <p class="pcard__summary">{paradox.summary}</p>
+
+  {reason && <p class="pcard__reason">{reason}</p>}
+
+  <p class="pcard__foot">
+    <span>{paradox.date}</span>
+    <span aria-hidden="true">·</span>
+    <span>{paradox.readingMinutes} min read</span>
+  </p>
+</article>
+
+<style>
+  .pcard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem 1.25rem 1rem;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    height: 100%;
+  }
+  .pcard:hover {
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  }
+
+  .pcard__index {
+    position: absolute;
+    top: -0.55rem;
+    left: 1.1rem;
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background: var(--accent);
+    color: #fff;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+  }
+
+  .pcard__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    margin-bottom: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .pcard__sep { opacity: 0.5; }
+  .pcard__difficulty { font-weight: 550; }
+
+  .pcard__title {
+    font-size: 1.13rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.02em;
+  }
+  .pcard__title a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  /* The whole card is the hit target, but only the title is the semantic link. */
+  .pcard__title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+  .pcard:hover .pcard__title a { color: var(--accent-ink); }
+
+  .pcard__summary {
+    margin: 0;
+    font-size: 0.94rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    flex: 1;
+  }
+  .pcard--compact .pcard__summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .pcard__reason {
+    margin: 0.7rem 0 0;
+    font-family: var(--font-ui);
+    font-size: 0.775rem;
+    color: var(--accent-ink);
+    background: var(--accent-wash);
+    padding: 0.3rem 0.55rem;
+    border-radius: var(--radius);
+    align-self: flex-start;
+  }
+
+  .pcard__foot {
+    display: flex;
+    gap: 0.45rem;
+    margin: 0.85rem 0 0;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+  }
+</style>

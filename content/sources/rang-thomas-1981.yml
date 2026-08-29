@@ -1,0 +1,14 @@
+id: rang-thomas-1981
+type: paper
+title: "Zermelo's discovery of the 'Russell paradox'"
+authors:
+  - Bernhard Rang
+  - Wolfgang Thomas
+year: 1981
+journal: Historia Mathematica
+volume: "8(1)"
+pages: "15–22"
+notes: >-
+  Documents a note in Edmund Husserl's papers, dated 1902, recording Zermelo's
+  argument that a set cannot contain all its subsets — the paradox, in Göttingen,
+  before Russell published.

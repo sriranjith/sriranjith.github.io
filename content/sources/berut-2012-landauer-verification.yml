@@ -1,0 +1,19 @@
+id: berut-2012-landauer-verification
+type: paper
+title: "Experimental verification of Landauer's principle linking information and thermodynamics"
+authors:
+  - Antoine Bérut
+  - Artak Arakelyan
+  - Artyom Petrosyan
+  - Sergio Ciliberto
+  - Raoul Dillenschneider
+  - Eric Lutz
+year: 2012
+journal: Nature
+volume: "483(7388)"
+pages: "187–189"
+doi: 10.1038/nature10872
+notes: >-
+  A single colloidal bead in an optically generated double-well potential is
+  used as a one-bit memory. The mean heat dissipated in erasing the bit
+  approaches, and does not fall below, kT ln 2 as the erasure is made slower.

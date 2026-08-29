@@ -1,0 +1,18 @@
+id: sandberg-drexler-ord-2018
+type: paper
+title: "Dissolving the Fermi Paradox"
+authors:
+  - Anders Sandberg
+  - Eric Drexler
+  - Toby Ord
+year: 2018
+journal: arXiv preprint
+volume: arXiv:1806.02404
+url: https://arxiv.org/abs/1806.02404
+notes: >-
+  Argues that the standard Drake-equation treatment multiplies point estimates
+  where it should propagate distributions. Because several factors are uncertain
+  over many orders of magnitude, the product is log-normal-ish and heavily
+  skewed: the authors find a substantial probability that humanity is alone in
+  the observable universe, and conclude that an empty sky is not surprising and
+  therefore not much evidence for a Great Filter.

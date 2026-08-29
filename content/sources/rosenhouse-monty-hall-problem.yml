@@ -1,0 +1,11 @@
+id: rosenhouse-monty-hall-problem
+type: book
+title: "The Monty Hall Problem: The Remarkable Story of Math's Most Contentious Brain Teaser"
+authors:
+  - Jason Rosenhouse
+year: 2009
+publisher: Oxford University Press
+isbn: "9780195367898"
+notes: >-
+  The definitive treatment. Covers the history, the variants, the Bayesian
+  analysis, and the cognitive-science literature on why the problem is hard.
