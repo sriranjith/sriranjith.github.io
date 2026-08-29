@@ -7,6 +7,9 @@ summary: >-
   If a society tolerates every view without exception, including views committed
   to ending toleration, does it survive? Popper's answer is more careful and far
   more qualified than the version that circulates under his name.
+hook: >-
+  A society that tolerates absolutely everything, including those working to
+  end it, does not remain tolerant for long.
 era: twentieth-century
 date: "1945"
 year: 1945
@@ -27,6 +30,7 @@ types:
 nature: apparent-contradiction
 difficulty: intermediate
 status: debated
+renown: landmark
 concepts:
   - Self-undermining principles
   - Reciprocity

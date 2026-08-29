@@ -8,6 +8,9 @@ summary: >-
   Two suspects are questioned in separate rooms. Each is offered a deal: betray
   the other and walk free. Each reasons impeccably, each betrays, and both end up
   worse off than if neither had said a word.
+hook: >-
+  Two people can each do better by betraying the other — and end up worse off
+  than if neither of them had.
 era: twentieth-century
 date: 1950
 year: 1950
@@ -31,6 +34,7 @@ types:
 nature: counterintuitive-result
 difficulty: beginner
 status: resolved
+renown: landmark
 concepts:
   - Dominant strategy
   - Nash equilibrium

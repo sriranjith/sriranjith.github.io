@@ -80,9 +80,9 @@ const today = () => new Date().toISOString().slice(0, 10);
 
 /** Serialise front matter deterministically, so diffs stay small and reviewable. */
 const FIELD_ORDER = [
-  'title', 'slug', 'alternateNames', 'summary',
+  'title', 'slug', 'alternateNames', 'summary', 'hook',
   'era', 'date', 'year', 'origin', 'people',
-  'domains', 'types', 'nature', 'difficulty', 'status',
+  'domains', 'types', 'nature', 'difficulty', 'status', 'renown',
   'interactive', 'concepts', 'relationships',
   'references', 'furtherReading', 'publishing',
 ];
@@ -127,6 +127,7 @@ const api = {
         types: tx.types,
         natures: tx.natures,
         difficulties: tx.difficulties,
+        renowns: tx.renowns,
         statuses: tx.statuses,
         eras: tx.eras,
         relationshipKinds: tx.relationshipKinds,
@@ -165,7 +166,11 @@ const api = {
       (f) => f.entity === 'paradox' && f.id === paradox.slug
     );
 
-    const { _file, sections, body, unknownHeadings, allRelationships, paths, readingMinutes, ...front } = paradox;
+    const {
+      _file, sections, body, unknownHeadings, allRelationships, paths, readingMinutes,
+      renownRank, difficultyRank,
+      ...front
+    } = paradox;
     return { front, sections, findings, file: path.relative(ROOT, _file) };
   },
 
@@ -218,7 +223,8 @@ const api = {
       title,
       slug,
       alternateNames: [],
-      summary: 'One or two sentences that make a reader want to click. Write this last.',
+      summary: 'One or two sentences describing what this entry covers. Write this last.',
+      hook: 'The one question this leaves open, in a reader\'s own words. Do not answer it.',
       era: body.era ?? tx.eras.at(-1).id,
       date: body.date ?? String(new Date().getFullYear()),
       year: Number(body.year ?? new Date().getFullYear()),
@@ -229,6 +235,7 @@ const api = {
       nature: body.nature ?? 'counterintuitive-result',
       difficulty: body.difficulty ?? 'intermediate',
       status: body.status ?? 'explained',
+      renown: body.renown ?? 'known',
       concepts: [],
       relationships: [],
       references: [],

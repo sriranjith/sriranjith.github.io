@@ -1,10 +1,19 @@
 ---
-import { renderMarkdown } from '../lib/markdown.js';
+import { renderMarkdown, toPlainText } from '../lib/markdown.js';
 
 // One content layer. Deeper layers ship collapsed inside <details>, which gives
 // progressive disclosure with zero JavaScript and full keyboard support.
 const { layer, markdown, open } = Astro.props;
 const html = renderMarkdown(markdown);
+
+// A closed section that shows only its title asks the reader to open it on
+// faith. Showing the opening line instead turns the heading into a reason.
+//
+// Sections that open on notation are the exception: stripped of its maths,
+// "Let $C_i$ be the event…" becomes "Let Ci be the event…", which reads like a
+// typo and sells nothing. Those keep the bare heading, which is honest enough.
+const raw = open ? '' : toPlainText(markdown, 130);
+const preview = (raw.match(/\$/g) ?? []).length > 1 ? null : raw || null;
 ---
 
 {
@@ -16,7 +25,10 @@ const html = renderMarkdown(markdown);
   ) : (
     <details class="layer layer--collapsible" id={layer.id}>
       <summary class="layer__summary">
-        <h2 class="layer__heading">{layer.label}</h2>
+        <span class="layer__summary-text">
+          <h2 class="layer__heading">{layer.label}</h2>
+          {preview && <span class="layer__preview">{preview}</span>}
+        </span>
         <span class="layer__chevron" aria-hidden="true" />
       </summary>
       <div class="layer__body prose-body" set:html={html} />
@@ -52,6 +64,19 @@ const html = renderMarkdown(markdown);
   .layer--collapsible > .layer__summary::-webkit-details-marker { display: none; }
   .layer--collapsible > .layer__summary:hover { background: var(--surface-alt); }
   .layer--collapsible > .layer__summary .layer__heading { margin: 0; }
+
+  .layer__summary-text { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+  .layer__preview {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--ink-faint);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .layer--collapsible[open] .layer__preview { display: none; }
 
   .layer__chevron {
     flex: none;

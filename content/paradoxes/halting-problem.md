@@ -8,6 +8,9 @@ summary: >-
   No program can look at any other program and always correctly say whether it
   will finish running or loop forever. Turing proved it in 1936 by building a
   program that does the opposite of whatever it is told about itself.
+hook: >-
+  No program can ever be written that reliably tells you whether another
+  program will finish running. This is not a limit of our cleverness.
 era: twentieth-century
 date: "1936"
 year: 1936
@@ -28,6 +31,7 @@ types:
 nature: impossibility-result
 difficulty: advanced
 status: resolved
+renown: landmark
 concepts:
   - Decidability
   - Diagonalisation

@@ -10,6 +10,9 @@ summary: >-
   are boys? Martin Gardner said 1/3 in 1959, then conceded it could equally be
   1/2. The answer depends on how you learned the fact — and the puzzle never
   says.
+hook: >-
+  A family has two children and one of them is a boy. What are the odds the
+  other is a girl? It depends on how you found out.
 era: twentieth-century
 date: 1959 (posed), 1961 (retracted in part)
 year: 1959
@@ -28,6 +31,7 @@ types:
 nature: apparent-contradiction
 difficulty: intermediate
 status: debated
+renown: known
 concepts:
   - Sampling protocol
   - Conditional probability

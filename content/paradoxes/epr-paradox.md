@@ -10,6 +10,9 @@ summary: >-
   separated particles seem to know about each other instantly. Thirty years later
   Bell turned the argument into a testable inequality — and the experiments came
   back on quantum mechanics' side.
+hook: >-
+  Measure one particle here and you instantly know something about its partner
+  light-years away. Einstein thought this proved physics was unfinished.
 era: twentieth-century
 date: 1935 (argument), 1964 (Bell's theorem), 2015 (loophole-free tests)
 year: 1935
@@ -37,6 +40,7 @@ types:
 nature: apparent-contradiction
 difficulty: expert
 status: resolved
+renown: known
 concepts:
   - Entanglement
   - Local realism

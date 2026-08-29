@@ -8,6 +8,9 @@ summary: >-
   An onion carries about five times as much DNA as you do. A lungfish carries
   forty times as much. Genome size varies across life by a factor of a hundred
   thousand and tracks organism complexity hardly at all.
+hook: >-
+  An onion carries five times more DNA than you do. A single-celled amoeba
+  carries a hundred times more. Nobody expected that.
 era: twentieth-century
 date: 1971 (named), 2001 (renamed the C-value enigma)
 year: 1971
@@ -27,6 +30,7 @@ types:
 nature: apparent-contradiction
 difficulty: intermediate
 status: resolved
+renown: specialist
 concepts:
   - Genome size
   - Non-coding DNA

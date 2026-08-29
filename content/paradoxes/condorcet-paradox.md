@@ -9,6 +9,9 @@ summary: >-
   Three people vote. A majority prefers A to B, a majority prefers B to C, and a
   majority prefers C to A. The group has no favourite at all — and whoever sets
   the order of the votes decides the winner.
+hook: >-
+  A majority prefers A to B, and B to C, and C to A. Every voter was honest
+  and nobody made a mistake.
 era: early-modern
 date: "1785"
 year: 1785
@@ -29,6 +32,7 @@ types:
 nature: counterintuitive-result
 difficulty: beginner
 status: resolved
+renown: known
 concepts:
   - Majority rule
   - Transitivity of preference

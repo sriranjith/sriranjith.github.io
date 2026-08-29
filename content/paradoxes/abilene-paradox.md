@@ -10,6 +10,9 @@ summary: >-
   meal. Afterwards every one of them admits they never wanted to go. Each had
   agreed only because each believed the others wanted it — so the group did the
   one thing nobody wanted.
+hook: >-
+  Everyone at the table agreed to a trip that not one of them wanted to take.
+  How does a group choose what every member is against?
 era: twentieth-century
 date: 1974
 year: 1974
@@ -29,6 +32,7 @@ types:
 nature: counterintuitive-result
 difficulty: beginner
 status: explained
+renown: specialist
 concepts:
   - Pluralistic ignorance
   - Action anxiety

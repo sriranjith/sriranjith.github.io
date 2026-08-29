@@ -8,6 +8,9 @@ summary: >-
   A barber shaves everyone who does not shave himself, and nobody else. So who
   shaves the barber? The honest answer is not a paradox at all — it is a proof
   that no such barber can exist, and that difference is the whole lesson.
+hook: >-
+  The barber shaves every man in town who does not shave himself, and no one
+  else. So who shaves the barber?
 era: twentieth-century
 date: 1918 (Russell's lectures); the story circulated earlier
 year: 1918
@@ -26,6 +29,7 @@ types:
 nature: apparent-contradiction
 difficulty: beginner
 status: resolved
+renown: known
 concepts:
   - Self-reference
   - Unsatisfiable definition

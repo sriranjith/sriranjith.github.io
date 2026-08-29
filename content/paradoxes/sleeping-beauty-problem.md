@@ -8,6 +8,9 @@ summary: >-
   A fair coin is tossed. Heads, you are woken once; tails, twice, with your
   memory erased in between. You wake with no idea which day it is. How confident
   should you be that the coin landed heads? Philosophy has not agreed.
+hook: >-
+  Woken with no memory of having been woken before, how confident should you
+  be that the coin came up heads?
 era: contemporary
 date: 1997 (posed), 2000 (named and popularised)
 year: 2000
@@ -31,6 +34,7 @@ types:
 nature: open-problem
 difficulty: advanced
 status: open
+renown: known
 concepts:
   - Self-locating belief
   - Centered possible worlds

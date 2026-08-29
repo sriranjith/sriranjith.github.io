@@ -1,0 +1,91 @@
+---
+import { figureFor, VIEWBOX } from '../lib/figures.js';
+import { publicCatalog } from '../lib/catalog.js';
+
+// A structural diagram for an entry. Two sizes:
+//   card — small, silent, sits above a card title
+//   page — full width, captioned, opens the entry
+const { slug, variant = 'card', color = null } = Astro.props;
+
+const figure = figureFor(slug);
+const tx = publicCatalog().taxonomy;
+const paradox = publicCatalog().bySlug.get(slug);
+const accent = color ?? tx.get('domains', paradox?.domains[0])?.color ?? 'currentColor';
+
+// Gradient ids are document-global, so two figures of the same motif on one
+// page would share — and fight over — a single definition. Namespace them.
+const uid = `f${slug?.replace(/[^a-z0-9]/g, '') ?? 'x'}${variant}`;
+const svg = figure ? figure.svg.replace(/"vg"/g, `"${uid}"`).replace(/#vg\)/g, `#${uid})`) : '';
+---
+
+{
+  figure && (
+    <figure class={`fig fig--${variant}`} style={`--fig-accent:${accent}`}>
+      <svg
+        viewBox={VIEWBOX}
+        class="fig__svg"
+        role={variant === 'page' ? 'img' : 'presentation'}
+        aria-label={variant === 'page' ? `${figure.label}: ${figure.caption}` : undefined}
+        aria-hidden={variant === 'page' ? undefined : 'true'}
+        focusable="false"
+        set:html={svg}
+      />
+      {variant === 'page' && (
+        <figcaption class="fig__caption">
+          <b>{figure.label}.</b> {figure.caption}
+        </figcaption>
+      )}
+    </figure>
+  )
+}
+
+<style>
+  .fig {
+    margin: 0;
+    --fig-wash: color-mix(in srgb, var(--fig-accent) 12%, var(--surface));
+  }
+
+  .fig__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    color: var(--ink-faint);
+  }
+
+  /* Card: a quiet band above the title. Tinted so the card reads as one object
+     rather than a picture with text under it. */
+  .fig--card {
+    margin: -1.1rem -1.25rem 0.9rem;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-bottom: 1px solid var(--line-soft);
+    background: color-mix(in srgb, var(--fig-accent) 6%, var(--surface));
+    overflow: hidden;
+  }
+  .fig--card .fig__svg { padding: 0.5rem 1.25rem; }
+
+  .fig--page {
+    margin: 0 0 1.75rem;
+    padding: 1.25rem 1.5rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--fig-accent) 5%, var(--surface));
+  }
+  .fig--page .fig__svg { max-width: 26rem; margin-inline: auto; }
+
+  .fig__caption {
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--font-ui);
+    font-size: 0.845rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .fig__caption b { color: var(--ink); font-weight: 620; }
+
+  @media (prefers-color-scheme: dark) {
+    .fig--card { background: color-mix(in srgb, var(--fig-accent) 10%, var(--surface)); }
+    .fig--page { background: color-mix(in srgb, var(--fig-accent) 9%, var(--surface)); }
+  }
+</style>

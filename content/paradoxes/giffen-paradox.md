@@ -8,6 +8,9 @@ summary: >-
   Bread gets more expensive, so the poorest families buy more of it. Demand
   curves are supposed to slope down. For a century the exception had a name, a
   theory, and no confirmed example anywhere in the world.
+hook: >-
+  Some things sell more as the price goes up, and the people buying them are
+  behaving perfectly sensibly.
 era: nineteenth-century
 date: 1895 (Marshall's third edition); 2008 (first credible field evidence)
 year: 1895
@@ -27,6 +30,7 @@ types:
 nature: counterintuitive-result
 difficulty: advanced
 status: explained
+renown: specialist
 concepts:
   - Law of demand
   - Income and substitution effects

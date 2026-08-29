@@ -404,7 +404,15 @@ function viewEditor() {
             <label class="field">
               <span>Summary</span>
               <textarea id="f-summary" rows="3">${esc(front.summary)}</textarea>
-              <small>40–320 characters. Shown in cards, search results and meta tags.</small>
+              <small>40–320 characters. Describes the entry. Used for search results and meta tags.</small>
+            </label>
+            <label class="field">
+              <span>Hook</span>
+              <textarea id="f-hook" rows="2">${esc(front.hook ?? '')}</textarea>
+              <small>
+                Up to 150 characters. The open question in the reader's own words — this is
+                what every card shows, so state the gap and do not close it.
+              </small>
             </label>
             ${listInput('f-alt', 'Alternate names', front.alternateNames, 'Comma separated. Fed into search.')}
           </div>
@@ -445,6 +453,11 @@ function viewEditor() {
             <div class="row">
               <div class="field"><span>Difficulty</span>${chipGroup('difficulty', tx.difficulties, [front.difficulty], false)}</div>
               <div class="field"><span>Status</span>${chipGroup('status', tx.statuses, [front.status], false)}</div>
+            </div>
+            <div class="field">
+              <span>Renown — how likely a reader is to have heard of this already</span>
+              ${chipGroup('renown', tx.renowns, [front.renown ?? 'known'], false)}
+              <small>${esc(tx.renowns.find((r) => r.id === (front.renown ?? 'known'))?.explanation ?? '')}</small>
             </div>
             ${listInput('f-concepts', 'Concepts', front.concepts, 'Free text ideas, comma separated. Used for search and neighbours.')}
             <label class="field">
@@ -625,6 +638,7 @@ function viewEditor() {
         title: $('#f-title').value.trim(),
         slug: $('#f-slug').value.trim(),
         summary: $('#f-summary').value.trim(),
+        hook: $('#f-hook').value.trim() || undefined,
         alternateNames: splitList('f-alt'),
         era: $('#f-era').value,
         date: $('#f-date').value.trim(),
@@ -636,6 +650,7 @@ function viewEditor() {
         nature: checked('nature')[0] ?? front.nature,
         difficulty: checked('difficulty')[0] ?? front.difficulty,
         status: checked('status')[0] ?? front.status,
+        renown: checked('renown')[0] ?? front.renown ?? 'known',
         concepts: splitList('f-concepts'),
         interactive: $('#f-interactive').value || undefined,
         relationships: front.relationships.filter((r) => r.kind && r.to),

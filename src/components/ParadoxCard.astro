@@ -1,22 +1,35 @@
 ---
+import Figure from './Figure.astro';
 import { url } from '../lib/site.js';
 import { publicCatalog } from '../lib/catalog.js';
 
-const { paradox, reason = null, compact = false, index = null } = Astro.props;
+const {
+  paradox,
+  reason = null,
+  compact = false,
+  index = null,
+  figure = false,
+} = Astro.props;
+
 const tx = publicCatalog().taxonomy;
 const domain = tx.get('domains', paradox.domains[0]);
 const difficulty = tx.get('difficulties', paradox.difficulty);
+
+// The hook states the open question; the summary describes the entry. A card is
+// a decision point, so it gets the question. Entries without a hook fall back
+// rather than showing nothing.
+const blurb = paradox.hook ?? paradox.summary;
+const famous = paradox.renown === 'landmark';
 ---
 
-<article class={`pcard ${compact ? 'pcard--compact' : ''}`}>
+<article class={`pcard ${compact ? 'pcard--compact' : ''} ${figure ? 'pcard--figured' : ''}`}>
   {index !== null && <span class="pcard__index" aria-hidden="true">{index}</span>}
 
+  {figure && <Figure slug={paradox.slug} variant="card" />}
+
   <div class="pcard__meta">
-    {
-      domain && (
-        <span class="tag tag--dot" style={`--dot:${domain.color}`}>{domain.label}</span>
-      )
-    }
+    {domain && <span class="tag tag--dot" style={`--dot:${domain.color}`}>{domain.label}</span>}
+    {famous && <span class="pcard__famous">Famous</span>}
     <span class="pcard__sep" aria-hidden="true">·</span>
     <span class="pcard__difficulty">{difficulty?.label ?? paradox.difficulty}</span>
   </div>
@@ -25,7 +38,7 @@ const difficulty = tx.get('difficulties', paradox.difficulty);
     <a href={url.paradox(paradox.slug)}>{paradox.title}</a>
   </h3>
 
-  <p class="pcard__summary">{paradox.summary}</p>
+  <p class="pcard__hook">{blurb}</p>
 
   {reason && <p class="pcard__reason">{reason}</p>}
 
@@ -54,11 +67,14 @@ const difficulty = tx.get('difficulties', paradox.difficulty);
     transform: translateY(-2px);
     border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
   }
+  /* The figure runs to the card edge, so the index badge would sit on top of it. */
+  .pcard--figured { overflow: hidden; }
 
   .pcard__index {
     position: absolute;
-    top: -0.55rem;
-    left: 1.1rem;
+    top: 0.55rem;
+    left: 0.75rem;
+    z-index: 1;
     font-family: var(--font-ui);
     font-size: 0.7rem;
     font-weight: 700;
@@ -71,6 +87,7 @@ const difficulty = tx.get('difficulties', paradox.difficulty);
     display: grid;
     place-items: center;
   }
+  .pcard:not(.pcard--figured) .pcard__index { top: -0.55rem; left: 1.1rem; }
 
   .pcard__meta {
     display: flex;
@@ -79,11 +96,25 @@ const difficulty = tx.get('difficulties', paradox.difficulty);
     font-family: var(--font-ui);
     font-size: 0.75rem;
     color: var(--ink-faint);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.55rem;
     flex-wrap: wrap;
   }
   .pcard__sep { opacity: 0.5; }
   .pcard__difficulty { font-weight: 550; }
+
+  .pcard__famous {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 640;
+    letter-spacing: 0.02em;
+    color: var(--warm);
+    background: var(--warm-wash);
+    border-radius: 999px;
+    padding: 0.15rem 0.5rem;
+  }
+  .pcard__famous::before { content: '★'; font-size: 0.65rem; line-height: 1; }
 
   .pcard__title {
     font-size: 1.13rem;
@@ -103,14 +134,16 @@ const difficulty = tx.get('difficulties', paradox.difficulty);
   }
   .pcard:hover .pcard__title a { color: var(--accent-ink); }
 
-  .pcard__summary {
+  /* The hook is a question, so it gets the reading face rather than the UI one. */
+  .pcard__hook {
     margin: 0;
-    font-size: 0.94rem;
-    line-height: 1.5;
+    font-size: 0.945rem;
+    line-height: 1.52;
     color: var(--ink-soft);
     flex: 1;
+    text-wrap: pretty;
   }
-  .pcard--compact .pcard__summary {
+  .pcard--compact .pcard__hook {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     line-clamp: 3;

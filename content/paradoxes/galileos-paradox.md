@@ -8,6 +8,9 @@ summary: >-
   Most whole numbers are not perfect squares, so the squares must be rarer. Yet
   every number has exactly one square and every square has exactly one root, so
   there are precisely as many of one as of the other. Both claims are true.
+hook: >-
+  There are exactly as many square numbers as there are numbers, even though
+  almost every number is not a square.
 era: early-modern
 date: "1638"
 year: 1638
@@ -26,6 +29,7 @@ types:
 nature: veridical
 difficulty: intermediate
 status: resolved
+renown: specialist
 concepts:
   - One-to-one correspondence
   - Actual versus potential infinity

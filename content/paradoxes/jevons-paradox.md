@@ -9,6 +9,9 @@ summary: >-
   Make engines burn less coal and the country burns more coal. Jevons argued in
   1865 that efficiency does not save a resource — it makes the resource cheaper
   to use, and cheap things get used more.
+hook: >-
+  Build an engine that burns less coal and the country ends up burning more
+  coal. This was noticed in 1865 and has not stopped.
 era: nineteenth-century
 date: "1865"
 year: 1865
@@ -27,6 +30,7 @@ types:
 nature: counterintuitive-result
 difficulty: intermediate
 status: debated
+renown: known
 concepts:
   - Rebound effect
   - Backfire

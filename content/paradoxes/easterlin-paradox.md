@@ -8,6 +8,9 @@ summary: >-
   Within a country, richer people are happier. Yet as whole countries grew far
   richer over decades, average reported happiness barely moved. Easterlin named
   the tension in 1974, and economists are still arguing about whether it is real.
+hook: >-
+  Richer people are happier than poorer people. Yet a whole country getting
+  richer does not seem to get happier.
 era: twentieth-century
 date: "1974"
 year: 1974
@@ -29,6 +32,7 @@ types:
 nature: open-problem
 difficulty: intermediate
 status: debated
+renown: specialist
 concepts:
   - Subjective wellbeing
   - Relative income

@@ -11,6 +11,9 @@ summary: >-
   then it is true. Two and a half thousand years later there is still no agreed
   answer — only competing bills to pay, in logic, in language, or in common
   sense.
+hook: >-
+  "This sentence is false." Decide whether you are looking at something true
+  or something false, and see how far you get.
 era: ancient
 date: "c. 600 BCE (the Epimenides line); c. 350 BCE (Eubulides' paradox)"
 year: -600
@@ -37,6 +40,7 @@ types:
 nature: logical-contradiction
 difficulty: advanced
 status: debated
+renown: landmark
 concepts:
   - Self-reference
   - The T-schema

@@ -11,6 +11,7 @@ const FILES = {
   types: 'types.yml',
   natures: 'natures.yml',
   difficulties: 'difficulties.yml',
+  renowns: 'renown.yml',
   statuses: 'statuses.yml',
   eras: 'eras.yml',
   relationshipKinds: 'relationship-kinds.yml',

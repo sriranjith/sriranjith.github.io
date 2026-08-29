@@ -10,6 +10,9 @@ summary: >-
   Take one grain from a heap of sand and it is still a heap. Repeat. Every single
   step looks harmless, yet you end holding one grain and no heap — and no step was
   ever the one that destroyed it.
+hook: >-
+  One grain of sand is not a heap. Adding a single grain never turns a
+  non-heap into a heap. So heaps do not exist.
 era: ancient
 date: c. 350 BCE
 year: -350
@@ -31,6 +34,7 @@ types:
 nature: logical-contradiction
 difficulty: advanced
 status: debated
+renown: known
 concepts:
   - Vagueness
   - Tolerance

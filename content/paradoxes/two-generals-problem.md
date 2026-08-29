@@ -9,6 +9,9 @@ summary: >-
   Two allies must agree on a time to attack, but every message between them
   might be lost. No matter how many confirmations they exchange, the last
   messenger is never confirmed — and agreement is provably unreachable.
+hook: >-
+  Two armies must attack at the same moment. Any message can be lost,
+  including the one confirming the last one arrived.
 era: twentieth-century
 date: 1975 (proved), 1978 (named)
 year: 1975
@@ -27,6 +30,7 @@ types:
 nature: impossibility-result
 difficulty: intermediate
 status: resolved
+renown: known
 concepts:
   - Common knowledge
   - Infinite regress

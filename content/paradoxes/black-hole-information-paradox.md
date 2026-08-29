@@ -9,6 +9,9 @@ summary: >-
   destroyed with them, which quantum mechanics forbids. Fifty years of work has
   convinced almost everyone that information survives — without producing an
   agreed account of how it gets out.
+hook: >-
+  Physics insists information can never be destroyed. Black holes appear to
+  destroy it. Both of those cannot be true.
 era: twentieth-century
 date: 1974/75 (Hawking radiation), 1976 (the paradox stated)
 year: 1976
@@ -35,6 +38,7 @@ types:
 nature: open-problem
 difficulty: expert
 status: debated
+renown: known
 concepts:
   - Hawking radiation
   - Unitarity

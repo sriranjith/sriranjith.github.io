@@ -9,6 +9,9 @@ summary: >-
   should hand over your house, your savings and everything else to play once.
   Nobody would pay twenty pounds. Nearly three centuries later, why not is still
   argued about.
+hook: >-
+  A coin-flipping game whose average winnings are infinite. How much of your
+  own money would you actually pay to play?
 era: early-modern
 date: 1713 (posed by Nicolaus Bernoulli), 1738 (published by Daniel Bernoulli)
 year: 1738
@@ -33,6 +36,7 @@ types:
 nature: apparent-contradiction
 difficulty: advanced
 status: debated
+renown: known
 concepts:
   - Expected value
   - Diminishing marginal utility

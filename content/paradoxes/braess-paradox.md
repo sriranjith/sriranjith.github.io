@@ -8,6 +8,9 @@ summary: >-
   Open a fast new road between two points and every driver's journey gets longer.
   Close a busy street and the traffic speeds up. Dietrich Braess proved in 1968
   that this is not bad luck — it is what selfish route choice does.
+hook: >-
+  Add a new road to a congested city and every journey gets slower. Close the
+  road again and the traffic speeds up.
 era: twentieth-century
 date: 1968
 year: 1968
@@ -28,6 +31,7 @@ types:
 nature: counterintuitive-result
 difficulty: advanced
 status: resolved
+renown: known
 concepts:
   - User equilibrium
   - Wardrop's principles

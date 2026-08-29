@@ -9,6 +9,9 @@ summary: >-
   open a drawer and find gold. The chance the other drawer in that box is also
   gold is 2/3, not 1/2 — and this is exactly the Monty Hall problem, posed a
   century earlier.
+hook: >-
+  You reach into one of three boxes and pull out a gold coin. The chance the
+  other coin in that box is gold is not one half.
 era: nineteenth-century
 date: "1889"
 year: 1889
@@ -27,6 +30,7 @@ types:
 nature: veridical
 difficulty: beginner
 status: resolved
+renown: specialist
 concepts:
   - Conditional probability
   - Sample space selection

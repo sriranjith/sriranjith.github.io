@@ -48,7 +48,8 @@ to get a new entry right.
 | `title` | ✅ | The name a reader would recognise. |
 | `slug` | ✅ | Must equal the filename. Lowercase, hyphenated. Never change it after publishing. |
 | `alternateNames` | | Other names it goes by. Fed into search. |
-| `summary` | ✅ | 40–320 characters. Appears in cards, search results and meta tags. Write it last. |
+| `summary` | ✅ | 40–320 characters. Describes the entry, for search results and meta tags. Write it last. |
+| `hook` | (to publish) | Up to 150 characters. The open question a card shows. See below. |
 | `era` | ✅ | One id from `taxonomy/eras.yml`. |
 | `date` | ✅ | Free text for humans: `c. 450 BCE`, `1931`, `1975 (posed), 1990 (famous)`. |
 | `year` | ✅ | A single signed integer for sorting and the timeline. Negative is BCE. Must fall inside `era`. |
@@ -59,12 +60,43 @@ to get a new entry right.
 | `nature` | ✅ | One id from `taxonomy/natures.yml`. **Think hardest about this one.** |
 | `difficulty` | ✅ | How deep the deepest layer goes — *not* how hard the entry point is. |
 | `status` | ✅ | One id from `taxonomy/statuses.yml`. |
+| `renown` | | One id from `taxonomy/renown.yml`. Decides what leads a listing. Defaults to `known`. |
 | `interactive` | | A component id from `src/lib/interactive.js`, if one fits. |
 | `concepts` | | Free-text ideas. Used for search and to find neighbours. |
 | `relationships` | | See below. |
 | `references` | ✅ (to publish) | Ids from `content/sources/`. |
 | `furtherReading` | | External links with a title. |
 | `publishing` | ✅ | `state` is `draft`, `review` or `published`, plus `created` and `updated` dates. |
+
+### `hook` — the only thing most people will ever read
+
+Every card, every listing row and the top of the entry itself shows the hook.
+It is the sentence that decides whether anyone reads the other four thousand
+words, so it gets written with more care per character than anything else here.
+
+A hook states the gap and stops. It does not resolve it, and it does not
+describe the entry from outside.
+
+| | |
+| --- | --- |
+| ✅ | *"Three doors, one car. The host opens a losing door and offers you the swap. Does it make any difference whether you take it?"* |
+| ❌ | *"An explanation of the famous Monty Hall probability puzzle."* — describes the entry instead of opening anything. |
+| ❌ | *"Switching doors doubles your chances of winning the car."* — answers it. Nothing left to find out. |
+| ❌ | *"You won't BELIEVE what happens with these three doors."* — promises a feeling rather than a question. The gap has to be real. |
+
+Concrete beats abstract. "A hotel with infinitely many rooms is completely full,
+and one more guest arrives" works; "a puzzle about the nature of infinite sets"
+does not. Use the reader's own words — no notation, no jargon, no field terms.
+
+### `renown` — what a first-time visitor already recognises
+
+This ranks familiarity, not importance. Several of the most consequential
+results here are `specialist`, and a couple of household names are minor.
+
+It exists so that a listing can lead with something the reader has met before.
+Recognition is what earns the second click; a page of unfamiliar names gets
+abandoned. Be honest about it — marking everything `landmark` destroys the
+ordering for everything else.
 
 ### `nature` — the field this site exists for
 

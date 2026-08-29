@@ -9,6 +9,9 @@ summary: >-
   A hotel with infinitely many rooms, every one occupied, can still take in a
   new guest — and a coachload, and infinitely many coachloads. Being full stops
   meaning what it means everywhere else.
+hook: >-
+  A hotel with infinitely many rooms is completely full. At two in the
+  morning, one more guest arrives. The manager finds them a room.
 era: twentieth-century
 date: 1924 (lectures), 1947 (popularised)
 year: 1924
@@ -28,6 +31,7 @@ types:
 nature: counterintuitive-result
 difficulty: beginner
 status: resolved
+renown: landmark
 concepts:
   - Countable infinity
   - One-to-one correspondence

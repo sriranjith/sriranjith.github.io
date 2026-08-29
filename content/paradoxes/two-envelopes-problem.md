@@ -10,6 +10,9 @@ summary: >-
   calculation says the other is worth 25% more — so you should swap. But the
   same calculation applies to the envelope you just swapped into, and you could
   swap forever.
+hook: >-
+  One envelope holds twice as much money as the other. The arithmetic says
+  swap — then says swap back, forever.
 era: twentieth-century
 date: 1953 (Littlewood, crediting Schrödinger), 1989 (envelope form)
 year: 1953
@@ -33,6 +36,7 @@ types:
 nature: apparent-contradiction
 difficulty: advanced
 status: debated
+renown: known
 concepts:
   - Equivocation
   - Improper priors

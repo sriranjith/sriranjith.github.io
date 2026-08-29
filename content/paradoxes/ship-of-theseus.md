@@ -9,6 +9,9 @@ summary: >-
   Replace a ship's planks one at a time until none of the originals remain. Is it
   the same ship? Now build a second ship from the planks you took out — and answer
   again, knowing both ships are floating in front of you.
+hook: >-
+  Replace a ship's planks one at a time until not one original piece is left.
+  Is it still the same ship?
 era: ancient
 date: c. 75 CE (Plutarch's report of an older dispute)
 year: 75
@@ -30,6 +33,7 @@ types:
 nature: thought-experiment
 difficulty: intermediate
 status: debated
+renown: landmark
 concepts:
   - Persistence through change
   - Numerical versus qualitative identity

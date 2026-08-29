@@ -10,6 +10,9 @@ summary: >-
   stories to different people. With unsigned messages, agreement is impossible
   unless more than two-thirds are loyal — and signatures change the bound
   entirely.
+hook: >-
+  Several generals must attack together or be destroyed. They can only send
+  messengers, and some of the generals are traitors.
 era: twentieth-century
 date: "1982"
 year: 1982
@@ -32,6 +35,7 @@ types:
 nature: impossibility-result
 difficulty: advanced
 status: resolved
+renown: known
 concepts:
   - Byzantine fault
   - Agreement and validity

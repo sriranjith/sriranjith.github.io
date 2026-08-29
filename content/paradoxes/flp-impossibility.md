@@ -9,6 +9,9 @@ summary: >-
   In a network with no timing guarantees, no deterministic protocol can promise
   that a group of computers will ever agree on anything — if even one of them
   might crash. Not slow, not unlikely: impossible.
+hook: >-
+  A handful of computers cannot be guaranteed to agree on a single value if
+  even one of them might be slow. Not merely hard — impossible.
 era: twentieth-century
 date: "1985"
 year: 1985
@@ -31,6 +34,7 @@ types:
 nature: impossibility-result
 difficulty: expert
 status: resolved
+renown: specialist
 concepts:
   - Asynchronous model
   - Bivalent configuration

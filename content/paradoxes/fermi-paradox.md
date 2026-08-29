@@ -9,6 +9,9 @@ summary: >-
   The Galaxy is old enough that any civilisation inclined to spread should have
   filled it long ago. Nobody is here and nothing is calling. Which premise is
   wrong — that life is common, that it spreads, or that we would have noticed?
+hook: >-
+  The universe is ancient, enormous, and full of ordinary stars much like
+  ours. So where is everybody?
 era: twentieth-century
 date: 1950 (Fermi's remark), 1975 (Hart's argument)
 year: 1950
@@ -32,6 +35,7 @@ types:
 nature: open-problem
 difficulty: intermediate
 status: open
+renown: landmark
 concepts:
   - Drake equation
   - Great Filter

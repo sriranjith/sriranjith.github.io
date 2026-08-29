@@ -1,0 +1,30 @@
+# Controlled vocabulary: Renown
+#
+# How widely known an entry is *outside* the field it belongs to. This is a
+# statement about the reader's likely familiarity, not about importance. Several
+# of the most consequential results here are specialist, and several household
+# names are minor.
+#
+# It exists for one reason: a first-time visitor should meet something they have
+# heard of before they meet something they have not.
+- id: landmark
+  label: Famous
+  short: A household name. Most readers have met it before.
+  explanation: >-
+    Known well beyond the field that produced it — from school, films, novels or
+    ordinary conversation. These are the doors into the collection.
+  order: 10
+- id: known
+  label: Widely known
+  short: Familiar to anyone who reads around the subject.
+  explanation: >-
+    Not quite common currency, but a reader with an interest in the field will
+    have run into it. The natural second step.
+  order: 20
+- id: specialist
+  label: Specialist
+  short: Mostly known inside its own field.
+  explanation: >-
+    Well established among people who work on the problem, and largely unheard
+    of outside it. Often the most surprising thing on the site for that reason.
+  order: 30

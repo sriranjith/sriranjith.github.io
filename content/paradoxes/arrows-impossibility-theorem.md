@@ -8,6 +8,9 @@ summary: >-
   Write down four things any fair voting system should obviously do. Arrow proved
   in 1951 that with three or more options, no method of combining ranked
   preferences can do all four — except one that always follows a single person.
+hook: >-
+  There is no fair way to turn what a group of people each want into what the
+  group wants. This is not a complaint about politics. It is a theorem.
 era: twentieth-century
 date: 1950 (paper), 1951 (book), 1963 (corrected second edition)
 year: 1951
@@ -29,6 +32,7 @@ types:
 nature: impossibility-result
 difficulty: expert
 status: resolved
+renown: known
 concepts:
   - Social welfare function
   - Independence of irrelevant alternatives

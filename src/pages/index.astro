@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import ParadoxCard from '../components/ParadoxCard.astro';
 import { publicCatalog } from '../lib/catalog.js';
-import { shuffleStable } from '../lib/graph.js';
+import { headline, byRenown, shuffleStable } from '../lib/graph.js';
 import { url, SITE } from '../lib/site.js';
 
 const catalog = publicCatalog();
@@ -18,15 +18,35 @@ const MOODS = [
   { label: 'Something unresolved', href: url.nature('open-problem'), hint: 'Experts still disagree' },
 ];
 
+// The opening row is the entries a first-time visitor is most likely to have
+// heard of, spread across fields so the collection does not look like one
+// subject. Recognition is what earns the second click.
+const famous = headline(catalog.paradoxes, 6, 2);
+
+// One question, posed in full, above the fold. Rotates so a returning reader
+// meets a different one.
+const rotation = catalog.paradoxes.length + new Date().getUTCDate();
+const landmarks = catalog.paradoxes.filter((p) => p.renown === 'landmark' && p.hook);
+const teaser = shuffleStable(landmarks, rotation)[0];
+
+// The reward for going deeper: things almost nobody has heard of.
+const obscure = shuffleStable(
+  catalog.paradoxes.filter((p) => p.renown === 'specialist'),
+  rotation
+).slice(0, 3);
+
+// The lead row is already weighted towards beginner entries, so this section
+// has to skip whatever is directly above it or the page repeats itself.
+const shown = new Set(famous.map((p) => p.slug));
+const beginner = catalog.paradoxes
+  .filter((p) => p.difficulty === 'beginner' && !shown.has(p.slug))
+  .sort(byRenown)
+  .slice(0, 3);
+
 const domains = tx.domains
   .map((d) => ({ ...d, count: catalog.paradoxes.filter((p) => p.domains.includes(d.id)).length }))
   .filter((d) => d.count > 0);
 
-// A stable pick that rotates each build — keeps the page static and cacheable.
-const seed = catalog.paradoxes.length + new Date().getUTCDate();
-const featured = shuffleStable(catalog.paradoxes, seed).slice(0, 6);
-
-const beginner = catalog.paradoxes.filter((p) => p.difficulty === 'beginner').slice(0, 3);
 const paths = catalog.paths.slice(0, 4);
 
 const eras = tx.eras
@@ -48,20 +68,46 @@ const jsonLd = {
       Some ideas <em>argue</em> with your intuition.
     </h1>
     <p class="hero__lede">
-      A curated collection of {catalog.paradoxes.length} paradoxes — from a puzzle
-      told 2,500 years ago to results proved last decade. Every one is explained
-      first as a story anyone can follow, then as deeply as you care to go.
+      {catalog.paradoxes.length} of them — from a puzzle told 2,500 years ago to
+      results proved last decade. Each one starts as a story anyone can follow
+      and goes as deep as you care to take it.
     </p>
 
     <div class="hero__actions">
-      <a class="btn btn--primary" href="/random/">Surprise me</a>
+      <a class="btn btn--primary" href="#famous">Start with a famous one</a>
+      <a class="btn" href="/random/">Surprise me</a>
       <a class="btn" href={url.browse()}>Browse everything</a>
-      <a class="btn" href="/timeline/">Walk through time</a>
+    </div>
+  </section>
+
+  {teaser && (
+    <a class="teaser" href={url.paradox(teaser.slug)}>
+      <span class="teaser__label">For instance</span>
+      <p class="teaser__hook">{teaser.hook}</p>
+      <span class="teaser__cta">{teaser.title}</span>
+    </a>
+  )}
+
+  <section class="section" id="famous">
+    <div class="section__head">
+      <div>
+        <h2>The ones you have probably heard of</h2>
+        <p>Famous for a reason. Any of these is a good first door.</p>
+      </div>
+      <a class="section__more" href={url.browse()}>See all {catalog.paradoxes.length} →</a>
+    </div>
+    <div class="grid grid--3">
+      {famous.map((p) => <ParadoxCard paradox={p} compact figure />)}
     </div>
   </section>
 
   <section class="section" aria-labelledby="moods">
-    <h2 class="visually-hidden" id="moods">Start with a mood</h2>
+    <div class="section__head">
+      <div>
+        <h2 id="moods">Or go by what you are in the mood for</h2>
+        <p>You do not need to know the classification to start exploring.</p>
+      </div>
+    </div>
     <ul class="moods">
       {
         MOODS.map((m) => (
@@ -76,35 +122,12 @@ const jsonLd = {
     </ul>
   </section>
 
-  <section class="section">
-    <div class="section__head">
-      <div>
-        <h2>Pick a field</h2>
-        <p>You do not need to know the classification to start exploring.</p>
-      </div>
-      <a class="section__more" href="/taxonomy/">How this is organised →</a>
-    </div>
-    <ul class="domains">
-      {
-        domains.map((d) => (
-          <li>
-            <a href={url.domain(d.id)} style={`--dot:${d.color}`}>
-              <b>{d.label}</b>
-              <span>{d.short}</span>
-              <em>{d.count}</em>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
   {beginner.length > 0 && (
     <section class="section">
       <div class="section__head">
         <div>
           <h2>Good places to start</h2>
-          <p>No background needed. Suitable for younger readers.</p>
+          <p>No background needed at any point. Suitable for younger readers.</p>
         </div>
         <a class="section__more" href={url.difficulty('beginner')}>All beginner entries →</a>
       </div>
@@ -119,7 +142,7 @@ const jsonLd = {
       <div class="section__head">
         <div>
           <h2>Follow a thread</h2>
-          <p>Curated sequences where each idea sets up the next.</p>
+          <p>Ordered sequences where each idea sets up the next.</p>
         </div>
         <a class="section__more" href="/paths/">All learning paths →</a>
       </div>
@@ -142,17 +165,42 @@ const jsonLd = {
     </section>
   )}
 
+  {obscure.length > 0 && (
+    <section class="section">
+      <div class="section__head">
+        <div>
+          <h2>Less famous, no less strange</h2>
+          <p>Well known inside one field and almost nowhere else.</p>
+        </div>
+        <a class="section__more" href="/random/">Give me another →</a>
+      </div>
+      <div class="grid grid--3">
+        {obscure.map((p) => <ParadoxCard paradox={p} compact figure />)}
+      </div>
+    </section>
+  )}
+
   <section class="section">
     <div class="section__head">
       <div>
-        <h2>A different six every build</h2>
-        <p>Because the best way to find something is to not be looking for it.</p>
+        <h2>Pick a field</h2>
+        <p>The same handful of problems keeps turning up in all of them.</p>
       </div>
-      <a class="section__more" href="/random/">Give me another →</a>
+      <a class="section__more" href="/map/">See how they connect →</a>
     </div>
-    <div class="grid grid--3">
-      {featured.map((p) => <ParadoxCard paradox={p} compact />)}
-    </div>
+    <ul class="domains">
+      {
+        domains.map((d) => (
+          <li>
+            <a href={url.domain(d.id)} style={`--dot:${d.color}`}>
+              <b>{d.label}</b>
+              <span>{d.short}</span>
+              <em>{d.count}</em>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 
   {eras.length > 0 && (
@@ -183,7 +231,7 @@ const jsonLd = {
 
 <style>
   .hero {
-    padding-block: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 4vw, 2.5rem);
+    padding-block: clamp(2.5rem, 8vw, 4.5rem) clamp(1.25rem, 3vw, 2rem);
     max-width: 46rem;
   }
   .hero__title {
@@ -204,6 +252,46 @@ const jsonLd = {
     max-width: 40rem;
   }
   .hero__actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+  /* One real question, above the fold. The gap it opens is the whole pitch —
+     everything else on this page is navigation. */
+  .teaser {
+    display: block;
+    max-width: 46rem;
+    padding: 1.35rem 1.6rem 1.2rem;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    transition: box-shadow 0.18s, transform 0.18s;
+  }
+  .teaser:hover { box-shadow: var(--shadow-lift); transform: translateY(-2px); }
+  .teaser__label {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    font-weight: 640;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+  }
+  .teaser__hook {
+    margin: 0 0 0.7rem;
+    font-size: clamp(1.08rem, 1.9vw, 1.32rem);
+    line-height: 1.45;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+  .teaser__cta {
+    font-family: var(--font-ui);
+    font-size: 0.88rem;
+    font-weight: 580;
+    color: var(--accent-ink);
+  }
+  .teaser__cta::after { content: ' →'; }
 
   .moods {
     list-style: none;

@@ -146,6 +146,53 @@ export function orphans(catalog) {
 }
 
 /**
+ * Listing order: recognisable first, then approachable.
+ *
+ * The second key matters more than it looks. Sorting famous entries
+ * alphabetically puts Gödel — expert, twenty-five minutes — in the first slot
+ * on the homepage, which is an excellent entry and a terrible front door.
+ */
+export function byRenown(a, b) {
+  return (
+    a.renownRank - b.renownRank ||
+    a.difficultyRank - b.difficultyRank ||
+    a.title.localeCompare(b.title)
+  );
+}
+
+/**
+ * What to lead a page with. Most recognisable first, but capped per field so
+ * the opening row is not six physics problems. A visitor who recognises nothing
+ * leaves; a visitor who sees one subject assumes that is all there is.
+ *
+ * @param {object[]} paradoxes
+ * @param {number} limit
+ * @param {number} perDomain Most entries allowed to share a primary field.
+ */
+export function headline(paradoxes, limit = 6, perDomain = 2) {
+  const sorted = [...paradoxes].sort(byRenown);
+  const used = new Map();
+  const picked = [];
+
+  for (const p of sorted) {
+    if (picked.length >= limit) break;
+    const domain = p.domains[0];
+    const count = used.get(domain) ?? 0;
+    if (count >= perDomain) continue;
+    used.set(domain, count + 1);
+    picked.push(p);
+  }
+
+  // If the per-field cap starved the list, top up in plain renown order.
+  const chosen = new Set(picked.map((p) => p.slug));
+  for (const p of sorted) {
+    if (picked.length >= limit) break;
+    if (!chosen.has(p.slug)) picked.push(p);
+  }
+  return picked;
+}
+
+/**
  * A stable "random" pick that changes per build rather than per request,
  * so the page can stay fully static.
  */

@@ -8,7 +8,7 @@ import { url } from '../lib/site.js';
 // A static page that still feels random: the server ships a shuffled deck and
 // a few lines of script deal one card. No server, no request per visit.
 const catalog = publicCatalog();
-const deck = shuffleStable(catalog.paradoxes, 7).map((p) => p.slug);
+const deck = shuffleStable(catalog.paradoxes, 7).map((p) => ({ slug: p.slug, title: p.title }));
 const shown = catalog.paradoxes.slice(0, 12);
 ---
 
@@ -20,12 +20,12 @@ const shown = catalog.paradoxes.slice(0, 12);
   <div class="rnd">
     <h1>Surprise me</h1>
     <p class="lede">
-      {catalog.paradoxes.length} entries. No preferences, no history, no
-      profiling — just a shuffle.
+      {catalog.paradoxes.length} entries, one drawn at random. The best way to
+      find something worth knowing is usually to not have been looking for it.
     </p>
 
     <p class="rnd__actions">
-      <a class="btn btn--primary" href={url.paradox(deck[0])} data-random-link>
+      <a class="btn btn--primary" href={url.paradox(deck[0].slug)} data-random-link>
         Take me somewhere
       </a>
       <button class="btn" type="button" data-random-reshuffle hidden>Shuffle again</button>
@@ -54,9 +54,9 @@ const shown = catalog.paradoxes.slice(0, 12);
   const preview = document.querySelector('[data-random-preview]');
 
   function pick() {
-    const slug = deck[Math.floor(Math.random() * deck.length)];
-    link.href = `/paradox/${slug}/`;
-    preview.textContent = `Next up: ${slug.replace(/-/g, ' ')}`;
+    const entry = deck[Math.floor(Math.random() * deck.length)];
+    link.href = `/paradox/${entry.slug}/`;
+    preview.textContent = `Next up: ${entry.title}`;
     preview.hidden = false;
   }
 
@@ -74,6 +74,5 @@ const shown = catalog.paradoxes.slice(0, 12);
     font-size: 0.83rem;
     color: var(--ink-faint);
     margin-top: 0.85rem;
-    text-transform: capitalize;
   }
 </style>

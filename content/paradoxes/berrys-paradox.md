@@ -8,6 +8,9 @@ summary: >-
   "The smallest positive integer not definable in under sixty letters." That
   phrase has fifty-seven letters, so it defines the very number it says cannot be
   defined. The way out is that "definable" cannot mean what it seems to.
+hook: >-
+  "The smallest number that cannot be described in fewer than twelve words."
+  That description is eleven words long.
 era: twentieth-century
 date: "1906 (published by Russell, crediting Berry); communicated c. 1904"
 year: 1906
@@ -31,6 +34,7 @@ types:
 nature: logical-contradiction
 difficulty: advanced
 status: resolved
+renown: specialist
 concepts:
   - Definability
   - Semantic closure

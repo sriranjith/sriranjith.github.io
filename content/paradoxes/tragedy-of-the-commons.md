@@ -9,6 +9,9 @@ summary: >-
   cost of the extra grazing falls on everybody. Garrett Hardin called the ruin
   inevitable. Elinor Ostrom spent thirty years documenting communities where it
   was not.
+hook: >-
+  Every herder gains by putting one more animal on the shared field. The field
+  is destroyed by people behaving reasonably.
 era: twentieth-century
 date: 1968
 year: 1968
@@ -30,6 +33,7 @@ types:
 nature: counterintuitive-result
 difficulty: intermediate
 status: debated
+renown: landmark
 concepts:
   - Externality
   - Common-pool resource

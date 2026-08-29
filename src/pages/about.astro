@@ -79,38 +79,27 @@ const natures = tx.natures.map((n) => ({
       the entries mark which is which.
     </p>
 
-    <h2>No AI in the product</h2>
+    <h2>Where to go next</h2>
     <p>
-      There is no chatbot here, no recommendation model, no vector database and
-      no runtime language-model call. The "where to go next" suggestions are
-      computed from connections that a human wrote down and explained; you can
-      read the reason on every card.
+      At the foot of every entry are the ideas it connects to, and each one says
+      <em>why</em> — because they share a mechanism, because the same person is
+      involved, because one was the answer to the other. Following those
+      sentences is the intended way to read this site. Nothing is suggested to
+      you without a reason you can read and disagree with.
     </p>
     <p>
-      AI is used privately, as a research assistant — for finding candidate
-      paradoxes, tracking down references, and drafting material that is then
-      checked and edited by a person before publication. Nothing reaches this
-      site without a human deciding it should.
-    </p>
-
-    <h2>How it is built</h2>
-    <p>
-      The whole site is {catalog.paradoxes.length} Markdown files, some YAML,
-      and a static site generator. There is no database and no server. The
-      published output is plain files on a CDN, which is why it is fast and
-      costs essentially nothing to run.
-    </p>
-    <p>
-      That is also a maintenance decision: adding the next hundred entries is the
-      same operation as adding the first, and it involves no code.
+      If you would rather have the route planned, the
+      <a href="/paths/">learning paths</a> are ordered sequences where each entry
+      sets up the next. If you would rather have no plan at all,
+      <a href="/random/">take a random one</a>.
     </p>
 
     <h2>Corrections</h2>
     <p>
-      Something wrong? It probably is, somewhere. The content is a set of text
-      files in version control, which makes being wrong in public fixable rather
-      than embarrassing. Corrections with a source attached are the most useful
-      thing anyone can send.
+      Something here is wrong. It always is, somewhere. Corrections with a source
+      attached are the most useful thing anyone can send, and they get made
+      quickly — being wrong in public is fixable, and far better than being
+      vague in order to be safe.
     </p>
   </article>
 </Base>

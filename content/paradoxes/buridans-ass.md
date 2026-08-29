@@ -8,6 +8,9 @@ summary: >-
   A donkey stands exactly midway between two identical bales of hay. Having no
   reason to prefer either, it starves. The story is named after a man who never
   told it, and it is really a question about what a reason is for.
+hook: >-
+  A donkey stands exactly halfway between two identical bales of hay. With no
+  reason on earth to prefer either, does it starve?
 era: medieval
 date: c. 1340 (the attribution; the example is far older)
 year: 1340
@@ -29,6 +32,7 @@ types:
 nature: thought-experiment
 difficulty: beginner
 status: explained
+renown: known
 concepts:
   - Free will
   - Liberty of indifference

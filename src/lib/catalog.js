@@ -120,6 +120,15 @@ function derive(catalog) {
   const tx = catalog.taxonomy;
   const bySlug = new Map(catalog.paradoxes.map((p) => [p.slug, p]));
 
+  // Numeric renown, so listings can sort on it. Unknown values sort last rather
+  // than throwing, because a listing is not the place to surface a content bug.
+  const renownOrder = new Map(tx.renowns.map((r, i) => [r.id, i]));
+  const difficultyOrder = new Map(tx.difficulties.map((d, i) => [d.id, i]));
+  for (const p of catalog.allParadoxes) {
+    p.renownRank = renownOrder.get(p.renown) ?? renownOrder.size;
+    p.difficultyRank = difficultyOrder.get(p.difficulty) ?? difficultyOrder.size;
+  }
+
   // Reverse relationships. An author writes an edge once, on whichever side
   // reads more naturally; the other side is generated.
   /** @type {Map<string, Array<{kind:string,to:string,note?:string,derived:boolean}>>} */

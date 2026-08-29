@@ -10,6 +10,9 @@ summary: >-
   line of sight would end on a star and the whole night sky would blaze like the
   surface of the Sun. It does not. The reason is that the universe has not been
   here long enough.
+hook: >-
+  If the universe is infinite and full of stars, every line of sight should
+  end on one. So why is the night sky dark?
 era: nineteenth-century
 date: 1610 (Kepler), 1744 (de Chéseaux), 1823 (Olbers)
 year: 1823
@@ -34,6 +37,7 @@ types:
 nature: apparent-contradiction
 difficulty: intermediate
 status: resolved
+renown: known
 concepts:
   - Cosmological horizon
   - Finite age of the universe

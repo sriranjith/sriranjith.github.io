@@ -9,6 +9,9 @@ summary: >-
   measure how much a worker produces per hour barely moved. Robert Solow put it
   in one line in 1987, and forty years later the argument about what it means is
   still running.
+hook: >-
+  Computers arrived in every office through the 1970s and 80s. Measured
+  productivity did not move for two decades.
 era: twentieth-century
 date: 1987 (Solow's remark), debate ongoing
 year: 1987
@@ -30,6 +33,7 @@ types:
 nature: open-problem
 difficulty: advanced
 status: debated
+renown: specialist
 concepts:
   - Total factor productivity
   - General purpose technologies

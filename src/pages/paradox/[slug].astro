@@ -5,10 +5,12 @@ import DepthRail from '../../components/DepthRail.astro';
 import ParadoxCard from '../../components/ParadoxCard.astro';
 import Citation from '../../components/Citation.astro';
 import Interactive from '../../components/Interactive.astro';
+import Figure from '../../components/Figure.astro';
 
 import { publicCatalog } from '../../lib/catalog.js';
 import { LAYERS, DEPTHS } from '../../lib/sections.js';
-import { relatedParadoxes } from '../../lib/graph.js';
+import { relatedParadoxes, byRenown } from '../../lib/graph.js';
+import { figureFor, slugsWithFigure } from '../../lib/figures.js';
 import { toPlainText } from '../../lib/markdown.js';
 import { url, SITE } from '../../lib/site.js';
 
@@ -64,6 +66,18 @@ const refGroups = tx.sourceTypes
 const related = relatedParadoxes(catalog, paradox, 6);
 const description = paradox.summary;
 
+// Entries built on the same structure. This is the most useful "next" link on
+// the page: not "also about physics", but "this is the same trouble again".
+const figure = figureFor(paradox.slug);
+const sameShape = figure
+  ? slugsWithFigure(figure.id)
+      .filter((s) => s !== paradox.slug)
+      .map((s) => catalog.bySlug.get(s))
+      .filter(Boolean)
+      .sort(byRenown)
+      .slice(0, 5)
+  : [];
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -106,6 +120,7 @@ const jsonLd = {
         </a>
         <a class="tag" href={url.nature(paradox.nature)}>{nature?.label}</a>
         <a class="tag" href={url.status(paradox.status)}>{status?.label}</a>
+        {paradox.renown === 'landmark' && <span class="tag tag--warm">★ Famous</span>}
       </p>
 
       <h1>{paradox.title}</h1>
@@ -114,7 +129,9 @@ const jsonLd = {
         <p class="px__alt">Also known as {paradox.alternateNames.join(', ')}</p>
       )}
 
-      <p class="px__summary lede">{paradox.summary}</p>
+      {paradox.hook
+        ? <p class="px__hook">{paradox.hook}</p>
+        : <p class="px__summary lede">{paradox.summary}</p>}
 
       <dl class="px__facts">
         <div>
@@ -159,6 +176,24 @@ const jsonLd = {
             <Section layer={layer} markdown={paradox.sections[layer.id]} open={layer.openByDefault} />
             {layer.id === 'understand' && paradox.interactive && (
               <Interactive id={paradox.interactive} />
+            )}
+            {/* The diagram lands once the explanation is read, not before it —
+                it consolidates the shape rather than previewing the answer. */}
+            {layer.id === 'understand' && figure && (
+              <section class="layer" id="shape">
+                <h2 class="layer__heading">The shape of it</h2>
+                <Figure slug={paradox.slug} variant="page" />
+                {sameShape.length > 0 && (
+                  <div class="shape__also">
+                    <p class="shape__lead">Same shape, different costume:</p>
+                    <ul class="tags">
+                      {sameShape.map((p) => (
+                        <li><a class="tag" href={url.paradox(p.slug)}>{p.title}</a></li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </section>
             )}
           </>
         ))}
@@ -253,7 +288,7 @@ const jsonLd = {
       <div class="section__head">
         <div>
           <h2>Where to go next</h2>
-          <p>Chosen by shared ideas and explicit connections — not by an algorithm you cannot inspect.</p>
+          <p>Each one says why it follows from what you just read.</p>
         </div>
         <a class="section__more" href="/random/">Or surprise me →</a>
       </div>
@@ -277,6 +312,28 @@ const jsonLd = {
     margin: 0 0 1rem;
   }
   .px__summary { max-width: 44rem; margin-bottom: 1.5rem; }
+
+  /* The open question, set larger than body text. A reader who arrives from a
+     search result should meet the gap before anything administrative. */
+  .px__hook {
+    max-width: 42rem;
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.18rem, 2.2vw, 1.45rem);
+    line-height: 1.45;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+
+  .shape__also { margin-top: 1.25rem; }
+  .shape__lead {
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    font-weight: 620;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--ink-faint);
+    margin: 0 0 0.55rem;
+  }
 
   .px__facts {
     display: flex;

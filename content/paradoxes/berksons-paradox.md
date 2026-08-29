@@ -10,6 +10,9 @@ summary: >-
   Two unrelated things can look strongly related once you only look at a
   selected slice. Among hospital patients, among the people you date, among
   everyone you hired — the selection itself invents the correlation.
+hook: >-
+  Two things with nothing whatever to do with each other can look strongly
+  related — purely because of who ended up in the study.
 era: twentieth-century
 date: 1946
 year: 1946
@@ -31,6 +34,7 @@ types:
 nature: counterintuitive-result
 difficulty: intermediate
 status: resolved
+renown: specialist
 concepts:
   - Selection bias
   - Colliders

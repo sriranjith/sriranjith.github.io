@@ -10,6 +10,9 @@ summary: >-
   A ladder too long for a garage fits inside it when you run fast enough, because
   it contracts. But from the ladder's view the garage contracts instead, so it
   cannot possibly fit. Both accounts are right, and "at the same time" is what gives.
+hook: >-
+  A ladder too long to fit inside a barn fits inside it — and also does not —
+  depending entirely on who is watching.
 era: twentieth-century
 date: 1905 (the physics), 1961 (first prominent published version)
 year: 1905
@@ -29,6 +32,7 @@ types:
 nature: apparent-contradiction
 difficulty: advanced
 status: resolved
+renown: specialist
 concepts:
   - Length contraction
   - Relativity of simultaneity

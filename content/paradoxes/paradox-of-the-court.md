@@ -10,6 +10,9 @@ summary: >-
   then never takes one. The teacher sues, and in court each man produces a
   watertight argument that he must win. Both arguments cannot be right, and it
   turns out neither is.
+hook: >-
+  A student agrees to pay for his lessons the day he wins his first case. He
+  never takes a case. His teacher sues him for the money.
 era: ancient
 date: "c. 420 BCE (traditional); earliest surviving account 2nd century CE"
 year: -420
@@ -32,6 +35,7 @@ types:
 nature: apparent-contradiction
 difficulty: intermediate
 status: dissolved
+renown: known
 concepts:
   - Constructive dilemma
   - Self-referential conditions

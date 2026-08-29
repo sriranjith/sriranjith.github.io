@@ -9,6 +9,9 @@ summary: >-
   Hand over any list claiming to contain every infinite sequence of digits.
   Reading down the diagonal and changing each entry produces a sequence that is
   not on it. No list can be complete, so some infinities are bigger than others.
+hook: >-
+  There are more numbers between 0 and 1 than there are whole numbers in all
+  of eternity. Both lists are infinite.
 era: nineteenth-century
 date: "1891"
 year: 1891
@@ -29,6 +32,7 @@ types:
 nature: counterintuitive-result
 difficulty: advanced
 status: resolved
+renown: known
 concepts:
   - Countability
   - Uncountability

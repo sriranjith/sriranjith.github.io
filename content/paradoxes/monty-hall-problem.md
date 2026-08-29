@@ -8,6 +8,9 @@ summary: >-
   You pick one of three doors. The host opens a different door to reveal a goat,
   then offers you the chance to switch. Switching doubles your odds of winning —
   and almost nobody believes it the first time.
+hook: >-
+  Three doors, one car. The host opens a losing door and offers you the swap.
+  Does it make any difference whether you take it?
 era: twentieth-century
 date: 1975 (posed), 1990 (made famous)
 year: 1975
@@ -28,6 +31,7 @@ types:
 nature: veridical
 difficulty: beginner
 status: resolved
+renown: landmark
 interactive: monty-hall
 concepts:
   - Conditional probability

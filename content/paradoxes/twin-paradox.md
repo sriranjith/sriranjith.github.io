@@ -8,6 +8,9 @@ summary: >-
   One twin flies to a distant star and back; the other stays home. The traveller
   returns younger. Each twin saw the other's clock running slow, so why is the
   answer not symmetric? Because they took different routes through spacetime.
+hook: >-
+  One twin flies away and comes home younger than the other. Yet each of them
+  saw the other's clock running slow.
 era: twentieth-century
 date: 1905 (implicit in Einstein), 1911 (Langevin's traveller)
 year: 1911
@@ -26,6 +29,7 @@ types:
 nature: apparent-contradiction
 difficulty: intermediate
 status: resolved
+renown: landmark
 concepts:
   - Proper time
   - Relativity of simultaneity

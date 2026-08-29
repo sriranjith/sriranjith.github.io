@@ -9,6 +9,9 @@ summary: >-
   Almost everyone states it as "pick two of consistency, availability and
   partition tolerance". That is wrong. Partitions are not a choice, and the real
   trade-off only exists while the network is broken.
+hook: >-
+  A system spread across several machines can give you consistent answers, or
+  always answer at all. The network makes you choose.
 era: contemporary
 date: 2000 (conjectured), 2002 (proved)
 year: 2000
@@ -30,6 +33,7 @@ types:
 nature: impossibility-result
 difficulty: advanced
 status: resolved
+renown: known
 concepts:
   - Linearizability
   - Network partition

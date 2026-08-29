@@ -10,6 +10,9 @@ summary: >-
   A judge sentences a prisoner to hang one weekday next week, and promises the day
   will come as a surprise. The prisoner proves the sentence cannot be carried out.
   On Wednesday the hangman arrives, and the prisoner is astonished.
+hook: >-
+  A prisoner is told he will hang next week, on a day he cannot possibly
+  predict. He proves it cannot happen. It happens.
 era: twentieth-century
 date: 1943 (in circulation), 1948 (first in print)
 year: 1943
@@ -31,6 +34,7 @@ types:
 nature: logical-contradiction
 difficulty: advanced
 status: debated
+renown: known
 concepts:
   - Backward induction
   - Self-reference

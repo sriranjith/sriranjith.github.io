@@ -54,6 +54,13 @@ export const paradoxSchema = z.object({
     .min(40, 'summary is too short to be useful in listings and search results')
     .max(320, 'summary should fit in a card — move detail into Discover'),
 
+  // The unresolved question the entry opens with. This is what a reader meets
+  // on a card, so it has to state the gap without closing it.
+  hook: trimmed
+    .min(15, 'a hook needs to actually pose something')
+    .max(150, 'a hook has to fit on two lines of a card')
+    .optional(),
+
   // history
   era: trimmed,
   date: looseText,
@@ -68,6 +75,11 @@ export const paradoxSchema = z.object({
   nature: trimmed,
   difficulty: trimmed,
   status: trimmed,
+
+  // How likely a reader is to have heard of this already. Decides what leads a
+  // listing. Defaults to the middle tier, so omitting it never promotes an
+  // entry it should not.
+  renown: trimmed.default('known'),
 
   // connections
   relationships: z.array(relationship).default([]),

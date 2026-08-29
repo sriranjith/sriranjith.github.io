@@ -9,6 +9,9 @@ summary: >-
   and you are never born — so you never travel back, so he lives. The scenario is
   not obviously impossible in general relativity, which is why physicists have
   spent decades explaining why it never happens.
+hook: >-
+  Travel back in time and stop your own grandparents from ever meeting. Then
+  who was it that went back?
 era: twentieth-century
 date: 1943 (Barjavel's novel), with antecedents from the 1920s
 year: 1943
@@ -33,6 +36,7 @@ types:
 nature: logical-contradiction
 difficulty: intermediate
 status: debated
+renown: landmark
 concepts:
   - Closed timelike curves
   - Self-consistency

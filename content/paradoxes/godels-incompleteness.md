@@ -8,6 +8,9 @@ summary: >-
   Any consistent set of rules rich enough to describe arithmetic contains true
   statements it cannot prove — and cannot prove its own consistency. A precise
   theorem about formal systems, and the most misquoted result in mathematics.
+hook: >-
+  In any system of arithmetic strong enough to be useful, there are true
+  statements it can never prove. Including this one.
 era: twentieth-century
 date: 1931
 year: 1931
@@ -34,6 +37,7 @@ types:
 nature: impossibility-result
 difficulty: expert
 status: resolved
+renown: landmark
 concepts:
   - Gödel numbering
   - Diagonal lemma

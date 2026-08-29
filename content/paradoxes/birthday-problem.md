@@ -8,6 +8,9 @@ summary: >-
   In a room of just 23 people, there is a better than even chance that two of
   them share a birthday. Not 183 people. Twenty-three. The reason is that
   23 people make 253 pairs, and every pair is a chance to match.
+hook: >-
+  How many people must be in a room before two of them probably share a
+  birthday? The answer is far smaller than you expect.
 era: twentieth-century
 date: 1939 (first published), circulating from the 1920s
 year: 1939
@@ -26,6 +29,7 @@ types:
 nature: counterintuitive-result
 difficulty: beginner
 status: resolved
+renown: landmark
 interactive: birthday-problem
 concepts:
   - Counting pairs

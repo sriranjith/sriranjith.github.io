@@ -9,6 +9,9 @@ summary: >-
   A solid ball can be cut into five pieces which, moved rigidly and reassembled,
   form two balls identical to the original. The theorem is proved. The pieces
   are so ragged that no volume can be assigned to them at any stage.
+hook: >-
+  Cut a solid ball into five pieces, move them around, and you have two balls
+  the same size as the first. Nothing was stretched.
 era: twentieth-century
 date: "1924"
 year: 1924
@@ -28,6 +31,7 @@ types:
 nature: counterintuitive-result
 difficulty: expert
 status: resolved
+renown: landmark
 concepts:
   - Axiom of choice
   - Non-measurable set

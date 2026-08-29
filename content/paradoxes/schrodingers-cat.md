@@ -9,6 +9,9 @@ summary: >-
   supposedly both alive and dead until someone looks. Schrödinger invented the
   scene to show that this way of talking is ridiculous — and physics has been
   arguing about why ever since.
+hook: >-
+  A cat sealed in a box, neither alive nor dead until somebody looks. The
+  story was invented to show the idea was absurd.
 era: twentieth-century
 date: 1935
 year: 1935
@@ -32,6 +35,7 @@ types:
 nature: thought-experiment
 difficulty: intermediate
 status: debated
+renown: landmark
 concepts:
   - Superposition
   - Wave function collapse

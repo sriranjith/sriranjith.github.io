@@ -10,6 +10,9 @@ summary: >-
   suggested the opposite, and a bestselling book turned it into common
   knowledge. Then the meta-analyses arrived and found almost nothing. What
   survives is smaller, stranger and more useful.
+hook: >-
+  Put out twenty-four kinds of jam instead of six and fewer people buy any jam
+  at all. More options, fewer decisions.
 era: contemporary
 date: 2004 (the book); 2000 (the jam study)
 year: 2004
@@ -29,6 +32,7 @@ types:
 nature: open-problem
 difficulty: intermediate
 status: debated
+renown: landmark
 concepts:
   - Choice overload
   - Maximising and satisficing

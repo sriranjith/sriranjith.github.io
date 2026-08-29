@@ -9,6 +9,9 @@ summary: >-
   has crawled a little further — and so on, forever. Zeno concluded he can never
   overtake it. He does, and the infinitely many stages take a perfectly ordinary
   eleven seconds.
+hook: >-
+  The fastest runner alive can never catch a tortoise with a head start. The
+  argument is airtight. So where does it go wrong?
 era: ancient
 date: c. 450 BCE
 year: -450
@@ -30,6 +33,7 @@ types:
 nature: apparent-contradiction
 difficulty: intermediate
 status: explained
+renown: landmark
 concepts:
   - Geometric series
   - Convergence

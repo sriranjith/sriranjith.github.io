@@ -7,6 +7,9 @@ summary: >-
   Chess grandmaster play took a computer forty years. Picking up an unfamiliar
   object off a cluttered table still is not solved. The skills we think of as
   hard are computationally cheap; the ones a toddler has are not.
+hook: >-
+  A computer beat the world chess champion in 1997. Getting one to pick up a
+  cup it has not seen before is still hard.
 era: twentieth-century
 date: "1988"
 year: 1988
@@ -30,6 +33,7 @@ types:
 nature: counterintuitive-result
 difficulty: intermediate
 status: explained
+renown: known
 concepts:
   - Sensorimotor computation
   - Evolutionary optimisation

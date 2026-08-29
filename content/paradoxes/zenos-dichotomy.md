@@ -10,6 +10,9 @@ summary: >-
   then half of that — an endless list of jobs. Zeno concluded that motion is
   impossible. The steps do add up to a finite total, but whether that fact
   actually answers him is still argued over.
+hook: >-
+  To cross a room you must first cross half of it, then half of what is left,
+  and so on without end. So how does anyone move?
 era: ancient
 date: c. 450 BCE
 year: -450
@@ -32,6 +35,7 @@ types:
 nature: apparent-contradiction
 difficulty: advanced
 status: explained
+renown: landmark
 interactive: zeno-dichotomy
 concepts:
   - Convergent series

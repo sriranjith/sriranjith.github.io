@@ -7,6 +7,9 @@ summary: >-
   A blue whale has thousands of times more cells than you do and lives about as
   long. Every cell is a chance for cancer to start. Whales should be riddled with
   it. They are not — and across species, body size barely predicts cancer at all.
+hook: >-
+  A whale has a thousand times more cells than you and lives longer. It should
+  be riddled with cancer. It is not.
 era: twentieth-century
 date: 1975 (observation), 1977 (Peto's fuller statement)
 year: 1977
@@ -24,6 +27,7 @@ types:
 nature: counterintuitive-result
 difficulty: intermediate
 status: explained
+renown: specialist
 concepts:
   - Multistage carcinogenesis
   - Somatic evolution

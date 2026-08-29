@@ -7,6 +7,9 @@ summary: >-
   Pick a number that stands in for something you care about, then reward people
   for moving that number. They will move it. The thing you actually cared about
   is now free to drift away, and your number will not tell you that it has.
+hook: >-
+  The moment you measure something and start rewarding the number, the number
+  stops telling you what it used to.
 era: twentieth-century
 date: 1975 (Goodhart's formulation), 1997 (Strathern's phrasing)
 year: 1975
@@ -30,6 +33,7 @@ types:
 nature: counterintuitive-result
 difficulty: intermediate
 status: explained
+renown: landmark
 concepts:
   - Proxy measures
   - Reward hacking

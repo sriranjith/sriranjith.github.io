@@ -8,6 +8,9 @@ summary: >-
   Collect every set that does not contain itself. Does that collection contain
   itself? Either answer contradicts the other. The question destroyed the leading
   attempt to found mathematics on logic, and forced set theory to be rebuilt.
+hook: >-
+  Consider the set of all sets that do not contain themselves. Does that set
+  contain itself? Either answer is wrong.
 era: twentieth-century
 date: 1901 (discovered), 1902 (letter to Frege), 1903 (published)
 year: 1901
@@ -29,6 +32,7 @@ types:
 nature: logical-contradiction
 difficulty: advanced
 status: resolved
+renown: landmark
 concepts:
   - Unrestricted comprehension
   - Axiom schema of separation

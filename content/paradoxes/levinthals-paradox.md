@@ -8,6 +8,9 @@ summary: >-
   A protein chain has more possible shapes than there are atoms in the galaxy. If
   it tried them one at a time it could not find the right one before the universe
   ended. It finds it in millionths of a second, every time.
+hook: >-
+  A protein has more possible shapes than the universe has atoms, yet it finds
+  the right one in less than a thousandth of a second.
 era: twentieth-century
 date: 1968–1969
 year: 1969
@@ -31,6 +34,7 @@ types:
 nature: apparent-contradiction
 difficulty: advanced
 status: resolved
+renown: specialist
 concepts:
   - Conformational search
   - Energy landscape

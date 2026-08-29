@@ -3,11 +3,15 @@ import Base from '../layouts/Base.astro';
 import ParadoxCard from './ParadoxCard.astro';
 import { publicCatalog } from '../lib/catalog.js';
 import { url } from '../lib/site.js';
+import { byRenown } from '../lib/graph.js';
 
 // One component behind all six classification axes. Adding a taxonomy term
 // creates its page automatically; adding an axis is one thin route file.
-const { term, axis, paradoxes, siblings } = Astro.props;
+const { term, axis, paradoxes: incoming, siblings } = Astro.props;
 const tx = publicCatalog().taxonomy;
+
+// Recognisable first, here as everywhere else.
+const paradoxes = [...incoming].sort(byRenown);
 
 const byDifficulty = tx.difficulties
   .map((d) => ({ difficulty: d, items: paradoxes.filter((p) => p.difficulty === d.id) }))
@@ -43,7 +47,7 @@ const groupIt = axis.key !== 'difficulties' && paradoxes.length > 6;
   </header>
 
   {paradoxes.length === 0 && (
-    <p class="empty">Nothing here yet. This is a known gap — see the coverage notes in the admin dashboard.</p>
+    <p class="empty">Nothing here yet. Try one of the neighbouring categories below.</p>
   )}
 
   {

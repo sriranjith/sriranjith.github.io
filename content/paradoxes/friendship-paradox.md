@@ -9,6 +9,9 @@ summary: >-
   On average, your friends have more friends than you do. So do almost
   everybody's. It is not a comment on you — it is a fact about how counting
   works, and it is true in essentially every real social network.
+hook: >-
+  Your friends have more friends than you do. So do mine. This is true for
+  almost everybody, all at the same time.
 era: twentieth-century
 date: 1991
 year: 1991
@@ -30,6 +33,7 @@ types:
 nature: veridical
 difficulty: beginner
 status: resolved
+renown: known
 concepts:
   - Size-biased sampling
   - Degree distribution

@@ -8,6 +8,9 @@ summary: >-
   Two pairs of gambles, offered minutes apart. Most people — including the
   economists who wrote the theory — choose in a way that no expected-utility
   maximiser can. Allais built the questionnaire in 1952 to catch exactly that.
+hook: >-
+  Offered the same improvement in odds twice, most people take it once and
+  refuse it the second time. Both choices feel obviously right.
 era: twentieth-century
 date: 1952 (posed at the Paris colloquium), 1953 (published)
 year: 1953
@@ -29,6 +32,7 @@ types:
 nature: counterintuitive-result
 difficulty: advanced
 status: explained
+renown: known
 concepts:
   - Expected utility theory
   - Independence axiom

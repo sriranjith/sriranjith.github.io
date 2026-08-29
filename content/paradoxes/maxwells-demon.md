@@ -8,6 +8,9 @@ summary: >-
   A tiny doorkeeper sorts fast molecules from slow ones and makes a hot room and
   a cold room out of a lukewarm one, for free. It took 115 years to find the bill:
   the demon must eventually erase its own memory, and erasing costs heat.
+hook: >-
+  A tiny creature sorting fast molecules from slow ones appears to make heat
+  flow the wrong way, for free, forever.
 era: nineteenth-century
 date: 1867 (letter to Tait), 1871 (published in Theory of Heat)
 year: 1867
@@ -30,6 +33,7 @@ types:
 nature: apparent-contradiction
 difficulty: advanced
 status: resolved
+renown: landmark
 concepts:
   - Second law of thermodynamics
   - Entropy

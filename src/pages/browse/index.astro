@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { publicCatalog } from '../../lib/catalog.js';
 import { url, AXES } from '../../lib/site.js';
+import { byRenown } from '../../lib/graph.js';
 
 // Every card is rendered at build time and filtered in the browser by toggling
 // a class. The page is fully usable, and fully indexable, with JavaScript off.
@@ -20,16 +21,30 @@ const facets = AXES.map((axis) => ({
     .filter((t) => t.count > 0),
 })).filter((f) => f.terms.length > 1);
 
+// Positions for each order the reader can pick, baked in as numbers so
+// re-sorting is a CSS `order` change rather than a DOM rebuild — and so the
+// default order still holds with JavaScript off.
+const yearPos = new Map(
+  catalog.paradoxes.slice().sort((a, b) => a.year - b.year).map((p, i) => [p.slug, i])
+);
+const titlePos = new Map(
+  catalog.paradoxes.slice().sort((a, b) => a.title.localeCompare(b.title)).map((p, i) => [p.slug, i])
+);
+
+// Default order is recognisable-first. A visitor scrolling 58 unfamiliar names
+// gives up; the famous ones are the way in.
 const items = catalog.paradoxes
   .slice()
-  .sort((a, b) => a.year - b.year)
-  .map((p) => ({
+  .sort(byRenown)
+  .map((p, i) => ({
     p,
     domain: tx.get('domains', p.domains[0]),
+    pos: { renown: i, year: yearPos.get(p.slug), title: titlePos.get(p.slug) },
     haystack: [
       p.title,
       ...p.alternateNames,
       p.summary,
+      p.hook ?? '',
       ...p.concepts,
       ...p.people.map((id) => catalog.personById.get(id)?.name ?? ''),
       ...p.domains.map((d) => tx.label('domains', d)),
@@ -83,16 +98,30 @@ const items = catalog.paradoxes
     </aside>
 
     <div class="bresults">
-      <p class="bcount" role="status" aria-live="polite">
-        Showing <b data-count>{items.length}</b> of {items.length}
-      </p>
+      <div class="bbar">
+        <p class="bcount" role="status" aria-live="polite">
+          Showing <b data-count>{items.length}</b> of {items.length}
+        </p>
+        <label class="bsort">
+          <span>Order</span>
+          <select data-sort>
+            <option value="renown">Best known first</option>
+            <option value="year">Oldest first</option>
+            <option value="title">A – Z</option>
+          </select>
+        </label>
+      </div>
 
       <ul class="blist" data-list>
         {
-          items.map(({ p, domain, haystack }) => (
+          items.map(({ p, domain, pos, haystack }) => (
             <li
               class="brow"
               data-item
+              style={`order:${pos.renown}`}
+              data-pos-renown={pos.renown}
+              data-pos-year={pos.year}
+              data-pos-title={pos.title}
               data-domains={p.domains.join(' ')}
               data-types={p.types.join(' ')}
               data-eras={p.era}
@@ -104,8 +133,11 @@ const items = catalog.paradoxes
               <a href={url.paradox(p.slug)}>
                 <span class="brow__year">{p.date}</span>
                 <span class="brow__main">
-                  <b>{p.title}</b>
-                  <span class="brow__summary">{p.summary}</span>
+                  <b>
+                    {p.renown === 'landmark' && <i class="brow__star" title="Widely known">★</i>}
+                    {p.title}
+                  </b>
+                  <span class="brow__summary">{p.hook ?? p.summary}</span>
                 </span>
                 <span class="brow__tags">
                   {domain && (
@@ -194,15 +226,48 @@ const items = catalog.paradoxes
 
   .breset { width: 100%; justify-content: center; font-size: 0.85rem; }
 
+  .bbar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
   .bcount {
     font-family: var(--font-ui);
     font-size: 0.83rem;
     color: var(--ink-faint);
-    margin-bottom: 0.75rem;
+    margin: 0;
   }
   .bcount b { color: var(--ink); font-variant-numeric: tabular-nums; }
 
-  .blist { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+  .bsort {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-ui);
+    font-size: 0.83rem;
+    color: var(--ink-faint);
+  }
+  .bsort select {
+    font: inherit;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+  }
+
+  .blist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+  }
   .brow { border-bottom: 1px solid var(--line-soft); content-visibility: auto; contain-intrinsic-size: auto 5rem; }
   .brow[hidden] { display: none; }
   .brow a {
@@ -298,6 +363,24 @@ const items = catalog.paradoxes
     search.value = params.get('q') ?? '';
   }
 
+  // Re-ordering is a flex `order` change, so no row is ever detached and
+  // re-inserted. Without JavaScript the list stays in best-known-first order.
+  const sortEl = document.querySelector('[data-sort]');
+
+  function sortBy(key) {
+    const attr = { renown: 'posRenown', year: 'posYear', title: 'posTitle' }[key] ?? 'posRenown';
+    for (const row of rows) row.style.order = row.dataset[attr];
+  }
+
+  sortEl.addEventListener('change', () => {
+    sortBy(sortEl.value);
+    const params = new URLSearchParams(location.search);
+    if (sortEl.value === 'renown') params.delete('sort');
+    else params.set('sort', sortEl.value);
+    const next = params.toString();
+    history.replaceState(null, '', next ? `?${next}` : location.pathname);
+  });
+
   let timer;
   form.addEventListener('input', (event) => {
     if (event.target === search) {
@@ -310,5 +393,10 @@ const items = catalog.paradoxes
   form.addEventListener('reset', () => setTimeout(() => apply(readState()), 0));
 
   restore();
+  const wantedSort = new URLSearchParams(location.search).get('sort');
+  if (wantedSort && [...sortEl.options].some((o) => o.value === wantedSort)) {
+    sortEl.value = wantedSort;
+    sortBy(wantedSort);
+  }
   apply(readState());
 </script>

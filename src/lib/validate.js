@@ -164,7 +164,31 @@ export function validateCatalog(catalog) {
     checkTerm(report, tx, 'paradox', id, 'nature', 'natures', p.nature);
     checkTerm(report, tx, 'paradox', id, 'difficulty', 'difficulties', p.difficulty);
     checkTerm(report, tx, 'paradox', id, 'status', 'statuses', p.status);
+    checkTerm(report, tx, 'paradox', id, 'renown', 'renowns', p.renown);
     checkTerm(report, tx, 'paradox', id, 'era', 'eras', p.era);
+
+    // The hook is what a reader meets first, everywhere. An entry without one
+    // is represented in every listing by a summary written for a different job.
+    if (published && !p.hook) {
+      report(
+        WARNING,
+        'paradox',
+        id,
+        'hook',
+        'No hook. Listings will fall back to the summary.',
+        'Write the one question this entry leaves open, in the reader\'s own words. Do not answer it.'
+      );
+    }
+    if (p.hook && p.hook.trim().toLowerCase() === p.summary.trim().toLowerCase()) {
+      report(
+        WARNING,
+        'paradox',
+        id,
+        'hook',
+        'The hook is identical to the summary.',
+        'They do different jobs: the summary describes the entry, the hook opens a gap.'
+      );
+    }
 
     // era must agree with the sort year, or the timeline lies
     const era = tx.get('eras', p.era);

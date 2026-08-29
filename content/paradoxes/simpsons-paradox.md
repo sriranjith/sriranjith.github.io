@@ -9,6 +9,9 @@ summary: >-
   A treatment can work better for small stones, better for large stones, and
   still look worse overall. Every group prefers one thing and the total prefers
   the other. The arithmetic is correct both times.
+hook: >-
+  A treatment does better for men, and better for women, and worse for people.
+  None of the arithmetic is wrong.
 era: twentieth-century
 date: 1903 (Yule), 1951 (Simpson), 1972 (named)
 year: 1951
@@ -30,6 +33,7 @@ types:
 nature: veridical
 difficulty: intermediate
 status: resolved
+renown: landmark
 interactive: simpsons-paradox
 concepts:
   - Weighted averages
