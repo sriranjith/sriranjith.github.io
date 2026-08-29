@@ -106,4 +106,4 @@ without a person checking it against a real source and publishing it explicitly.
 
 ## Requirements
 
-Node 20 or later. Nothing else.
+Node 22.12 or later — the version in `.nvmrc` (24) is what CI uses. Nothing else.

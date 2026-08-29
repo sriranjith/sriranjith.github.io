@@ -5,7 +5,7 @@
   "type": "module",
   "description": "A static knowledge base of paradoxes, for every age group.",
   "engines": {
-    "node": ">=20"
+    "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "astro dev",
