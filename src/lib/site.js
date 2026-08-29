@@ -7,7 +7,7 @@ export const SITE = {
   // Must be a ROOT domain, not a subpath. Every internal link on this site is
   // root-absolute (`/browse/`), which is what keeps the codebase free of
   // base-path plumbing — see docs/DEPLOYMENT.md.
-  url: 'https://sriranjith.github.io/paradox',
+  url: 'https://sriranjith.github.io',
   locale: 'en',
   // Set to null to ship no analytics at all. See docs/DEPLOYMENT.md.
   analytics: null,
