@@ -56,7 +56,7 @@ applies everywhere.
 Six runtime dependencies total. `npm install` takes about 35 seconds.
 
 **Everything is plain JavaScript with JSDoc types, not TypeScript.** `src/lib/`
-is imported by Astro *and* run directly by Node scripts and the admin server.
+is imported by Astro *and* run directly by Node scripts and the admin server..
 TypeScript would mean a compile step for the CLI and the admin — a build system
 to maintain in exchange for types the editor already infers from Zod.
 

@@ -1,0 +1,11 @@
+# Cloudflare Pages headers
+# Static assets: cache 1 year
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages: always revalidate
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
