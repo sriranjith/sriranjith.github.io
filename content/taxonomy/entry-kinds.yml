@@ -1,0 +1,38 @@
+# Controlled vocabulary: Entry Kind
+# What genre of named intellectual phenomenon this entry describes.
+- id: paradox
+  label: Paradox
+  short: An argument that leads to contradiction or deep surprise.
+  blurb: Self-defeating arguments, impossible results, and situations where valid reasoning reaches an absurd conclusion.
+  color: "#6b4de6"
+  order: 10
+- id: law
+  label: Law
+  short: A named principle that describes a recurring pattern.
+  blurb: Heuristics, rules of thumb, and empirical observations that have proven durable enough to earn a name.
+  color: "#2f7bd6"
+  order: 20
+- id: effect
+  label: Effect
+  short: A named phenomenon where a cause produces a surprising outcome.
+  blurb: Documented causal patterns where something in the world behaves differently from how most people expect.
+  color: "#2e9e5b"
+  order: 30
+- id: principle
+  label: Principle
+  short: A foundational rule or axiom in a domain of thought.
+  blurb: Foundational ideas that organise an entire field — stated simply but with far-reaching consequences.
+  color: "#e0762b"
+  order: 40
+- id: theorem
+  label: Theorem
+  short: A formally proved mathematical or logical result.
+  blurb: Results proved rigorously from axioms, often with consequences that feel impossible until you see the proof.
+  color: "#d1487f"
+  order: 50
+- id: puzzle
+  label: Puzzle
+  short: A scenario designed to expose a gap in intuition.
+  blurb: Constructed problems where the difficulty is not calculation but correctly framing what the question is asking.
+  color: "#8a6d3b"
+  order: 60

@@ -14,12 +14,14 @@ const {
 const tx = publicCatalog().taxonomy;
 const domain = tx.get('domains', paradox.domains[0]);
 const difficulty = tx.get('difficulties', paradox.difficulty);
+const entryKind = tx.get('entryKinds', paradox.kind ?? 'paradox');
 
 // The hook states the open question; the summary describes the entry. A card is
 // a decision point, so it gets the question. Entries without a hook fall back
 // rather than showing nothing.
 const blurb = paradox.hook ?? paradox.summary;
 const famous = paradox.renown === 'landmark';
+const isNonParadox = paradox.kind && paradox.kind !== 'paradox';
 ---
 
 <article class={`pcard ${compact ? 'pcard--compact' : ''} ${figure ? 'pcard--figured' : ''}`}>
@@ -29,6 +31,9 @@ const famous = paradox.renown === 'landmark';
 
   <div class="pcard__meta">
     {domain && <span class="tag tag--dot" style={`--dot:${domain.color}`}>{domain.label}</span>}
+    {isNonParadox && entryKind && (
+      <span class="pcard__kind">{entryKind.label}</span>
+    )}
     {famous && <span class="pcard__famous">Famous</span>}
     <span class="pcard__sep" aria-hidden="true">·</span>
     <span class="pcard__difficulty">{difficulty?.label ?? paradox.difficulty}</span>
@@ -101,6 +106,19 @@ const famous = paradox.renown === 'landmark';
   }
   .pcard__sep { opacity: 0.5; }
   .pcard__difficulty { font-weight: 550; }
+
+  .pcard__kind {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.68rem;
+    font-weight: 620;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    background: var(--accent-wash);
+    border-radius: 999px;
+    padding: 0.12rem 0.5rem;
+  }
 
   .pcard__famous {
     display: inline-flex;

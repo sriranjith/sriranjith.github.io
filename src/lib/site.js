@@ -1,9 +1,9 @@
 // Site-wide configuration. Change the URL here before the first deploy.
 export const SITE = {
   name: 'Paradox',
-  tagline: 'Ideas that argue with your intuition',
+  tagline: 'Paradoxes, laws & effects that reshape how you think',
   description:
-    'A curated, carefully sourced collection of the paradoxes that shaped how we think — explained for every age, from a first story to the original papers.',
+    'A curated, carefully sourced collection of paradoxes, laws, and effects that shaped how we think — explained for every age, from a first story to the original papers.',
   // Must be a ROOT domain, not a subpath. Every internal link on this site is
   // root-absolute (`/browse/`), which is what keeps the codebase free of
   // base-path plumbing — see docs/DEPLOYMENT.md.
@@ -30,6 +30,7 @@ export const url = {
   difficulty: (id) => `/difficulty/${id}/`,
   nature: (id) => `/nature/${id}/`,
   status: (id) => `/status/${id}/`,
+  kind: (id) => `/kind/${id}/`,
   person: (id) => `/person/${id}/`,
   path: (id) => `/path/${id}/`,
   sources: () => '/sources/',
@@ -37,7 +38,7 @@ export const url = {
   search: () => '/search/',
 };
 
-/** The five browsable classification axes, used to generate pages and filters. */
+/** The browsable classification axes, used to generate pages and filters. */
 export const AXES = [
   { key: 'domains', kind: 'domains', field: 'domains', label: 'Domain', plural: 'Domains', build: url.domain, multi: true },
   { key: 'types', kind: 'types', field: 'types', label: 'Type', plural: 'Types', build: url.type, multi: true },
@@ -45,4 +46,5 @@ export const AXES = [
   { key: 'difficulties', kind: 'difficulties', field: 'difficulty', label: 'Difficulty', plural: 'Difficulty', build: url.difficulty, multi: false },
   { key: 'natures', kind: 'natures', field: 'nature', label: 'Nature', plural: 'Nature', build: url.nature, multi: false },
   { key: 'statuses', kind: 'statuses', field: 'status', label: 'Status', plural: 'Status', build: url.status, multi: false },
+  { key: 'entryKinds', kind: 'entryKinds', field: 'kind', label: 'Kind', plural: 'Kinds', build: url.kind, multi: false },
 ];

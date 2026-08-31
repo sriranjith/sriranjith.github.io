@@ -14,6 +14,7 @@ const FILES = {
   renowns: 'renown.yml',
   statuses: 'statuses.yml',
   eras: 'eras.yml',
+  entryKinds: 'entry-kinds.yml',
   relationshipKinds: 'relationship-kinds.yml',
   sourceTypes: 'source-types.yml',
 };

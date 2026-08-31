@@ -1,0 +1,12 @@
+id: brooks-1975-mythical
+type: book
+title: "The Mythical Man-Month: Essays on Software Engineering"
+authors:
+  - Frederick P. Brooks Jr.
+year: 1975
+publisher: Addison-Wesley
+notes: >-
+  The book that named and documented Brooks's Law, based on Brooks's experience
+  managing IBM's OS/360 project. Also introduced the "second-system effect" and
+  named Conway's Law. A 20th-anniversary edition (1995) added a retrospective
+  chapter in which Brooks assessed which claims held up.

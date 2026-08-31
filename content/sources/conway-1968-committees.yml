@@ -1,0 +1,13 @@
+id: conway-1968-committees
+type: paper
+title: "How Do Committees Invent?"
+authors:
+  - Melvin E. Conway
+year: 1968
+journal: Datamation
+url: http://www.melconway.com/Home/Conways_Law.html
+notes: >-
+  The original paper, rejected by Harvard Business Review and published in
+  Datamation. Argues that the structure of a system necessarily reflects the
+  communication structure of the organisation that designed it. Named Conway's
+  Law by Fred Brooks in The Mythical Man-Month (1975).

@@ -1,0 +1,15 @@
+id: lorenz-1963-nonperiodic
+type: primary-source
+title: "Deterministic Nonperiodic Flow"
+authors:
+  - Edward N. Lorenz
+year: 1963
+journal: Journal of the Atmospheric Sciences
+volume: "20"
+pages: "130–141"
+doi: 10.1175/1520-0469(1963)020<0130:DNF>2.0.CO;2
+notes: >-
+  The founding paper of chaos theory. Introduces the strange attractor and
+  demonstrates sensitive dependence on initial conditions in a simplified model
+  of atmospheric convection. The re-run from a rounded intermediate value that
+  prompted the discovery is described in Lorenz's subsequent writings.

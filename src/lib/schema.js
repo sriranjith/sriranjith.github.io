@@ -76,6 +76,9 @@ export const paradoxSchema = z.object({
   difficulty: trimmed,
   status: trimmed,
 
+  // Whether this entry is a paradox, law, effect, principle, theorem, or puzzle.
+  kind: z.enum(['paradox', 'law', 'effect', 'principle', 'theorem', 'puzzle']).default('paradox'),
+
   // How likely a reader is to have heard of this already. Decides what leads a
   // listing. Defaults to the middle tier, so omitting it never promotes an
   // entry it should not.

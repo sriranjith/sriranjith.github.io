@@ -18,6 +18,18 @@ const MOODS = [
   { label: 'Something unresolved', href: url.nature('open-problem'), hint: 'Experts still disagree' },
 ];
 
+// Laws: named principles that changed how people reason
+const featuredLaws = catalog.paradoxes
+  .filter((p) => p.kind === 'law')
+  .sort(byRenown)
+  .slice(0, 3);
+
+// Effects: named phenomena that behave differently than expected
+const featuredEffects = catalog.paradoxes
+  .filter((p) => p.kind === 'effect')
+  .sort(byRenown)
+  .slice(0, 3);
+
 // The opening row is the entries a first-time visitor is most likely to have
 // heard of, spread across fields so the collection does not look like one
 // subject. Recognition is what earns the second click.
@@ -65,13 +77,36 @@ const jsonLd = {
 <Base jsonLd={jsonLd}>
   <section class="hero">
     <h1 class="hero__title">
-      Some ideas <em>argue</em> with your intuition.
+      Some ideas <em>reshape</em> how you see everything.
     </h1>
     <p class="hero__lede">
-      {catalog.paradoxes.length} of them — from a puzzle told 2,500 years ago to
-      results proved last decade. Each one starts as a story anyone can follow
-      and goes as deep as you care to take it.
+      {catalog.paradoxes.length} paradoxes, laws, and effects — from a puzzle
+      told 2,500 years ago to a principle coined last decade. Each one starts as
+      a story anyone can follow and goes as deep as you care to take it.
     </p>
+
+    <div class="hero__kinds">
+      <a class="hero__kind" href={url.kind('paradox')}>
+        <span class="hero__kind-icon">⟳</span>
+        <b>Paradoxes</b>
+        <span>Arguments that contradict themselves</span>
+      </a>
+      <a class="hero__kind" href={url.kind('law')}>
+        <span class="hero__kind-icon">⚖</span>
+        <b>Laws</b>
+        <span>Named principles that earned their reputation</span>
+      </a>
+      <a class="hero__kind" href={url.kind('effect')}>
+        <span class="hero__kind-icon">◎</span>
+        <b>Effects</b>
+        <span>Phenomena that behave unlike you expect</span>
+      </a>
+      <a class="hero__kind" href={url.kind('principle')}>
+        <span class="hero__kind-icon">◈</span>
+        <b>Principles</b>
+        <span>Foundational rules with far-reaching consequences</span>
+      </a>
+    </div>
 
     <div class="hero__actions">
       <a class="btn btn--primary" href="#famous">Start with a famous one</a>
@@ -100,6 +135,36 @@ const jsonLd = {
       {famous.map((p) => <ParadoxCard paradox={p} compact figure />)}
     </div>
   </section>
+
+  {featuredLaws.length > 0 && (
+    <section class="section">
+      <div class="section__head">
+        <div>
+          <h2>Laws that named what nobody had words for</h2>
+          <p>Heuristics and principles durable enough to earn a name.</p>
+        </div>
+        <a class="section__more" href={url.kind('law')}>All laws →</a>
+      </div>
+      <div class="grid grid--3">
+        {featuredLaws.map((p) => <ParadoxCard paradox={p} compact />)}
+      </div>
+    </section>
+  )}
+
+  {featuredEffects.length > 0 && (
+    <section class="section">
+      <div class="section__head">
+        <div>
+          <h2>Effects that changed what we thought was possible</h2>
+          <p>Named phenomena where reality behaves differently than expected.</p>
+        </div>
+        <a class="section__more" href={url.kind('effect')}>All effects →</a>
+      </div>
+      <div class="grid grid--3">
+        {featuredEffects.map((p) => <ParadoxCard paradox={p} compact />)}
+      </div>
+    </section>
+  )}
 
   <section class="section" aria-labelledby="moods">
     <div class="section__head">
@@ -251,6 +316,33 @@ const jsonLd = {
     margin-bottom: 1.8rem;
     max-width: 40rem;
   }
+  .hero__kinds {
+    display: grid;
+    gap: 0.55rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+    margin-bottom: 1.6rem;
+  }
+  .hero__kind {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    text-decoration: none;
+    font-family: var(--font-ui);
+    transition: border-color 0.15s, background 0.15s, transform 0.15s;
+  }
+  .hero__kind:hover {
+    border-color: var(--accent);
+    background: var(--accent-wash);
+    transform: translateY(-2px);
+  }
+  .hero__kind-icon { font-size: 1.2rem; margin-bottom: 0.2rem; }
+  .hero__kind b { font-size: 0.95rem; font-weight: 640; color: var(--ink); }
+  .hero__kind span { font-size: 0.78rem; color: var(--ink-faint); line-height: 1.4; }
+
   .hero__actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
 
   /* One real question, above the fold. The gap it opens is the whole pitch —

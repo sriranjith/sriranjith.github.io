@@ -1,0 +1,12 @@
+id: hofstadter-1979-geb
+type: book
+title: "Gödel, Escher, Bach: An Eternal Golden Braid"
+authors:
+  - Douglas R. Hofstadter
+year: 1979
+publisher: Basic Books
+notes: >-
+  The Pulitzer Prize-winning book in which Hofstadter's Law appears. The law is
+  stated in passing, almost parenthetically, in the context of AI researchers'
+  repeated failures to predict when chess programs would surpass human masters.
+  It became one of the book's most-quoted lines.
