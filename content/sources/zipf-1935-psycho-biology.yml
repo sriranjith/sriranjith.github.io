@@ -1,0 +1,15 @@
+id: zipf-1935-psycho-biology
+type: book
+title: "The Psycho-Biology of Language: An Introduction to Dynamic Philology"
+authors:
+  - George Kingsley Zipf
+year: 1935
+publisher: Houghton Mifflin
+notes: >-
+  Zipf's first major work systematically documenting the inverse relationship
+  between a word's frequency rank and its frequency of use in natural language.
+  The book analysed large corpora of English, Latin, and Chinese text,
+  establishing that the most frequent word appears roughly twice as often as
+  the second most frequent, three times as often as the third, and so on. Zipf
+  later extended the analysis to city sizes, income distributions, and firm
+  sizes in Human Behavior and the Principle of Least Effort (1949).

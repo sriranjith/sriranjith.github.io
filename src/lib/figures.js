@@ -468,6 +468,22 @@ export const FIGURE_BY_SLUG = {
   'matthew-effect': 'divergence',
   'moores-law': 'divergence',
   'pygmalion-effect': 'perverse-curve',
+  // Laws and effects added 2026-09-01
+  'amaras-law': 'perverse-curve',
+  'anchoring-effect': 'spillover',
+  'baader-meinhof-phenomenon': 'spillover',
+  'brandolinis-law': 'aggregation-flip',
+  'chestertons-fence': 'wall',
+  'cunninghams-law': 'perverse-curve',
+  'dunbars-number': 'wall',
+  'flynn-effect': 'divergence',
+  'metcalfes-law': 'divergence',
+  'pareto-principle': 'power-law',
+  'placebo-effect': 'perverse-curve',
+  'ringelmann-effect': 'payoff',
+  'semmelweis-reflex': 'wall',
+  'sunk-cost-fallacy': 'perverse-curve',
+  'zipfs-law': 'power-law',
 };
 
 export const FIGURE_IDS = Object.keys(MOTIFS);

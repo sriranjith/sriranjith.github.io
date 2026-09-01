@@ -1,0 +1,18 @@
+id: metcalfe-1995-internet-alley
+type: paper
+title: "Metcalfe's Law: A network becomes more valuable as it reaches more users"
+authors:
+  - Robert Metcalfe
+year: 1995
+journal: InfoWorld
+volume: "17(40)"
+pages: "53–54"
+notes: >-
+  The article in which Ethernet inventor Robert Metcalfe first articulated the
+  law that now bears his name in widely circulated form: the value of a
+  telecommunications network is proportional to the square of the number of
+  connected users. Metcalfe had been stating this principle since the early
+  1980s in advocacy for Ethernet adoption, but this InfoWorld column was the
+  first widespread print articulation. George Gilder named the principle
+  "Metcalfe's Law" in a 1993 article. The law has since been applied to the
+  internet, social networks, and marketplaces.
