@@ -34,9 +34,16 @@ const primaryDomain = tx.get('domains', paradox.domains[0]);
 
 // Only render layers this entry actually has, in canonical order.
 const layers = LAYERS.filter((l) => (paradox.sections[l.id] ?? '').trim());
+// Each depth's anchor points to the FIRST actual layer in that depth so the
+// rail links never hit a missing element (e.g. only "History" exists under the
+// "Explore" depth but not the "Explore" layer itself).
 const activeDepths = DEPTHS.filter(
   (d) => d.id === 'research' || layers.some((l) => l.depth === d.id)
-);
+).map((d) => {
+  if (d.id === 'research') return { ...d, anchor: 'research' };
+  const firstLayer = layers.find((l) => l.depth === d.id);
+  return { ...d, anchor: firstLayer?.id ?? d.id };
+});
 
 const people = paradox.people.map((id) => catalog.personById.get(id)).filter(Boolean);
 
@@ -100,6 +107,9 @@ const jsonLd = {
 ---
 
 <Base title={paradox.title} description={description} type="article" jsonLd={jsonLd}>
+  {/* Reading progress bar — fills as the user scrolls through the article */}
+  <div class="px__progress" id="px-progress" aria-hidden="true"></div>
+
   <nav class="breadcrumbs" aria-label="Breadcrumb">
     <a href="/">Home</a>
     <span aria-hidden="true">/</span>
@@ -112,7 +122,7 @@ const jsonLd = {
     )}
   </nav>
 
-  <article class="px">
+  <article class="px" id="px-article">
     <header class="px__header">
       <p class="px__kicker">
         <a class="tag tag--dot" style={`--dot:${primaryDomain?.color}`} href={url.domain(paradox.domains[0])}>
@@ -144,13 +154,13 @@ const jsonLd = {
         </div>
         <div>
           <dt>Reading time</dt>
-          <dd>{paradox.readingMinutes} minutes</dd>
+          <dd>{paradox.readingMinutes} min</dd>
         </div>
         {people.length > 0 && (
           <div>
             <dt>People</dt>
-            <dd>{people.map((p, i) => (
-              <>{i > 0 && ', '}<a href={url.person(p.id)}>{p.name}</a></>
+            <dd class="px__facts-people">{people.map((p, i) => (
+              <>{i > 0 && <span class="px__facts-sep">,</span>}<a href={url.person(p.id)}>{p.name}</a></>
             ))}</dd>
           </div>
         )}
@@ -297,33 +307,149 @@ const jsonLd = {
       </div>
     </section>
   )}
+
+  {/* Scroll-to-top button — appears after scrolling down 400 px */}
+  <button class="px__top" id="px-top" aria-label="Back to top" title="Back to top">↑</button>
 </Base>
 
 <style>
+  /* ── Progress bar ── */
+  .px__progress {
+    position: fixed;
+    top: 3.75rem; /* sits flush under the sticky nav */
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--accent);
+    z-index: 30;
+    transition: width 0.1s linear;
+    transform-origin: left;
+    pointer-events: none;
+  }
+
+  /* ── Article ── */
   .px { margin-bottom: 3rem; }
 
-  .px__header { padding-block: 1rem 2rem; }
-  .px__kicker { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
-  .px__header h1 { margin-bottom: 0.35rem; }
+  /* ── Header ── */
+  .px__header {
+    padding-block: 1.5rem 2.5rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 2rem;
+  }
+
+  .px__kicker {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.1rem;
+  }
+
+  .px__header h1 {
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.025em;
+  }
+
   .px__alt {
     font-family: var(--font-ui);
     font-size: 0.86rem;
     color: var(--ink-faint);
-    margin: 0 0 1rem;
+    margin: 0 0 1.1rem;
+    font-style: italic;
   }
-  .px__summary { max-width: 44rem; margin-bottom: 1.5rem; }
 
-  /* The open question, set larger than body text. A reader who arrives from a
-     search result should meet the gap before anything administrative. */
+  .px__summary { max-width: 44rem; margin-bottom: 1.75rem; }
+
+  /* The hook — shown when the author provided it; larger than body text so a
+     reader arriving from search meets the puzzle before anything else. */
   .px__hook {
     max-width: 42rem;
-    margin: 0 0 1.5rem;
-    font-size: clamp(1.18rem, 2.2vw, 1.45rem);
-    line-height: 1.45;
+    margin: 0 0 1.75rem;
+    font-size: clamp(1.18rem, 2.2vw, 1.48rem);
+    line-height: 1.48;
     color: var(--ink);
     text-wrap: pretty;
+    font-style: italic;
   }
 
+  /* ── Facts strip ── */
+  .px__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0;
+    margin: 0 0 1.75rem;
+    padding: 0.9rem 0;
+    border-block: 1px solid var(--line-soft);
+    font-family: var(--font-ui);
+  }
+  .px__facts > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-block: 0.3rem;
+    padding-right: 2rem;
+    border-right: 1px solid var(--line-soft);
+    margin-right: 2rem;
+  }
+  .px__facts > div:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+  .px__facts dt {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--ink-faint);
+    font-weight: 650;
+  }
+  .px__facts dd { margin: 0; font-size: 0.93rem; font-weight: 500; }
+  .px__facts-people { display: flex; flex-wrap: wrap; gap: 0 0.25rem; }
+  .px__facts-sep { color: var(--ink-faint); }
+
+  /* ── Nature callout ── */
+  .px__nature-note {
+    font-family: var(--font-ui);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    background: var(--surface-alt);
+    border-left: 3px solid var(--accent);
+    padding: 0.85rem 1.1rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 0;
+    max-width: 44rem;
+  }
+  .px__nature-note b { color: var(--ink); }
+
+  /* ── Two-column layout ── */
+  .px__layout {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: 3rem;
+    align-items: start;
+  }
+  .px__rail-inner {
+    position: sticky;
+    top: 5.5rem;
+    /* Ensure the rail never taller than the viewport so it can scroll if needed */
+    max-height: calc(100vh - 7rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+  .px__rail-inner::-webkit-scrollbar { width: 4px; }
+  .px__rail-inner::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+  .px__body { width: min(100%, 40rem); }
+
+  @media (max-width: 62rem) {
+    .px__header { padding-block: 1rem 1.75rem; margin-bottom: 1.25rem; }
+    .px__layout { grid-template-columns: 1fr; gap: 1rem; }
+    .px__rail-inner {
+      position: static;
+      max-height: none;
+      overflow: visible;
+    }
+    .px__body { width: 100%; }
+  }
+
+  /* ── Shape section ── */
   .shape__also { margin-top: 1.25rem; }
   .shape__lead {
     font-family: var(--font-ui);
@@ -335,67 +461,21 @@ const jsonLd = {
     margin: 0 0 0.55rem;
   }
 
-  .px__facts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0 2.25rem;
-    margin: 0 0 1.5rem;
-    padding: 1rem 0;
-    border-block: 1px solid var(--line);
-    font-family: var(--font-ui);
-  }
-  .px__facts > div { display: flex; flex-direction: column; gap: 0.15rem; padding-block: 0.35rem; }
-  .px__facts dt {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-faint);
-    font-weight: 620;
-  }
-  .px__facts dd { margin: 0; font-size: 0.92rem; }
-
-  .px__nature-note {
-    font-family: var(--font-ui);
-    font-size: 0.875rem;
-    line-height: 1.55;
-    color: var(--ink-soft);
-    background: var(--surface-alt);
-    border-left: 3px solid var(--accent);
-    padding: 0.8rem 1rem;
-    border-radius: 0 var(--radius) var(--radius) 0;
-    margin: 0;
-    max-width: 44rem;
-  }
-  .px__nature-note b { color: var(--ink); }
-
-  .px__layout {
-    display: grid;
-    grid-template-columns: 15rem minmax(0, 1fr);
-    gap: 3rem;
-    align-items: start;
-  }
-  .px__rail-inner { position: sticky; top: 5rem; }
-  .px__body { width: min(100%, 40rem); }
-
-  @media (max-width: 62rem) {
-    .px__layout { grid-template-columns: 1fr; gap: 1.5rem; }
-    .px__rail-inner { position: static; }
-    .px__body { width: 100%; }
-  }
-
+  /* ── References ── */
   .px__refgroup { margin-bottom: 1.75rem; }
   .px__refgroup h3 {
     font-size: 0.74rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--ink-faint);
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.5rem;
   }
   .px__refs { list-style: none; padding: 0; margin: 0; }
   .px__links { padding-left: 1.1rem; font-family: var(--font-ui); font-size: 0.92rem; }
   .px__links span { color: var(--ink-faint); }
   .px__norefs { color: var(--ink-faint); font-style: italic; }
 
+  /* ── Relationships ── */
   .px__rels { margin: 0; }
   .px__rels > div { margin-bottom: 1.25rem; }
   .px__rels dt {
@@ -418,6 +498,69 @@ const jsonLd = {
     line-height: 1.45;
   }
 
+  /* ── Paths ── */
   .px__paths { list-style: none; padding: 0; font-family: var(--font-ui); font-size: 0.93rem; }
+  .px__paths li { padding: 0.5rem 0; border-bottom: 1px solid var(--line-soft); }
+  .px__paths li:last-child { border-bottom: 0; }
   .px__paths span { color: var(--ink-faint); }
+
+  /* ── Scroll-to-top button ── */
+  .px__top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-soft);
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    translate: 0 0.5rem;
+    transition: opacity 0.2s, translate 0.2s, background 0.15s, color 0.15s;
+    pointer-events: none;
+    z-index: 20;
+  }
+  .px__top:hover { background: var(--accent-wash); color: var(--accent-ink); border-color: var(--accent); }
+  .px__top.is-visible { opacity: 1; translate: 0 0; pointer-events: auto; }
+
+  @media (max-width: 40rem) {
+    .px__top { bottom: 1rem; right: 1rem; width: 2.5rem; height: 2.5rem; font-size: 1rem; }
+  }
 </style>
+
+<script>
+  // ── Reading progress bar ──────────────────────────────────────────
+  const bar = document.getElementById('px-progress');
+  const article = document.getElementById('px-article');
+
+  if (bar && article) {
+    const update = () => {
+      const rect = article.getBoundingClientRect();
+      const total = rect.height - window.innerHeight;
+      const scrolled = Math.max(0, -rect.top);
+      const pct = total > 0 ? Math.min(100, (scrolled / total) * 100) : 0;
+      bar.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  // ── Scroll-to-top button ──────────────────────────────────────────
+  const topBtn = document.getElementById('px-top');
+  if (topBtn) {
+    const onScroll = () => {
+      topBtn.classList.toggle('is-visible', window.scrollY > 400);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    topBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    onScroll();
+  }
+</script>

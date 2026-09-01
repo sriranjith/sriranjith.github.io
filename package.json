@@ -16,7 +16,9 @@
     "validate": "node scripts/validate.mjs",
     "health": "node scripts/health.mjs",
     "new": "node scripts/new-paradox.mjs",
-    "check": "npm run validate && astro check"
+    "check": "npm run validate && astro check",
+    "sync-android": "node scripts/sync-android.mjs",
+    "build:android": "npm run build && npm run sync-android"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

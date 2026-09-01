@@ -1,6 +1,8 @@
 ---
 // Reading-depth navigation. Pure anchor links — works with JavaScript disabled.
 // A tiny script upgrades it to highlight the section you are currently reading.
+// Each depth may carry an `anchor` property that points to the first real layer
+// in that depth group (since a depth layer might not always exist).
 const { depths } = Astro.props;
 ---
 
@@ -8,17 +10,20 @@ const { depths } = Astro.props;
   <p class="rail__title">How deep do you want to go?</p>
   <ol class="rail__list">
     {
-      depths.map((depth, i) => (
-        <li>
-          <a href={`#${depth.id}`} data-rail-link={depth.id}>
-            <span class="rail__num">{i + 1}</span>
-            <span class="rail__body">
-              <span class="rail__label">{depth.label}</span>
-              <span class="rail__desc">{depth.description}</span>
-            </span>
-          </a>
-        </li>
-      ))
+      depths.map((depth, i) => {
+        const anchor = depth.anchor ?? depth.id;
+        return (
+          <li>
+            <a href={`#${anchor}`} data-rail-link={anchor}>
+              <span class="rail__num">{i + 1}</span>
+              <span class="rail__body">
+                <span class="rail__label">{depth.label}</span>
+                <span class="rail__desc">{depth.description}</span>
+              </span>
+            </a>
+          </li>
+        );
+      })
     }
   </ol>
 </nav>
@@ -78,10 +83,35 @@ const { depths } = Astro.props;
   .rail__desc { font-size: 0.745rem; line-height: 1.4; color: var(--ink-faint); }
 
   @media (max-width: 62rem) {
-    .rail__list { flex-direction: row; overflow-x: auto; gap: 0.4rem; padding-bottom: 0.3rem; }
+    .rail {
+      /* Bleed the rail edge-to-edge on mobile so the scroll hint is visible */
+      margin-inline: calc(-1 * var(--gap, 1rem));
+      padding-inline: var(--gap, 1rem);
+    }
+    .rail__title { display: none; }
+    .rail__list {
+      flex-direction: row;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 0.4rem;
+      padding-bottom: 0.5rem;
+      /* fade-out hint that more items exist */
+      -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+      mask-image: linear-gradient(to right, black 80%, transparent 100%);
+    }
+    .rail__list::-webkit-scrollbar { display: none; }
     .rail__list li { flex: none; }
     .rail__desc { display: none; }
-    .rail__list a { border-left: 0; border: 1px solid var(--line); }
+    .rail__list a {
+      border-left: 0;
+      border: 1px solid var(--line);
+      white-space: nowrap;
+      padding: 0.4rem 0.8rem;
+    }
+    .rail__list a[aria-current='true'] { border-color: var(--accent); }
+    .rail__num { width: 1.1rem; height: 1.1rem; font-size: 0.62rem; }
   }
 </style>
 
