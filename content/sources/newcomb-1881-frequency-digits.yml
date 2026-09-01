@@ -1,0 +1,19 @@
+id: newcomb-1881-frequency-digits
+type: paper
+title: "Note on the Frequency of Use of the Different Digits in Natural Numbers"
+authors:
+  - Simon Newcomb
+year: 1881
+journal: American Journal of Mathematics
+volume: "4(1)"
+pages: "39–40"
+doi: 10.2307/2369148
+notes: >-
+  The two-page note in which astronomer Simon Newcomb first described the
+  leading-digit phenomenon, fifty-seven years before Frank Benford. Newcomb
+  noticed that logarithm tables — heavily used for astronomical calculations —
+  showed far more wear on the early pages (numbers beginning with 1 or 2) than
+  the later ones. He derived the mathematical law from first principles, showing
+  that the probability of a number having first digit d is log₁₀(1 + 1/d).
+  The note was overlooked until historians of mathematics rediscovered it in
+  the 1970s, long after Benford's name had attached to the law.

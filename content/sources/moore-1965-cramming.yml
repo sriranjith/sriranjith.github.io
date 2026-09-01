@@ -1,0 +1,20 @@
+id: moore-1965-cramming
+type: paper
+title: "Cramming More Components onto Integrated Circuits"
+authors:
+  - Gordon E. Moore
+year: 1965
+journal: Electronics
+volume: "38(8)"
+pages: "114–117"
+url: https://newsroom.intel.com/wp-content/uploads/sites/11/2018/05/moores-law-electronics.pdf
+notes: >-
+  The four-page article in which Gordon Moore, then director of research at
+  Fairchild Semiconductor, observed that the number of transistors on an
+  integrated circuit had doubled roughly every year since 1959 and predicted
+  this trend would continue for the next decade. In 1975 he revised the
+  doubling period to approximately two years. David House of Intel later
+  synthesised Moore's silicon count doubling with transistor speed improvements
+  to arrive at the familiar "performance doubles every 18 months" formulation.
+  The article launched an industry planning cycle that became a self-fulfilling
+  prophecy.

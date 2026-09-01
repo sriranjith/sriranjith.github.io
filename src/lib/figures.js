@@ -284,6 +284,50 @@ export const MOTIFS = {
     `,
   },
 
+  spillover: {
+    label: 'One trait floods all others',
+    caption: 'A single vivid quality — good or bad — bleeds into every other judgment. The halo is invisible to the person wearing it, and to the person seeing it.',
+    svg: `
+      <circle cx="62" cy="80" r="22" fill="var(--fig-accent)" fill-opacity=".85" stroke="var(--fig-accent)" stroke-width="2.5"/>
+      <text x="62" y="148" text-anchor="middle" font-size="11" fill="var(--fig-accent)">one trait</text>
+      <g stroke="var(--fig-accent)" fill="none" stroke-linecap="round">
+        <line x1="84" y1="64" x2="182" y2="28"  stroke-opacity=".75" stroke-width="2"/>
+        <line x1="84" y1="72" x2="182" y2="52"  stroke-opacity=".65" stroke-width="1.8"/>
+        <line x1="84" y1="80" x2="182" y2="76"  stroke-opacity=".55" stroke-width="1.6"/>
+        <line x1="84" y1="88" x2="182" y2="100" stroke-opacity=".45" stroke-width="1.4"/>
+        <line x1="84" y1="96" x2="182" y2="124" stroke-opacity=".35" stroke-width="1.2"/>
+      </g>
+      <g fill="var(--fig-accent)" fill-opacity=".22" stroke="var(--fig-accent)" stroke-width="1.5">
+        <rect x="182" y="18"  width="110" height="22" rx="4"/>
+        <rect x="182" y="42"  width="110" height="22" rx="4"/>
+        <rect x="182" y="66"  width="110" height="22" rx="4"/>
+        <rect x="182" y="90"  width="110" height="22" rx="4"/>
+        <rect x="182" y="114" width="110" height="22" rx="4"/>
+      </g>
+      <text x="237" y="148" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".55">all other judgments</text>
+    `,
+  },
+
+  'power-law': {
+    label: 'Frequency falls off sharply',
+    caption: 'The first digit is 1 six times more often than 9. Not because someone arranged it — it emerges from the mathematics of how real-world numbers span many orders of magnitude.',
+    svg: `
+      <line x1="30" y1="132" x2="304" y2="132" stroke="currentColor" stroke-opacity=".3" stroke-width="1.5"/>
+      <line x1="30" y1="132" x2="30"  y2="20"  stroke="currentColor" stroke-opacity=".3" stroke-width="1.5"/>
+      ${[
+        [1, 106], [2, 62], [3, 44], [4, 34], [5, 28], [6, 24], [7, 20], [8, 18], [9, 16]
+      ].map(([d, h], i) => {
+        const x = 38 + i * 30;
+        const opacity = (0.9 - i * 0.07).toFixed(2);
+        return `<rect x="${x}" y="${132 - h}" width="22" height="${h}" rx="2" fill="var(--fig-accent)" fill-opacity="${opacity}"/>
+                <text x="${x + 11}" y="144" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity=".5">${d}</text>`;
+      }).join('')}
+      <text x="30" y="16" font-size="10" fill="currentColor" fill-opacity=".45">30%</text>
+      <text x="30" y="120" font-size="10" fill="currentColor" fill-opacity=".35">5%</text>
+      <text x="175" y="156" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity=".5">leading digit</text>
+    `,
+  },
+
   cycle: {
     label: 'Preference that goes round',
     caption: 'A beats B, B beats C, and C beats A. Every individual comparison is decided by a clear majority, and together they form a loop with no winner.',
@@ -416,6 +460,14 @@ export const FIGURE_BY_SLUG = {
   'two-generals-problem': 'coordination',
   'unexpected-hanging-paradox': 'self-reference',
   'zenos-dichotomy': 'regress',
+  // Laws and effects added 2026-08-31
+  'benfords-law': 'power-law',
+  'bystander-effect': 'payoff',
+  'cobra-effect': 'perverse-curve',
+  'halo-effect': 'spillover',
+  'matthew-effect': 'divergence',
+  'moores-law': 'divergence',
+  'pygmalion-effect': 'perverse-curve',
 };
 
 export const FIGURE_IDS = Object.keys(MOTIFS);

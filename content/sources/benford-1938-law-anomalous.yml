@@ -1,0 +1,20 @@
+id: benford-1938-law-anomalous
+type: paper
+title: "The Law of Anomalous Numbers"
+authors:
+  - Frank Benford
+year: 1938
+journal: Proceedings of the American Philosophical Society
+volume: "78(4)"
+pages: "551–572"
+url: https://www.jstor.org/stable/984802
+notes: >-
+  The paper in which physicist Frank Benford independently rediscovered and
+  systematically documented the leading-digit phenomenon first noted by Simon
+  Newcomb in 1881. Benford tested 20,229 observations across 20 datasets —
+  river basin areas, atomic weights, population figures, street addresses,
+  death rates — and showed that in each case, the digit 1 appeared as the
+  leading digit in approximately 30% of cases, with each higher digit appearing
+  progressively less often. The paper provided the empirical breadth that
+  established the phenomenon as a genuine mathematical regularity rather than
+  an artefact of one dataset.

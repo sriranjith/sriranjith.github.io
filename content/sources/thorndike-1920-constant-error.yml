@@ -1,0 +1,17 @@
+id: thorndike-1920-constant-error
+type: paper
+title: "A Constant Error in Psychological Ratings"
+authors:
+  - Edward L. Thorndike
+year: 1920
+journal: Journal of Applied Psychology
+volume: "4(1)"
+pages: "25–29"
+doi: 10.1037/h0071663
+notes: >-
+  The paper that named and first documented the halo effect. Thorndike analysed
+  ratings of soldiers by superior officers across multiple traits (physique,
+  intelligence, leadership, character) and found that officers who rated a man
+  highly on one trait tended to rate him highly on all others, even when the
+  traits were logically independent. He called this systematic over-correlation
+  a "constant error" and introduced the term "halo" for the mechanism.
